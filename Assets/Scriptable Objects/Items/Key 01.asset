@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fa8c0ebd44ad340a99266f0dd1c3b0, type: 3}
+  m_Name: Key 01
+  m_EditorClassIdentifier: 
+  ID: Key01
+  Name: bathroom key
+  Icono_default: {fileID: 21300000, guid: c6f89de04bc468f429d826da1bd32d35, type: 3}
+  Icono_equipped: {fileID: 21300000, guid: 7f0859e004a163a45a1079cb209e7469, type: 3}
+  prefabModel: {fileID: 3767997097916317060, guid: acff8798711218e48bd17aff2d31dfe9, type: 3}
+  Description: "Usala para habir las puertas del ba\xF1o "
+  pickupText: 'Parece la llave vieja de algun lugar de la plaza
+
+'
+  pickupText02: Quieres agarrar la llave?
+  confirmationText: Has agarrado la llave
+  TypeItem: 0
+  isConsumable: 0
+  isCumulative: 0
+  maxiAccumulation: 1
+  amount: 0

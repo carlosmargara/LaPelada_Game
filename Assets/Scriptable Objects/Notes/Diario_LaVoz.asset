@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced7ba38b84b6864e9898f5bfa9ff3c1, type: 3}
+  m_Name: Diario_LaVoz
+  m_EditorClassIdentifier: 
+  noteTitle: Diario "La Voz del Interior"
+  foregroundImage: {fileID: 21300000, guid: 0d9aa8001ea34dd479a780ca8f242529, type: 3}
+  activaIA: 1
+  interacText01: Es un pedazo de Diario de La Voz Del Interior
+  interacText02: Quieres leerlo?
+  pages:
+  - "En C\xF3rdoba, Argentina, circula una leyenda urbana conocida como \"La Pelada
+    de la Ca\xF1ada\". Se trata del fantasma de una mujer joven, alta, delgada y
+    completamente calva, que aparece por las noches en la zona de La Ca\xF1ada, un
+    emblem\xE1tico arroyo que atraviesa la ciudad.\r\n"
+  - "Seg\xFAn el relato, la Pelada se aparece a los transe\xFAntes solitarios, especialmente
+    cerca del puente o en calles aleda\xF1as. Algunas versiones dicen que persigue
+    a los hombres infieles, mientras que otras afirman que simplemente asusta con
+    su presencia fantasmal. \r\n"
+  - Testigos describen una figura espectral que camina lentamente, con un vestido
+    blanco o harapiento, y una mirada penetrante.
+  - "El origen del mito es incierto: algunos lo vinculan a la tragedia de una mujer
+    que perdi\xF3 el cabello por una enfermedad y muri\xF3 de pena, mientras que
+    otros creen que es un alma en pena vinculada a cr\xEDmenes pasados en la zona."

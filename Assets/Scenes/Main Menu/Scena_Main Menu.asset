@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1568332691706100242
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
+  m_Name: WhiteBalance
+  m_EditorClassIdentifier: 
+  active: 1
+  temperature:
+    m_OverrideState: 1
+    m_Value: 36.8
+  tint:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Scena_Main Menu
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 3850286564638309573}
+  - {fileID: 7885282829272658975}
+  - {fileID: -1568332691706100242}
+--- !u!114 &3850286564638309573
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a074ec59f6e910b4e8c49f57e56cf95a, type: 3}
+  m_Name: VolumetricFogVolumeComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  distance:
+    m_OverrideState: 1
+    m_Value: 32
+  baseHeight:
+    m_OverrideState: 1
+    m_Value: 37.9
+  maximumHeight:
+    m_OverrideState: 1
+    m_Value: 135.8
+  enableGround:
+    m_OverrideState: 1
+    m_Value: 1
+  groundHeight:
+    m_OverrideState: 1
+    m_Value: -4.31
+  density:
+    m_OverrideState: 1
+    m_Value: 0.016
+  attenuationDistance:
+    m_OverrideState: 1
+    m_Value: 2.6
+  enableMainLightContribution:
+    m_OverrideState: 1
+    m_Value: 1
+  mainLightAnisotropy:
+    m_OverrideState: 1
+    m_Value: 0.622
+  mainLightScattering:
+    m_OverrideState: 1
+    m_Value: 0.499
+  mainLightColorTint:
+    m_OverrideState: 1
+    m_Value: {r: 0.2754717, g: 0.2754717, b: 0.2754717, a: 1}
+  enableAdditionalLightsContribution:
+    m_OverrideState: 0
+    m_Value: 0
+  additionalLightsAnisotropy:
+    m_OverrideState: 0
+    m_Value: 0.25
+  additionalLightsScattering:
+    m_OverrideState: 0
+    m_Value: 1
+  additionalLightsRadius:
+    m_OverrideState: 0
+    m_Value: 0.2
+  maxSteps:
+    m_OverrideState: 1
+    m_Value: 177
+  blurIterations:
+    m_OverrideState: 1
+    m_Value: 2
+  enabled:
+    m_OverrideState: 1
+    m_Value: 1
+--- !u!114 &7885282829272658975
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  color:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    m_OverrideState: 1
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.313
+  smoothness:
+    m_OverrideState: 1
+    m_Value: 0.826
+  rounded:
+    m_OverrideState: 1
+    m_Value: 0
