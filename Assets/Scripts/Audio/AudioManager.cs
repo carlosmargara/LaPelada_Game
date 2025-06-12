@@ -99,13 +99,21 @@ public class AudioManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
         Chasing.eventPlayChasinSound += PlayJampScareSound;
+        
+        StaminaBar.OnStaminaDepleted += PlayPantingSound;
+        StaminaBar.OnStaminaRecovered += StopPantingSound;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        
         Chasing.eventPlayChasinSound -= PlayJampScareSound;
+        
+        StaminaBar.OnStaminaDepleted -= PlayPantingSound;
+        StaminaBar.OnStaminaRecovered -= StopPantingSound;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -124,6 +132,22 @@ public class AudioManager : MonoBehaviour
             */
             //FadeInMusic(laPeladaTeAcosaFuerte,fadeIn,false);
         }
+    }
+
+    private void PlayPantingSound()
+    {
+        if (SoundFX.isPlaying) return;
+        SoundFX.clip = pantingSound;
+        SoundFX.loop = true;
+        SoundFX.volume = 0.5f;
+        SoundFX.Play();
+    }
+
+    private void StopPantingSound()
+    {
+        SoundFX.loop = false;
+        SoundFX.Stop();
+        Debug.Log("SE LLAMA A APAGAR EL FX DE AGITADO ");
     }
 
     private void PlayJampScareSound() //lanza el sonido JampScare
