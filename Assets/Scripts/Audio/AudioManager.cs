@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -46,20 +47,25 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    private AudioSource musicSource;
-    private AudioSource soundFx;
-    [Space]
+    private AudioSource musicSource, soundFx, ambSound;
+
     [SerializeField] private float fadeIn;
     [SerializeField] private float fadeOut;
-    
+
     [Space]
-    
+
     [Header("Music")]
     [SerializeField] private AudioClip laPeladaTeAcosaFuerte;
     [SerializeField] public AudioClip suspenso, chasing;
 
     [Header("SoundFX")]
     [SerializeField] public AudioClip pickUP_Sound;
+    [SerializeField] public AudioClip pantingSound;
+
+    [Header("Ambience")]
+    [SerializeField] private AudioClip ambPlazaArtes;
+
+    public AudioSource SoundFX => soundFx;
 
     //patron Singleton
     private void Awake()
@@ -79,7 +85,8 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         soundFx = transform.GetChild(0).GetComponent<AudioSource>(); //asigna a la variable el audioSource
-        
+        ambSound = transform.GetChild(1).GetComponent<AudioSource>();
+
         musicSource = GetComponent<AudioSource>();
 
         if (!musicSource.isPlaying)
@@ -103,6 +110,9 @@ public class AudioManager : MonoBehaviour
     {
         if (scene.name == "LaPeladaTeAcosaFuerte")
         {
+            PlayAmbience(ambPlazaArtes,0.4f);
+            
+            FadeOutMusic(5f);
             /*
             // Cambiar a otra música
             musicSource.Stop();
@@ -110,7 +120,7 @@ public class AudioManager : MonoBehaviour
             musicSource.loop = false;
             musicSource.Play();
             */
-            FadeInMusic(laPeladaTeAcosaFuerte,fadeIn,false);
+            //FadeInMusic(laPeladaTeAcosaFuerte,fadeIn,false);
         }
     }
 
@@ -119,6 +129,16 @@ public class AudioManager : MonoBehaviour
         Debug.Log("_Se lanzo el SoundFX");
         soundFx.PlayOneShot(clip, vol);
     }
+
+    public void PlayAmbience(AudioClip clip, float vol)
+    {
+        ambSound.clip = clip;
+        ambSound.volume = vol;
+        ambSound.loop = true;
+        ambSound.Play();
+    }
+
+
 
     #region Logica que hace que la musica empieze de una!
     public void PlayMusic(AudioClip clip, bool loop = false, bool forceRestart = false)
@@ -218,4 +238,5 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = startVolume;
     }
     #endregion
+
 }
