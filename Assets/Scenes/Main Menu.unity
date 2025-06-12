@@ -2194,6 +2194,7 @@ MonoBehaviour:
   laPeladaTeAcosaFuerte: {fileID: 8300000, guid: 993ea01b24a2b5748b14d4992d9fe645, type: 3}
   suspenso: {fileID: 8300000, guid: f4f5f5dd3d3f40b4e9328b2ec4b1e89c, type: 3}
   chasing: {fileID: 8300000, guid: 0e3c9609ee5dec44d8038363d231ba18, type: 3}
+  jumpScare: {fileID: 8300000, guid: f74022fe1ddf240409048951a3228c6a, type: 3}
   pickUP_Sound: {fileID: 8300000, guid: f90bc8c0dfa93ad40a330a69067bdad9, type: 3}
   pantingSound: {fileID: 8300000, guid: 86404577bfdd8b0468c91b72f4b83be4, type: 3}
   ambPlazaArtes: {fileID: 8300000, guid: e2af31089010d2d48a8e13c3bcef3bc4, type: 3}

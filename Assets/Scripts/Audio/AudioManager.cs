@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Music")]
     [SerializeField] private AudioClip laPeladaTeAcosaFuerte;
-    [SerializeField] public AudioClip suspenso, chasing;
+    [SerializeField] public AudioClip suspenso, chasing, jumpScare;
 
     [Header("SoundFX")]
     [SerializeField] public AudioClip pickUP_Sound;
@@ -99,11 +99,13 @@ public class AudioManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        Chasing.eventPlayChasinSound += PlayJampScareSound;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        Chasing.eventPlayChasinSound -= PlayJampScareSound;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -124,13 +126,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySoundFX(AudioClip clip, float vol)
+    private void PlayJampScareSound() //lanza el sonido JampScare
+    {
+        FadeInMusic(jumpScare, 2f, false);
+    }
+
+    public void PlaySoundFX(AudioClip clip, float vol) //lanza los FxSound
     {
         Debug.Log("_Se lanzo el SoundFX");
         soundFx.PlayOneShot(clip, vol);
     }
 
-    public void PlayAmbience(AudioClip clip, float vol)
+    public void PlayAmbience(AudioClip clip, float vol) //Lanza AmbSound
     {
         ambSound.clip = clip;
         ambSound.volume = vol;
@@ -238,5 +245,5 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = startVolume;
     }
     #endregion
-
+    
 }

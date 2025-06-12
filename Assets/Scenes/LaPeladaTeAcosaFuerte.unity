@@ -16436,7 +16436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1289810563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16451,12 +16451,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 518405342}
   peladaPrefab: {fileID: 5827501004835455174, guid: b2f2aafcafc2269498184d96048ba50b, type: 3}
-  minSpawnTime: 20
-  maxSpawnTime: 25
+  minSpawnTime: 60
+  maxSpawnTime: 120
   spawnTimer: 0
   feedbackVisualChasing: {fileID: 645074930}
-  minSpawnDistance: 15
-  maxSpawnDistance: 30
+  minSpawnDistance: 20
+  maxSpawnDistance: 50
 --- !u!4 &1289810564
 Transform:
   m_ObjectHideFlags: 0
