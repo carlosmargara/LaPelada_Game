@@ -47,7 +47,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    private AudioSource musicSource, soundFx, ambSound;
+    private AudioSource musicSource, soundFx,pickUP;
+    public AudioSource ambSound;
 
     [SerializeField] private float fadeIn;
     [SerializeField] private float fadeOut;
@@ -86,6 +87,7 @@ public class AudioManager : MonoBehaviour
     {
         soundFx = transform.GetChild(0).GetComponent<AudioSource>(); //asigna a la variable el audioSource
         ambSound = transform.GetChild(1).GetComponent<AudioSource>();
+        pickUP = transform.GetChild(2).GetComponent<AudioSource>();
 
         musicSource = GetComponent<AudioSource>();
 
@@ -120,7 +122,7 @@ public class AudioManager : MonoBehaviour
     {
         if (scene.name == "LaPeladaTeAcosaFuerte")
         {
-            PlayAmbience(ambPlazaArtes,0.4f);
+            PlayAmbience(ambPlazaArtes,0.5f);
             
             FadeOutMusic(5f);
             /*
@@ -146,19 +148,22 @@ public class AudioManager : MonoBehaviour
     private void StopPantingSound()
     {
         SoundFX.loop = false;
-        SoundFX.Stop();
-        Debug.Log("SE LLAMA A APAGAR EL FX DE AGITADO ");
+        if(SoundFX.isPlaying)
+        {
+            SoundFX.Stop();
+            Debug.Log("SE LLAMA A APAGAR EL FX DE AGITADO ");
+        }
     }
 
     private void PlayJampScareSound() //lanza el sonido JampScare
     {
-        FadeInMusic(jumpScare, 2f, false);
+        FadeInMusic(jumpScare, 0.5f, false);
     }
 
     public void PlaySoundFX(AudioClip clip, float vol) //lanza los FxSound
     {
         Debug.Log("_Se lanzo el SoundFX");
-        soundFx.PlayOneShot(clip, vol);
+        pickUP.PlayOneShot(clip, vol);
     }
 
     public void PlayAmbience(AudioClip clip, float vol) //Lanza AmbSound

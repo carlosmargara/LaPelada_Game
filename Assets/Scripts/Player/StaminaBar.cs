@@ -51,26 +51,7 @@ public class StaminaBar : MonoBehaviour
         }
 
         HandleStamina();
-        UpdateStaminaBar();
-        
-        /*
-        if(currentStamina <= 0) 
-        {
-            Debug.Log("_SE LANZO EL SONIDO DE AGITADO");
-            if(!AudioManager.Instance.SoundFX.isPlaying)
-            {
-                AudioManager.Instance.SoundFX.clip = AudioManager.Instance.pantingSound;
-                AudioManager.Instance.SoundFX.loop = true;
-                AudioManager.Instance.SoundFX.volume = 0.5f;
-                AudioManager.Instance.SoundFX.Play();
-            }
-        }
-        else if (currentStamina == 100)
-        {
-            AudioManager.Instance.SoundFX.loop = false;
-            AudioManager.Instance.SoundFX.Stop();
-        }
-        */    
+        UpdateStaminaBar();           
     }
 
     private void HandleStamina()

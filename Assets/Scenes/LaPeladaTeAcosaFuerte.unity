@@ -16451,8 +16451,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 518405342}
   peladaPrefab: {fileID: 5827501004835455174, guid: b2f2aafcafc2269498184d96048ba50b, type: 3}
-  minSpawnTime: 60
-  maxSpawnTime: 120
+  minSpawnTime: 30
+  maxSpawnTime: 40
   spawnTimer: 0
   feedbackVisualChasing: {fileID: 645074930}
   minSpawnDistance: 20
@@ -20566,7 +20566,6 @@ MonoBehaviour:
   staminaRegenRate: 10
   staminaDrainRate: 20
   regenDelay: 2
-  currentStamina: 0
 --- !u!4 &1740682275
 Transform:
   m_ObjectHideFlags: 0

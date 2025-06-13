@@ -72,7 +72,7 @@ public class Chasing : MonoBehaviour
             Debug.Log("La pelada de Atrapo. GAME OVER");
 
             SceneManager.LoadScene(2);
-            //GameStateManager.Instance.LockPlayer(priority: 3);
+            AudioManager.Instance.ambSound.Stop();
             
         }
     }
