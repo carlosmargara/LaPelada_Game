@@ -66,6 +66,12 @@ public class AudioManager : MonoBehaviour
     [Header("Ambience")]
     [SerializeField] private AudioClip ambPlazaArtes;
 
+    [Space]
+
+    private Coroutine suspenseRoutine;
+    [SerializeField] private float minDelaySuspense = 30f;
+    [SerializeField] private float maxDelaySuspense = 60f;
+
     public AudioSource SoundFX => soundFx;
 
     //patron Singleton
@@ -133,6 +139,8 @@ public class AudioManager : MonoBehaviour
             musicSource.Play();
             */
             //FadeInMusic(laPeladaTeAcosaFuerte,fadeIn,false);
+            
+            StartSuspenseLoop();// funcion que lanza de forma aliatoria el track de suspenso 
         }
     }
 
@@ -274,5 +282,29 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = startVolume;
     }
     #endregion
-    
+
+    #region PlayRandomTrack
+    private void StartSuspenseLoop()
+    {
+        if (suspenseRoutine != null)
+            StopCoroutine(suspenseRoutine);
+
+        suspenseRoutine = StartCoroutine(SuspenseMusicLoop());
+    }
+
+    private IEnumerator SuspenseMusicLoop()
+    {
+        while (true)
+        {
+            float waitTime = Random.Range(minDelaySuspense, maxDelaySuspense);
+            yield return new WaitForSeconds(waitTime);
+
+            Debug.Log("🎵 Lanzando música de suspenso aleatoria");
+            FadeInMusic(suspenso, 2f, false);
+
+            // Esperar un tiempo estimado antes de lanzar otro track (o espera la duración real si querés)
+            yield return new WaitForSeconds(suspenso.length + 5f); // pequeño buffer
+        }
+    }
+    #endregion
 }
