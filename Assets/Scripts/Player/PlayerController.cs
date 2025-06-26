@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         camScript.isMoving = moveDirection.magnitude > 0.1f;
         camScript.isRunning = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) &&
-                      staminaBar.currentStamina >= 0.1;
+                      staminaBar.CurrentStamina >= 0.1;
 
         HandleRotationInput();
         _MechanicsLookBack();
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         bool shiftPressed = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
 
         // El StaminaBar se encargará de limitar el correr según la stamina
-        if (shiftPressed && staminaBar.currentStamina > 0 )
+        if (shiftPressed && staminaBar.CurrentStamina > 0 )
         {
             isRunning = true;
             currentSpeed = sprintSpeed;
