@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{6f5dab00-a9c7-492d-9e37-460495a9a143}">
+		<property name="color">
+			<value>Green</value>
+		</property>
+		<property name="name">
+			<value>AmbChasing</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{6f970ae2-181d-498c-8df9-f2501d8063e7}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{f4f70f12-289c-48a3-8316-52dcc592f9bd}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{1e2b80db-1917-43c3-bf39-99547a735836}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{6f970ae2-181d-498c-8df9-f2501d8063e7}">
+		<relationship name="effects">
+			<destination>{f04c517a-994b-4342-b62e-f4a3261be34c}</destination>
+			<destination>{2d998b93-2e02-4e07-86aa-b6c7377e9c6f}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{f4f70f12-289c-48a3-8316-52dcc592f9bd}" />
+	<object class="MixerBusFader" id="{f04c517a-994b-4342-b62e-f4a3261be34c}" />
+	<object class="DistortionEffect" id="{2d998b93-2e02-4e07-86aa-b6c7377e9c6f}">
+		<property name="level">
+			<value>0.125</value>
+		</property>
+	</object>
+</objects>

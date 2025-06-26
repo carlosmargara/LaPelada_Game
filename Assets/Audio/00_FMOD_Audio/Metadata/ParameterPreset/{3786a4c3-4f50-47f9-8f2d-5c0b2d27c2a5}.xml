@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{3786a4c3-4f50-47f9-8f2d-5c0b2d27c2a5}">
+		<property name="name">
+			<value>agitado</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a23c0b78-3112-4a3a-bcde-e973ef9a27b9}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{66886f2f-9c04-4c48-92d1-b1caee2e1b16}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{66886f2f-9c04-4c48-92d1-b1caee2e1b16}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
