@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -48,20 +49,32 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    private AudioSource musicSource;
-    private AudioSource soundFx;
-    [Space]
+    private AudioSource musicSource, soundFx,pickUP;
+    public AudioSource ambSound;
+
     [SerializeField] private float fadeIn;
     [SerializeField] private float fadeOut;
-    
+
     [Space]
-    
+
     [Header("Music")]
     [SerializeField] private AudioClip laPeladaTeAcosaFuerte;
-    [SerializeField] public AudioClip suspenso, chasing;
+    [SerializeField] public AudioClip suspenso, chasing, jumpScare;
 
     [Header("SoundFX")]
     [SerializeField] public AudioClip pickUP_Sound;
+    [SerializeField] public AudioClip pantingSound;
+
+    [Header("Ambience")]
+    [SerializeField] private AudioClip ambPlazaArtes;
+
+    [Space]
+
+    private Coroutine suspenseRoutine;
+    [SerializeField] private float minDelaySuspense = 30f;
+    [SerializeField] private float maxDelaySuspense = 60f;
+
+    public AudioSource SoundFX => soundFx;
 
     //patron Singleton
     private void Awake()
@@ -81,7 +94,9 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         soundFx = transform.GetChild(0).GetComponent<AudioSource>(); //asigna a la variable el audioSource
-        
+        ambSound = transform.GetChild(1).GetComponent<AudioSource>();
+        pickUP = transform.GetChild(2).GetComponent<AudioSource>();
+
         musicSource = GetComponent<AudioSource>();
 
         if (!musicSource.isPlaying)
@@ -94,17 +109,30 @@ public class AudioManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
+        Chasing.eventPlayChasinSound += PlayJampScareSound;
+        
+        StaminaBar.OnStaminaDepleted += PlayPantingSound;
+        StaminaBar.OnStaminaRecovered += StopPantingSound;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        
+        Chasing.eventPlayChasinSound -= PlayJampScareSound;
+        
+        StaminaBar.OnStaminaDepleted -= PlayPantingSound;
+        StaminaBar.OnStaminaRecovered -= StopPantingSound;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "LaPeladaTeAcosaFuerte")
         {
+            PlayAmbience(ambPlazaArtes,0.5f);
+            
+            FadeOutMusic(5f);
             /*
             // Cambiar a otra música
             musicSource.Stop();
@@ -112,15 +140,51 @@ public class AudioManager : MonoBehaviour
             musicSource.loop = false;
             musicSource.Play();
             */
-            FadeInMusic(laPeladaTeAcosaFuerte,fadeIn,false);
+            //FadeInMusic(laPeladaTeAcosaFuerte,fadeIn,false);
+            
+            StartSuspenseLoop();// funcion que lanza de forma aliatoria el track de suspenso 
         }
     }
 
-    public void PlaySoundFX(AudioClip clip, float vol)
+    private void PlayPantingSound()
+    {
+        if (SoundFX.isPlaying) return;
+        SoundFX.clip = pantingSound;
+        SoundFX.loop = true;
+        SoundFX.volume = 0.5f;
+        SoundFX.Play();
+    }
+
+    private void StopPantingSound()
+    {
+        SoundFX.loop = false;
+        if(SoundFX.isPlaying)
+        {
+            SoundFX.Stop();
+            Debug.Log("SE LLAMA A APAGAR EL FX DE AGITADO ");
+        }
+    }
+
+    private void PlayJampScareSound() //lanza el sonido JampScare
+    {
+        FadeInMusic(jumpScare, 0.5f, false);
+    }
+
+    public void PlaySoundFX(AudioClip clip, float vol) //lanza los FxSound
     {
         Debug.Log("_Se lanzo el SoundFX");
-        soundFx.PlayOneShot(clip, vol);
+        pickUP.PlayOneShot(clip, vol);
     }
+
+    public void PlayAmbience(AudioClip clip, float vol) //Lanza AmbSound
+    {
+        ambSound.clip = clip;
+        ambSound.volume = vol;
+        ambSound.loop = true;
+        ambSound.Play();
+    }
+
+
 
     #region Logica que hace que la musica empieze de una!
     public void PlayMusic(AudioClip clip, bool loop = false, bool forceRestart = false)
@@ -218,6 +282,31 @@ public class AudioManager : MonoBehaviour
         }
 
         musicSource.volume = startVolume;
+    }
+    #endregion
+
+    #region PlayRandomTrack
+    private void StartSuspenseLoop()
+    {
+        if (suspenseRoutine != null)
+            StopCoroutine(suspenseRoutine);
+
+        suspenseRoutine = StartCoroutine(SuspenseMusicLoop());
+    }
+
+    private IEnumerator SuspenseMusicLoop()
+    {
+        while (true)
+        {
+            float waitTime = Random.Range(minDelaySuspense, maxDelaySuspense);
+            yield return new WaitForSeconds(waitTime);
+
+            Debug.Log("🎵 Lanzando música de suspenso aleatoria");
+            FadeInMusic(suspenso, 2f, false);
+
+            // Esperar un tiempo estimado antes de lanzar otro track (o espera la duración real si querés)
+            yield return new WaitForSeconds(suspenso.length + 5f); // pequeño buffer
+        }
     }
     #endregion
 }

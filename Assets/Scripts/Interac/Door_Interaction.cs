@@ -16,7 +16,8 @@ public class Door_Interaction : Interactable
         if (DialogueManager.Instance != null)
         {
             DialogueManager.Instance.ShowDoorDescription(this); // Le pasás el script, no el ScriptableObject
-            AudioManager.Instance.PlaySoundFX(ref_ScriptableObjets.effectDoorSound, 0.5f);
+            //AudioManager.Instance.PlaySoundFX(ref_ScriptableObjets.effectDoorSound, 0.5f);
+            AudioManager02.Instance.PlaySoundFX_ClosedDoor();
         }
     }
 }
