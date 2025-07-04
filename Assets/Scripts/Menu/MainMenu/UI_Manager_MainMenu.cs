@@ -11,23 +11,25 @@ public class UI_Manager_MainMenu : MonoBehaviour
     [SerializeField] private GameObject panelMain;
     [SerializeField] private GameObject panelOptions;
 
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+  private void Start()
+{
+    Cursor.lockState = CursorLockMode.None; // Allow free mouse movement
+    Cursor.visible = true; // Show the cursor
 
+    panelMain.SetActive(true);
+    panelOptions.SetActive(false);
+}
+
+ private void Update()
+{
+    Debug.Log($"Cursor.lockState: {Cursor.lockState}, Cursor.visible: {Cursor.visible}");
+
+    if (Input.GetKeyDown(KeyCode.Escape) && panelOptions.activeSelf == true)
+    {
         panelMain.SetActive(true);
         panelOptions.SetActive(false);
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && panelOptions.activeSelf == true)
-        {
-            panelMain.SetActive(true);
-            panelOptions.SetActive(false);
-        }
-    }
+}
 
     public void ButtonPlay()
     {
