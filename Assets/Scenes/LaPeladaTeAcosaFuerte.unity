@@ -133,8 +133,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b314bdece98114a4d9ea7162196f2668, type: 3}
   m_PrefabInstance: {fileID: 555616917}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &3929400
-BoxCollider:
+--- !u!64 &3929398
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -151,9 +151,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 39.000008, y: 0, z: 148.98717}
-  m_Center: {x: -7.047353, y: 0.000000029802322, z: 7.925644}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5979066502794870513, guid: b314bdece98114a4d9ea7162196f2668, type: 3}
 --- !u!1 &5225430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,9 +1250,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7437b78846de9da4890b6c2005f11c45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7437b78846de9da4890b6c2005f11c45, type: 3}
       propertyPath: m_Name
       value: SideWalker_Plaza_MarceloTAlberar_esqPjsRevol
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7437b78846de9da4890b6c2005f11c45, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7437b78846de9da4890b6c2005f11c45, type: 3}
+      propertyPath: m_TagString
+      value: Default
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7437b78846de9da4890b6c2005f11c45, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1260,7 +1273,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7437b78846de9da4890b6c2005f11c45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1995731933}
   m_SourcePrefab: {fileID: 100100000, guid: 7437b78846de9da4890b6c2005f11c45, type: 3}
 --- !u!1 &103341888 stripped
 GameObject:
@@ -2002,14 +2018,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 795145f983d60db4e9fe92be33df1a98, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 795145f983d60db4e9fe92be33df1a98, type: 3}
       propertyPath: m_Name
       value: SideWalker_Plaza_MarceloTAlvear
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 795145f983d60db4e9fe92be33df1a98, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 795145f983d60db4e9fe92be33df1a98, type: 3}
+      propertyPath: m_TagString
+      value: Default
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 795145f983d60db4e9fe92be33df1a98, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 358025350}
   m_SourcePrefab: {fileID: 100100000, guid: 795145f983d60db4e9fe92be33df1a98, type: 3}
 --- !u!4 &168393257 stripped
 Transform:
@@ -2846,6 +2877,11 @@ Transform:
   - {fileID: 2026878932}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &217064904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: be5d4508149501c448f6bd63a7e25076, type: 3}
+  m_PrefabInstance: {fileID: 1142432673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &219698961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7285596687962212116, guid: 47ce3f98d253e2b4f9cdbd3bd999adeb, type: 3}
@@ -4310,6 +4346,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &358025349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 795145f983d60db4e9fe92be33df1a98, type: 3}
+  m_PrefabInstance: {fileID: 168393256}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &358025350
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358025349}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3012250501807247981, guid: 795145f983d60db4e9fe92be33df1a98, type: 3}
 --- !u!4 &358216830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6895084615269152705, guid: 4a8d86d2e03145f49818219a4b60459d, type: 3}
@@ -6086,7 +6149,7 @@ MonoBehaviour:
       Data2: 1198166372
       Data3: 1373075127
       Data4: -125253648
-    Path: event:/UI/Closed_Door
+    Path: event:/Fxs/Closed_Door
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -6172,9 +6235,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 02ff44adf2e378d448968ce7f35681a1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 02ff44adf2e378d448968ce7f35681a1, type: 3}
       propertyPath: m_Name
       value: SideWalker_Plaza_MarceloTAlberar_esqAchaval
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 02ff44adf2e378d448968ce7f35681a1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 02ff44adf2e378d448968ce7f35681a1, type: 3}
+      propertyPath: m_TagString
+      value: Default
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 02ff44adf2e378d448968ce7f35681a1, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6183,7 +6258,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 02ff44adf2e378d448968ce7f35681a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1870436938}
   m_SourcePrefab: {fileID: 100100000, guid: 02ff44adf2e378d448968ce7f35681a1, type: 3}
 --- !u!1001 &472680643
 PrefabInstance:
@@ -6459,6 +6537,7 @@ GameObject:
   - component: {fileID: 518405338}
   - component: {fileID: 518405337}
   - component: {fileID: 518405348}
+  - component: {fileID: 518405350}
   - component: {fileID: 518405344}
   - component: {fileID: 518405345}
   - component: {fileID: 518405343}
@@ -6488,7 +6567,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 1770765006}
   rb: {fileID: 518405338}
   staminaBar: {fileID: 1740682274}
-  different_Types_Of_Raycast_And_Tag_Steps: {fileID: 518405348}
+  diffetentTypes_footSteps_with_FmodEvent: {fileID: 518405350}
   isRunning: 0
 --- !u!54 &518405338
 Rigidbody:
@@ -6610,7 +6689,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518405336}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c92c8b06da073a498f6c733e64621a0, type: 3}
   m_Name: 
@@ -6724,7 +6803,7 @@ MonoBehaviour:
       Data2: 1316086140
       Data3: 1688110270
       Data4: -770970372
-    Path: event:/FlashLightFX
+    Path: event:/Fxs/FlashLightFX
   Event: 
   EventPlayTrigger: 20
   EventStopTrigger: 0
@@ -6736,6 +6815,22 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &518405350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518405336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c909c0d9b6befc4f9da49ad924182fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  rayDistance: 1.8
 --- !u!1 &519233863
 GameObject:
   m_ObjectHideFlags: 0
@@ -7354,9 +7449,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b314bdece98114a4d9ea7162196f2668, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b314bdece98114a4d9ea7162196f2668, type: 3}
       propertyPath: m_Name
       value: SideWalker_PsjRevol
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b314bdece98114a4d9ea7162196f2668, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b314bdece98114a4d9ea7162196f2668, type: 3}
+      propertyPath: m_TagString
+      value: Default
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b314bdece98114a4d9ea7162196f2668, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7368,7 +7475,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b314bdece98114a4d9ea7162196f2668, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3929400}
+      addedObject: {fileID: 3929398}
   m_SourcePrefab: {fileID: 100100000, guid: b314bdece98114a4d9ea7162196f2668, type: 3}
 --- !u!1001 &559021399
 PrefabInstance:
@@ -7658,6 +7765,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: be5d4508149501c448f6bd63a7e25076, type: 3}
   m_PrefabInstance: {fileID: 1142432673}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &592212979
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217064904}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7073991318808287368, guid: be5d4508149501c448f6bd63a7e25076, type: 3}
 --- !u!4 &597133428 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6895084615269152705, guid: 4a8d86d2e03145f49818219a4b60459d, type: 3}
@@ -8373,8 +8502,8 @@ MonoBehaviour:
   - {fileID: 1406094606}
   - {fileID: 1035254960}
   detectionRadius: 25.5
-  stalkDuration: 10
-  attackDistance: 2.5
+  stalkDuration: 17.67
+  attackDistance: 2.59
   speedPatrol: 3
   speedChase: 1000
   stalkTimer: 0
@@ -9693,6 +9822,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1650690989}
   m_SourcePrefab: {fileID: 100100000, guid: ff4218a8f892835418ea5f4f20d54185, type: 3}
+--- !u!1 &715533552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7437b78846de9da4890b6c2005f11c45, type: 3}
+  m_PrefabInstance: {fileID: 88392192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &736371030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6895084615269152705, guid: 4a8d86d2e03145f49818219a4b60459d, type: 3}
@@ -11290,6 +11424,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d0d7484269540724a911127cfdbe9d39, type: 3}
       propertyPath: m_Name
       value: Asphalt
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d0d7484269540724a911127cfdbe9d39, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3510829460799091549, guid: d0d7484269540724a911127cfdbe9d39, type: 3}
       propertyPath: m_Layer
@@ -14107,6 +14245,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1387882486}
   m_SourcePrefab: {fileID: 100100000, guid: ad733348369a5b9438cc5cfb9bd64a2e, type: 3}
+--- !u!1 &1111663619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 79c70f7f434d313498074ed683e04b9e, type: 3}
+  m_PrefabInstance: {fileID: 1215786314}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1112109123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14469,6 +14612,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: be5d4508149501c448f6bd63a7e25076, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: be5d4508149501c448f6bd63a7e25076, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8f2792e5886b9c541a9be8052c7e3fe7, type: 2}
@@ -14493,6 +14640,14 @@ PrefabInstance:
       value: "SideWalker_Ca\xF1ada"
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: be5d4508149501c448f6bd63a7e25076, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: be5d4508149501c448f6bd63a7e25076, type: 3}
+      propertyPath: m_TagString
+      value: Default
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: be5d4508149501c448f6bd63a7e25076, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -14503,7 +14658,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be5d4508149501c448f6bd63a7e25076, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 592212979}
   m_SourcePrefab: {fileID: 100100000, guid: be5d4508149501c448f6bd63a7e25076, type: 3}
 --- !u!1 &1149857385
 GameObject:
@@ -15550,9 +15708,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 79c70f7f434d313498074ed683e04b9e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 79c70f7f434d313498074ed683e04b9e, type: 3}
       propertyPath: m_Name
       value: SideWalker_AchavalRodriguez
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 79c70f7f434d313498074ed683e04b9e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 79c70f7f434d313498074ed683e04b9e, type: 3}
+      propertyPath: m_TagString
+      value: Default
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 79c70f7f434d313498074ed683e04b9e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15561,7 +15731,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 79c70f7f434d313498074ed683e04b9e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2125073160}
   m_SourcePrefab: {fileID: 100100000, guid: 79c70f7f434d313498074ed683e04b9e, type: 3}
 --- !u!1001 &1218531049
 PrefabInstance:
@@ -16428,8 +16601,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 518405342}
   peladaPrefab: {fileID: 5827501004835455174, guid: b2f2aafcafc2269498184d96048ba50b, type: 3}
-  minSpawnTime: 60
-  maxSpawnTime: 120
+  minSpawnTime: 30
+  maxSpawnTime: 40
   spawnTimer: 0
   feedbackVisualChasing: {fileID: 645074930}
   minSpawnDistance: 20
@@ -20546,6 +20719,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPlayerPanel: {fileID: 1943379412}
   staminaBar: {fileID: 644753311}
+  panelsThatHideUIPlayer:
+  - {fileID: 650738907}
+  - {fileID: 2030215698}
+  - {fileID: 164056242}
+  - {fileID: 1539714350}
+  - {fileID: 751433427}
   staminaRegenRate: 10
   staminaDrainRate: 20
   regenDelay: 2
@@ -22932,6 +23111,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6895084615269152705, guid: 4a8d86d2e03145f49818219a4b60459d, type: 3}
   m_PrefabInstance: {fileID: 1295174790}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1870436937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 02ff44adf2e378d448968ce7f35681a1, type: 3}
+  m_PrefabInstance: {fileID: 466515432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1870436938
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870436937}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6194499342379363370, guid: 02ff44adf2e378d448968ce7f35681a1, type: 3}
 --- !u!4 &1871310551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2475415839852509573, guid: 4a6d582906cde294395aa20606930ca2, type: 3}
@@ -23944,7 +24150,7 @@ MonoBehaviour:
       Data2: 1198166372
       Data3: 1373075127
       Data4: -125253648
-    Path: event:/UI/Closed_Door
+    Path: event:/Fxs/Closed_Door
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -24125,6 +24331,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7437b78846de9da4890b6c2005f11c45, type: 3}
   m_PrefabInstance: {fileID: 88392192}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &1995731933
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715533552}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1036174357350639909, guid: 7437b78846de9da4890b6c2005f11c45, type: 3}
 --- !u!1 &2010115942 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3246632436084592496, guid: d0d7484269540724a911127cfdbe9d39, type: 3}
@@ -25308,7 +25536,7 @@ MonoBehaviour:
       Data2: 1198166372
       Data3: 1373075127
       Data4: -125253648
-    Path: event:/UI/Closed_Door
+    Path: event:/Fxs/Closed_Door
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -25344,7 +25572,7 @@ MonoBehaviour:
       Data2: 1198166372
       Data3: 1373075127
       Data4: -125253648
-    Path: event:/UI/Closed_Door
+    Path: event:/Fxs/Closed_Door
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -25624,6 +25852,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 79c70f7f434d313498074ed683e04b9e, type: 3}
   m_PrefabInstance: {fileID: 1215786314}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &2125073160
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111663619}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8216936986440060479, guid: 79c70f7f434d313498074ed683e04b9e, type: 3}
 --- !u!4 &2129578413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4963563111418008245, guid: ecb08fd96eb00fd4baf775212897e24d, type: 3}
@@ -26786,8 +27036,8 @@ SceneRoots:
   - {fileID: 8302110205345211826}
   - {fileID: 342510287}
   - {fileID: 188812782}
-  - {fileID: 1836416362}
   - {fileID: 2143930755}
+  - {fileID: 1836416362}
   - {fileID: 783803379}
   - {fileID: 2034726670}
   - {fileID: 1632489457}

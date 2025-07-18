@@ -40,8 +40,8 @@ public class PeladaAI : MonoBehaviour
 
             if (distanceToPlayer <= attackDistance)
             {
-                // Acá podés lanzar animación de muerte o pantalla de game over
-                Debug.Log("La Pelada te agarró");
+                // Acï¿½ podï¿½s lanzar animaciï¿½n de muerte o pantalla de game over
+                Debug.Log("La Pelada te agarrï¿½");
                 // Ej: SceneManager.LoadScene("GameOver");
             }
 

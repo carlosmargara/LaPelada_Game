@@ -17,7 +17,7 @@ public class PeladaSpawner : MonoBehaviour
     [Header("Feedback visual Chasing")]
     [SerializeField] private GameObject feedbackVisualChasing;
 
-    [Header("Distancia de aparición")]
+    [Header("Distancia de apariciï¿½n")]
     [SerializeField] private float minSpawnDistance = 20f;
     [SerializeField] private float maxSpawnDistance = 50f;
 
@@ -29,7 +29,7 @@ public class PeladaSpawner : MonoBehaviour
     void Update()
     {
         if (peladaActive) return;
-        
+
         spawnTimer -= Time.deltaTime * 2;
 
         if (spawnTimer <= 0)
@@ -46,10 +46,12 @@ public class PeladaSpawner : MonoBehaviour
 
     void SpawnPelada()
     {
-        spawnDistanceBehindPlayer = Random.Range(minSpawnDistance,maxSpawnDistance);//Randomiza la distancia en la que aparece el bicho
-        
-        Vector3 spawnPosition = player.position - player.forward * spawnDistanceBehindPlayer;// Calcula posición detrás del jugador
-        spawnPosition.y = player.position.y; // Asegura que esté al mismo nivel
+        AudioManager02.Instance.SpawnPelada(); //Lanza el Sonido que te chumba
+
+        spawnDistanceBehindPlayer = Random.Range(minSpawnDistance, maxSpawnDistance);//Randomiza la distancia en la que aparece el bicho
+
+        Vector3 spawnPosition = player.position - player.forward * spawnDistanceBehindPlayer;// Calcula posiciï¿½n detrï¿½s del jugador
+        spawnPosition.y = player.position.y; // Asegura que estï¿½ al mismo nivel
 
         // Instancia la Pelada
         GameObject pelada = Instantiate(peladaPrefab, spawnPosition, Quaternion.identity);
@@ -61,7 +63,7 @@ public class PeladaSpawner : MonoBehaviour
             perseguidor.SetTarget(player);
             perseguidor.SetSpawner(this);
         }
-        
+
         peladaActive = true;
         feedbackVisualChasing.SetActive(true);
         Debug.Log("PELADA MISSING... Activar feedback visual");
@@ -73,7 +75,7 @@ public class PeladaSpawner : MonoBehaviour
         Debug.Log("PELADA MISSING... desactivar feedback visual");
         feedbackVisualChasing.SetActive(false);
         peladaActive = false;
-        ResetSpawnTimer(); 
+        ResetSpawnTimer();
     }
 }
 

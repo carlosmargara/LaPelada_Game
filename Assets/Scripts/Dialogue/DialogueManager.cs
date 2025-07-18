@@ -10,17 +10,20 @@ public class DialogueManager : Singleton<DialogueManager>
     [SerializeField] private TextMeshProUGUI npcNameTMP;
     [SerializeField] private TextMeshProUGUI npcChatTMP;
 
-    public NPC_Intetaction NPC_Interaction {  get; set; }
+    public NPC_Intetaction NPC_Interaction { get; set; }
     public Door_Interaction CurrentDoor { get; set; }
 
     private Queue<string> dialogueSequence;
     private Queue<string> doorSequence;
 
+    private float inputCooldown = 0f;
     private bool dialogueAmin;
     private bool farewellShown; //despedida mostrada
     private bool isTalking;
     private bool isDoorDescription = false;
     private bool isWorldMessage = false;
+
+    private string currentText; //variable que guarda que texto se esta mostrando en el momento
 
     public bool IsTalking => isTalking; //propiedad public que devuelve el resultado del bool isTalking (siempre son publicas estas propertys
                                         //porque necesito usarla desde otro scritp)
@@ -33,9 +36,29 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && isTalking)
+        {
+            CloseDialogueCompletely();
+            Cursor.visible = false;
+            return;
+        }
+
+        if (inputCooldown > 0f)
+        {
+            inputCooldown -= Time.deltaTime;
+            return; // Espera a que pase el cooldown
+        }
+
         if (!isTalking) return;
 
         GameStateManager.Instance.LockPlayer();
+
+        //Acelerar el texto si se estÃ¡ escribiendo
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !dialogueAmin)
+        {
+            SkipTextAnimation();
+            return; // para que no entre al resto
+        }
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && isTalking)
         {
@@ -61,6 +84,13 @@ public class DialogueManager : Singleton<DialogueManager>
                 ContinueDialogue();
             }
         }
+    }
+
+    private void SkipTextAnimation()
+    {
+        StopAllCoroutines();
+        npcChatTMP.text = currentText; // siempre muestra el texto actual completo
+        dialogueAmin = true;
     }
 
     private void OpenCloseDialoguePanel(bool state)
@@ -93,6 +123,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void ShowTextAmin(string text)
     {
+        currentText = text; //aca le digo que el texto que esta animando es el texto alcual 
         StartCoroutine(AminText(text));
     }
 
@@ -100,7 +131,7 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         dialogueAmin = false;
         npcChatTMP.text = ""; // Limpia el texto actual (empieza desde cero)
-        char[] chars = text.ToCharArray(); // Convierte el string que recibió (por ejemplo "Hola") en un array de caracteres: ['H', 'o', 'l', 'a']
+        char[] chars = text.ToCharArray(); // Convierte el string que recibiï¿½ (por ejemplo "Hola") en un array de caracteres: ['H', 'o', 'l', 'a']
 
         for (int i = 0; i < chars.Length; i++)
         {
@@ -129,7 +160,7 @@ public class DialogueManager : Singleton<DialogueManager>
             return;
         }
 
-        // Diálogo con NPCs
+        // Diï¿½logo con NPCs
         if (dialogueSequence.Count > 0)
         {
             string nextDialogue = dialogueSequence.Dequeue();
@@ -147,6 +178,7 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         NPC_Interaction = npcInteraction;
         isTalking = true;
+        inputCooldown = 0.1f; // PequeÃ±o delay de 0.1 segundos
         SetUpDialoguePanel(npcInteraction.Dialogue);
     }
 
@@ -188,8 +220,28 @@ public class DialogueManager : Singleton<DialogueManager>
             isTalking = false;
             isDoorDescription = false;
         }
+        inputCooldown = 0.1f; // PequeÃ±o delay de 0.1 segundos
     }
     #endregion
+
+    /*Funcion que reinicia toda la logica del dialogo
+    para que cuando apretas escape y salir del la interacion
+    al volver a hablar con el npc empiece todo del principio
+    */
+    private void CloseDialogueCompletely()
+    {
+        StopAllCoroutines();
+        OpenCloseDialoguePanel(false);
+        isTalking = false;
+        farewellShown = false;
+        isDoorDescription = false;
+        isWorldMessage = false;
+
+        dialogueSequence.Clear();
+        doorSequence.Clear();
+
+        GameStateManager.Instance.UnlockPlayer();
+    }
 
     #region Logica para mostrar mensaje de "Do not Pass" Limite del mapa 
     public void ShowWorldMessage(string mensaje) //Mensaje de limite del mapa
@@ -199,8 +251,9 @@ public class DialogueManager : Singleton<DialogueManager>
         isTalking = true;
         isWorldMessage = true;
 
+        inputCooldown = 0.1f; // PequeÃ±o delay de 0.1 segundos
         ShowTextAmin(mensaje);
-        //StartCoroutine(CloseWorldMessageAfterDelay(3f)); // ajustá el tiempo que querés
+        //StartCoroutine(CloseWorldMessageAfterDelay(3f)); // ajustï¿½ el tiempo que querï¿½s
     }
 
     #endregion

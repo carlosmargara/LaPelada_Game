@@ -15,7 +15,7 @@ public class InventoryUI : Singleton<InventoryUI>
 
     [Space]
 
-    [SerializeField] private MonoBehaviour playerController;    
+    [SerializeField] private MonoBehaviour playerController;
     [SerializeField] private GameObject panelInventory;
 
     [Space]
@@ -38,6 +38,11 @@ public class InventoryUI : Singleton<InventoryUI>
     {
         // Toggle inventario (sin verificar panelPickup, eso lo maneja GameStateManager)
         if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Z))
+        {
+            ToggleInventory();
+        }
+        //Se Cierra con escape solo si esta habierto
+        if (IsInventoryOpen && Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleInventory();
         }
@@ -72,7 +77,7 @@ public class InventoryUI : Singleton<InventoryUI>
     public void DrawItemInInventory(Inventory_Item itemToAdd, int amount, int itemIndex) //Dibujar item en el inventario
     {
         Slot_Inventory slot = availableSlots[itemIndex];
-        if(itemToAdd != null)
+        if (itemToAdd != null)
         {
             slot.ActivateSlotUI(true);
             slot.UpdateSlot(itemToAdd, amount);

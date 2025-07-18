@@ -349,7 +349,7 @@ MonoBehaviour:
       Data2: 1316086140
       Data3: 1688110270
       Data4: -770970372
-    Path: event:/FlashLightFX
+    Path: event:/Fxs/FlashLightFX
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -1306,11 +1306,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 2096653902
-      Data2: 1218851792
-      Data3: 2081313667
-      Data4: -671039073
-    Path: event:/Amb/Amb_Plaza
+      Data1: 1638420345
+      Data2: 1307744042
+      Data3: -1180160089
+      Data4: 1607024313
+    Path: event:/Amb/Plaza_bird
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -1628,7 +1628,7 @@ MonoBehaviour:
       Data2: 1198166372
       Data3: 1373075127
       Data4: -125253648
-    Path: event:/Closed_Door
+    Path: event:/Fxs/Closed_Door
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -1908,6 +1908,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 28ff9d1efcefe7741a9919ce5d558983, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 28ff9d1efcefe7741a9919ce5d558983, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1420661574877721072, guid: 28ff9d1efcefe7741a9919ce5d558983, type: 3}
       propertyPath: m_Layer
@@ -2233,17 +2237,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Chasing: {fileID: 18543604}
-  musicEmitter: {fileID: 1875669610}
-  fx_ClosedDoor: {fileID: 1265061892}
-  pickupEmitter: {fileID: 2034167253}
+  musicEmitter_MainMenu: {fileID: 1875669610}
   ambienceEmitter: {fileID: 1195409585}
   pantingEmitter: {fileID: 53523679}
-  jumpScareEmitter: {fileID: 0}
-  suspenseEmitter: {fileID: 0}
-  flashLightEmitter: {fileID: 164909575}
+  fadeInDuration: 2
   fadeOutDuration: 3.5
   minDelaySuspense: 20
-  maxDelaySuspense: 50
+  maxDelaySuspense: 60
 --- !u!1 &1535212260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,7 +2823,7 @@ MonoBehaviour:
       Data2: 1298249192
       Data3: -523100006
       Data4: 1977917554
-    Path: event:/UI/PickUp Item
+    Path: event:/Fxs/PickUp Item
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0

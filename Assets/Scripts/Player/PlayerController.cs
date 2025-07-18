@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sprintSpeed = 8f;
     [SerializeField] private float rotationSpeed = 6.5f;
-     
+
 
     [Header("Componentes")]
     [SerializeField] private Transform cameraTransform;
@@ -27,10 +27,11 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] private StaminaBar staminaBar;
-    [SerializeField] private Different_types_of_Raycast_and_Tag_steps different_Types_Of_Raycast_And_Tag_Steps;
+    //[SerializeField] private Different_types_of_Raycast_and_Tag_steps different_Types_Of_Raycast_And_Tag_Steps; //sistema viejo para motor Audio Unity
+    [SerializeField] private DiffetentTypes_footSteps_with_FmodEvent diffetentTypes_footSteps_with_FmodEvent; //sistena con Fmod
 
     [HideInInspector] public bool isRunning = false;
-    
+
     private void Awake()
     {
         //playerFootsteps = GetComponent<PlayerFootsteps>();
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
         if (rb != null)
             rb.freezeRotation = true;
-       
+
     }
 
     void Update()
@@ -57,13 +58,14 @@ public class PlayerController : MonoBehaviour
         HandleRotationInput();
         _MechanicsLookBack();
 
-        
-        if(moveDirection.magnitude > 0.1f)
+
+        if (moveDirection.magnitude > 0.1f)
         {
-            Debug.Log("Se esta moveindo");
-            different_Types_Of_Raycast_And_Tag_Steps.HandleFootsteps(rb, isRunning);            
+            //Debug.Log("Se esta moveindo");
+            //different_Types_Of_Raycast_And_Tag_Steps.HandleFootsteps(rb, isRunning); //sistema viejo con motor de Audio de Unity 
+            diffetentTypes_footSteps_with_FmodEvent.HandleFootsteps(Move, isRunning); //sistema con Fmod
         }
-        
+
     }
 
     void FixedUpdate()
@@ -77,8 +79,8 @@ public class PlayerController : MonoBehaviour
         // Verificar si se puede correr
         bool shiftPressed = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
 
-        // El StaminaBar se encargará de limitar el correr según la stamina
-        if (shiftPressed && staminaBar.CurrentStamina > 0 )
+        // El StaminaBar se encargarï¿½ de limitar el correr segï¿½n la stamina
+        if (shiftPressed && staminaBar.CurrentStamina > 0)
         {
             isRunning = true;
             currentSpeed = sprintSpeed;
@@ -115,10 +117,10 @@ public class PlayerController : MonoBehaviour
         xRotation -= rotationInput.y;
         xRotation = Mathf.Clamp(xRotation, -80f, 80f);
 
-        float yaw = lookBackYawOffset; // 0 normalmente, 180 si se mira atrás
+        float yaw = lookBackYawOffset; // 0 normalmente, 180 si se mira atrï¿½s
         cameraTransform.localRotation = Quaternion.Euler(xRotation, yaw, 0f);
     }
-    
+
     private void _MechanicsLookBack()
     {
         if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(1))

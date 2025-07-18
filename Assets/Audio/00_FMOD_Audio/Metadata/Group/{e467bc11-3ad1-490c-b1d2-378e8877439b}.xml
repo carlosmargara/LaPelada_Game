@@ -5,7 +5,7 @@
 			<value>Blue</value>
 		</property>
 		<property name="volume">
-			<value>7.5</value>
+			<value>1</value>
 		</property>
 		<property name="name">
 			<value>Amb</value>
@@ -23,8 +23,20 @@
 	<object class="MixerBusEffectChain" id="{1243ea82-2b8e-418d-8be9-288e502e67fd}">
 		<relationship name="effects">
 			<destination>{f968ebcd-279e-43aa-998d-47b80d2b485d}</destination>
+			<destination>{e27ae988-fb0d-4d2f-acfd-e4f4bba03385}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0f449681-e5b1-40c3-94f3-167f694b0918}" />
 	<object class="MixerBusFader" id="{f968ebcd-279e-43aa-998d-47b80d2b485d}" />
+	<object class="ThreeEQEffect" id="{e27ae988-fb0d-4d2f-acfd-e4f4bba03385}">
+		<property name="midGain">
+			<value>-10.5</value>
+		</property>
+		<property name="highGain">
+			<value>-25.5</value>
+		</property>
+		<property name="highCrossover">
+			<value>2800</value>
+		</property>
+	</object>
 </objects>

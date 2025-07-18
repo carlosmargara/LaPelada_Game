@@ -18,7 +18,7 @@ public class Flashlight : MonoBehaviour
         {
             FlashlightSystem.Instance.Toggle();
             //AudioManager.Instance.PlaySoundFX(lightClick_Sound,0.6f);
-            AudioManager02.Instance.FlashLight_ON_OFF();
+            AudioManager02.Instance.PlayOneShot("event:/Fxs/FlashLightFX");
         }
     }
 }

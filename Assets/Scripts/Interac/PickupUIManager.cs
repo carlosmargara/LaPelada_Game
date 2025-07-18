@@ -26,6 +26,9 @@ public class PickupUIManager : Singleton<PickupUIManager>
 
     private GameObject currentPreviewObject;
 
+    private float inputCooldown = 0f;
+    private string currentTextAnimating; //variable que guarda que texto se esta mostrando igual que en NPCManager(DialogueManager)
+
     public bool firtTextWasShown;
     private bool secondTextWasShown;
     private bool descriptionItemAmin;
@@ -37,13 +40,27 @@ public class PickupUIManager : Singleton<PickupUIManager>
         if (previewCamera != null)
         {
             previewCamera.targetTexture = renderTexture;
-            previewCamera.gameObject.SetActive(false); // Se activa sólo cuando hace falta
+            previewCamera.gameObject.SetActive(false); // Se activa sï¿½lo cuando hace falta
         }
     }
 
     private void Update()
     {
         if (!panel.activeSelf) return;
+
+        if (inputCooldown > 0f)
+        {
+            inputCooldown -= Time.deltaTime;
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Sonido opcional
+            // AudioManager02.Instance.PlayOneShot("event:/UI/ClosePanel");
+            ClosePanel();
+            return;
+        }
 
         if (panel.activeSelf)
         {
@@ -52,6 +69,15 @@ public class PickupUIManager : Singleton<PickupUIManager>
         else
         {
             GameStateManager.Instance.UnlockPlayer();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!descriptionItemAmin)
+            {
+                SkipTextAnimation();
+                return; // Evita que pase al siguiente texto en el mismo click
+            }
         }
 
         if (Input.GetMouseButtonDown(0) && firtTextWasShown && descriptionItemAmin)
@@ -63,7 +89,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
         {
             PastNextAction();
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ClosePanel();
@@ -79,13 +105,14 @@ public class PickupUIManager : Singleton<PickupUIManager>
     {
         currentItem = item;
         panel.SetActive(true);
-        ShowTextAmin(item.Ref_ScriptableObject.pickupText); 
+        ShowTextAmin(item.Ref_ScriptableObject.pickupText);
         _yesButton.SetActive(false);
         _noButton.SetActive(false);
 
         firtTextWasShown = true;
+        inputCooldown = 0.1f;
 
-        HideItemPreview(); // Por si quedó algo anterior
+        HideItemPreview(); // Por si quedï¿½ algo anterior
     }
 
     private void ShowSecondTextPickup(PickupItem_interac item)
@@ -101,7 +128,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
     public void ConfirmPickup()
     {
         //AudioManager.Instance.PlaySoundFX(AudioManager.Instance.pickUP_Sound, 0.6f); //Laza el sonido de PickUp_Item
-        AudioManager02.Instance.PlayPickupSound();
+        AudioManager02.Instance.PlayOneShot("event:/Fxs/PickUp Item");
 
         StopAllCoroutines();
         ShowTextAmin(currentItem.Ref_ScriptableObject.confirmationText);
@@ -127,6 +154,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
         currentItem = null;
 
         HideItemPreview();
+        // AudioManager02.Instance.PlayOneShot("event:/UI/ClosePanel");
     }
 
     private void PastNextAction()
@@ -165,6 +193,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
 
     private void ShowTextAmin(string text)
     {
+        currentTextAnimating = text; // guarda el texto actual
         StartCoroutine(AminText(text));
     }
 
@@ -180,6 +209,13 @@ public class PickupUIManager : Singleton<PickupUIManager>
             yield return new WaitForSeconds(0.03f);
         }
 
+        descriptionItemAmin = true;
+    }
+
+    private void SkipTextAnimation()
+    {
+        StopAllCoroutines();
+        messageText.text = currentTextAnimating; // muestra directamente el texto actual
         descriptionItemAmin = true;
     }
 }

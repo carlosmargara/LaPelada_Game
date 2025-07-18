@@ -1,4 +1,49 @@
-﻿using System.Collections;
+﻿/*
+===========================================================
+ FMOD QUICK GUIDE - Uso en Unity
+===========================================================
+
+1) RuntimeManager.PlayOneShot()
+   - Para reproducir sonidos cortos (SFX) que no necesitan control posterior.
+   - FMOD maneja y destruye la instancia automáticamente.
+   - Ejemplo: disparos, pasos, abrir puerta.
+   - No permite stop, pause ni setParameter.
+
+   Ej:
+     RuntimeManager.PlayOneShot("event:/SFX/Explosion", transform.position);
+
+-----------------------------------------------------------
+
+2) EventInstance
+   - Para sonidos que requieren control manual (start, stop, pause, parámetros).
+   - Ideal para música, loops o ambientes dinámicos.
+   - IMPORTANTE: siempre hacer .release() al final para liberar recursos.
+
+   Ej:
+     private EventInstance music;
+     music = RuntimeManager.CreateInstance("event:/Music/Level1");
+     music.start();
+     music.setParameterByName("Mood", 0.5f);
+     music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+     music.release();
+
+-----------------------------------------------------------
+
+3) StudioEventEmitter
+   - Componente en un GameObject, se configura desde el Inspector.
+   - Útil para sonidos localizados que sigan la posición del objeto.
+   - Se controla con .Play(), .Stop(), .SetParameter(), etc.
+
+   Ej:
+     public StudioEventEmitter emitter;
+     emitter.Play();
+     emitter.SetParameter("Intensity", 1.0f);
+     emitter.Stop();
+
+===========================================================
+*/
+
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FMODUnity;
@@ -10,22 +55,23 @@ public class AudioManager02 : MonoBehaviour
     [SerializeField] private Ambient_PreChasing Chasing;
 
     [Header("Emitters")]
-    [SerializeField] private FMODUnity.StudioEventEmitter musicEmitter;
-    [SerializeField] private FMODUnity.StudioEventEmitter fx_ClosedDoor;
-    [SerializeField] private FMODUnity.StudioEventEmitter pickupEmitter;
+    [SerializeField] private FMODUnity.StudioEventEmitter musicEmitter_MainMenu;
     [SerializeField] private FMODUnity.StudioEventEmitter ambienceEmitter;
     [SerializeField] private FMODUnity.StudioEventEmitter pantingEmitter;
-    [SerializeField] private FMODUnity.StudioEventEmitter jumpScareEmitter;
-    [SerializeField] private FMODUnity.StudioEventEmitter suspenseEmitter;
-    [SerializeField] private FMODUnity.StudioEventEmitter flashLightEmitter;
 
     [Header("Fade Durations")]
-    //[SerializeField] private float fadeInDuration = 2f;
-    [SerializeField] private float fadeOutDuration = 2f;
+    [SerializeField] private float fadeInDuration = 2.5f;
+    [SerializeField] private float fadeOutDuration = 2.5f;
 
     [Header("Suspense Loop")]
     [SerializeField] private float minDelaySuspense = 30f;
     [SerializeField] private float maxDelaySuspense = 60f;
+
+    private DiffetentTypes_footSteps_with_FmodEvent diffetentTypes_FootSteps_With_FmodEvent;
+
+
+    private FMOD.Studio.EventInstance Meeting_with_PELADA;
+    public FMOD.Studio.EventInstance Read_Dario_LaVoz;
 
     private Coroutine suspenseRoutine;
 
@@ -43,8 +89,10 @@ public class AudioManager02 : MonoBehaviour
 
     private void Start()
     {
-
         PlayMusic(); // si querés que arranque música base
+
+        Meeting_with_PELADA = FMODUnity.RuntimeManager.CreateInstance("event:/Chase/Meeting_with_PELADA");
+        Read_Dario_LaVoz = FMODUnity.RuntimeManager.CreateInstance("event:/Chase/Read_Dario_LaVoz");
     }
 
     private void OnEnable()
@@ -71,64 +119,58 @@ public class AudioManager02 : MonoBehaviour
         {
             PlayAmbience(0.5f);
             FadeOutMusic(fadeOutDuration);
-            //Chasing.ambiente.start();
 
-            StartSuspenseLoop();
+
+            //StartSuspenseLoop();
         }
-    }
-
-    // --- FX ---
-    public void PlaySoundFX_ClosedDoor()
-    {
-        fx_ClosedDoor.Play();
-    }
-
-    public void FlashLight_ON_OFF()
-    {
-        flashLightEmitter.Play();
-    }
-
-    public void PlayPickupSound()
-    {
-        pickupEmitter.Play();
+        else if (scene.name == "GameOver") // o el nombre real de tu escena
+        {
+            StopAllFootstepsGlobal();
+            StopPantingSound();
+        }
     }
 
     // --- Música ---
     public void PlayMusic()
     {
-        if (!musicEmitter.IsPlaying())
-            musicEmitter.Play();
+        if (!musicEmitter_MainMenu.IsPlaying())
+            musicEmitter_MainMenu.Play();
     }
 
-    public void FadeOutMusic(float duration)
+    /* - PlayOneShot -
+    Esta funcion lo que hace es lanzar el evento de Fmod una sola ves
+    RuntimeManager.PlayoneShot, se encarga de buscar el evento, lanzarlo osea darle play 
+    y una ves que termina destruilo
+    */
+    public void PlayOneShot(string eventPath)
     {
-        StartCoroutine(FadeOutCoroutine(musicEmitter, duration));
+        RuntimeManager.PlayOneShot(eventPath);
     }
 
-    public void FadeInMusic(float duration)
+    /* - SpawnPelda - 
+    Esta funcion se lanza cuando 
+    el spawn de la PELADA se activa.
+    Basicamente lanza el sonido que te chumba y detiene otros
+    */
+    public void SpawnPelada()
     {
-        StartCoroutine(FadeInCoroutine(musicEmitter, duration));
+        diffetentTypes_FootSteps_With_FmodEvent = FindObjectOfType<DiffetentTypes_footSteps_with_FmodEvent>();
+
+        PlayOneShot("event:/Chase/SpwanPelada");
+        ambienceEmitter.Stop();
+
+        diffetentTypes_FootSteps_With_FmodEvent.StopAllFootsteps();
     }
 
-    public void CrossfadeMusic(StudioEventEmitter newEmitter, float duration)
+    public void Meet_whit_PELADA()
     {
-        StartCoroutine(CrossfadeCoroutine(musicEmitter, newEmitter, duration));
-    }
 
-    // --- Ambience ---
-    public void PlayAmbience(float volume)
-    {
-            ambienceEmitter.Play();
     }
 
     // --- Panting ---
     private void PlayPantingSound()
     {
-
-       
- 
-            pantingEmitter.Play();
-        
+        pantingEmitter.Play();
     }
 
     private void StopPantingSound()
@@ -136,12 +178,41 @@ public class AudioManager02 : MonoBehaviour
         pantingEmitter.Stop();
     }
 
-    // --- Jumpscare ---
-    private void PlayJumpScareSound()
+    #region Metdos que llaman a los Fade de la musica
+    public void FadeOutMusic(float duration)
     {
-        jumpScareEmitter.Play();
+        StartCoroutine(FadeOutCoroutine(musicEmitter_MainMenu, duration));
     }
-    
+
+    public void FadeInMusic(float duration)
+    {
+        StartCoroutine(FadeInCoroutine(musicEmitter_MainMenu, duration));
+    }
+
+    public void CrossfadeMusic(StudioEventEmitter newEmitter, float duration)
+    {
+        StartCoroutine(CrossfadeCoroutine(musicEmitter_MainMenu, newEmitter, duration));
+    }
+    #endregion
+
+    // --- Ambience ---
+    public void PlayAmbience(float volume)
+    {
+        ambienceEmitter.Play();
+    }
+
+    public void StopAmbience()
+    {
+        ambienceEmitter.Stop();
+    }
+
+    // --- Jumpscare ---
+    public void PlaySound_MeetingWithPELADA()
+    {
+        Meeting_with_PELADA.start();
+    }
+
+    #region Metodo que llama Musica de Suspenso de forma Aleatoria
     // --- Suspense Loop ---
     private void StartSuspenseLoop()
     {
@@ -165,7 +236,10 @@ public class AudioManager02 : MonoBehaviour
             yield return new WaitForSeconds(35f); // o el largo del evento + buffer
         }
     }
-    
+    #endregion
+
+    #region  Corrutinas de FadeIn / FadeOut
+
     // --- Fades ---
     private IEnumerator FadeOutCoroutine(StudioEventEmitter emitter, float duration)
     {
@@ -173,6 +247,7 @@ public class AudioManager02 : MonoBehaviour
 
         for (float t = 0; t < duration; t += Time.deltaTime)
         {
+            //Mafth.Lerp(    ); _Lo que hace es devolver un valor entre dos puntos de una escala lineal 
             float vol = Mathf.Lerp(startVol, 0f, t / duration);
             emitter.EventInstance.setVolume(vol);
             yield return null;
@@ -229,5 +304,20 @@ public class AudioManager02 : MonoBehaviour
 
         toEmitter.EventInstance.setVolume(1f);
     }
+    #endregion
 
+    public void StopAllFootstepsGlobal()
+    {
+        var footSteps = FindObjectOfType<DiffetentTypes_footSteps_with_FmodEvent>();
+        if (footSteps != null)
+        {
+            footSteps.StopAllFootsteps();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Meeting_with_PELADA.release();
+        Read_Dario_LaVoz.release();
+    }
 }

@@ -53,7 +53,7 @@
 			<destination>{69766908-f8de-47d8-b3bc-050d8fd3aacd}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{1e2b80db-1917-43c3-bf39-99547a735836}</destination>
+			<destination>{43b1bb23-c997-4b11-8b75-931b258c7f57}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{4dc880d3-ac51-46cf-9e17-500a5e277c0c}" />
@@ -132,5 +132,9 @@
 			<value>0.359999985</value>
 		</property>
 	</object>
-	<object class="ThreeEQEffect" id="{db40efa5-7cb9-4694-b224-f4265017a5fa}" />
+	<object class="ThreeEQEffect" id="{db40efa5-7cb9-4694-b224-f4265017a5fa}">
+		<property name="midGain">
+			<value>-28</value>
+		</property>
+	</object>
 </objects>

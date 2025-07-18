@@ -24,7 +24,7 @@ public class AI_VersionWithState : MonoBehaviour
     private Transform player;
     private int currentPatrolIndex = 0;
     public float stalkTimer = 0f; //esto es solo publico para poder verlo en el inspector
-    
+
     [Space]
     [SerializeField] private GameObject feedbackChasing;
 
@@ -62,10 +62,12 @@ public class AI_VersionWithState : MonoBehaviour
     {
         if (distanceToPlayer <= detectionRadius)
         {
+            AudioManager02.Instance.Read_Dario_LaVoz.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            AudioManager02.Instance.PlaySound_MeetingWithPELADA(); //sistema con Fmod.
             currentState = PeladaState.Stalk;
             stalkTimer = 0f;
             agent.ResetPath();
-            Debug.Log("La Pelada te está mirando...");
+            Debug.Log("La Pelada te estï¿½ mirando...");
             return;
         }
 
@@ -77,7 +79,8 @@ public class AI_VersionWithState : MonoBehaviour
 
     void StalkBehavior(float distanceToPlayer)
     {
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.chasing, false); //pone en play la musica de chasing
+        //AudioManager.Instance.PlayMusic(AudioManager.Instance.chasing, false); //pone en play la musica de chasing
+
 
         stalkTimer += Time.deltaTime;
 
@@ -92,8 +95,10 @@ public class AI_VersionWithState : MonoBehaviour
 
         if (stalkTimer >= stalkDuration)
         {
+            AudioManager02.Instance.StopAmbience();
+            AudioManager02.Instance.PlayOneShot("event:/Chase/woman's scream");
             currentState = PeladaState.KillChase;
-            Debug.Log("¡La Pelada salió corriendo!");
+            Debug.Log("ï¿½La Pelada saliï¿½ corriendo!");
             feedbackChasing.SetActive(true);
         }
     }
@@ -105,8 +110,8 @@ public class AI_VersionWithState : MonoBehaviour
 
         if (distanceToPlayer <= attackDistance)
         {
-            Debug.Log("¡La Pelada te hizo boleta! _GAME OVER");
-            // Acá podés lanzar animación de muerte o cargar escena
+            Debug.Log("ï¿½La Pelada te hizo boleta! _GAME OVER");
+            // Acï¿½ podï¿½s lanzar animaciï¿½n de muerte o cargar escena
             SceneManager.LoadScene(2);
         }
     }
@@ -115,10 +120,10 @@ public class AI_VersionWithState : MonoBehaviour
     {
         if (patrolPoints.Length == 0) return;
 
-        // Si ya estamos en el último punto, destruimos el objeto
+        // Si ya estamos en el ï¿½ltimo punto, destruimos el objeto
         if (currentPatrolIndex >= patrolPoints.Length)
         {
-            Debug.Log("La Pelada terminó de patrullar. Se destruye.");
+            Debug.Log("La Pelada terminï¿½ de patrullar. Se destruye.");
             Destroy(gameObject);
             return;
         }

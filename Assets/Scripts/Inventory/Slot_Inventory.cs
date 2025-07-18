@@ -17,8 +17,8 @@ public enum InteractionType
 public class Slot_Inventory : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public static Action<InteractionType, int> SlotInteractionEvent; //Siempre de declaramos un evento es "public static" y en este caso ademas tiene
-                                                                    //dos parametros
-    
+                                                                     //dos parametros
+
     [SerializeField] private Image itemIcono;
     [SerializeField] private TextMeshProUGUI amountTMP;
 
@@ -43,9 +43,9 @@ public class Slot_Inventory : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void ActivateSlotUI(bool state)
     {
         itemIcono.gameObject.SetActive(state);
-        amountTMP.gameObject.SetActive(state);        
+        amountTMP.gameObject.SetActive(state);
     }
-    
+
     public void ClickSlot()
     {
         SlotInteractionEvent?.Invoke(InteractionType.Click, Index);
@@ -62,11 +62,12 @@ public class Slot_Inventory : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        InventoryUI.Instance.ShowItemDescription(Index); 
+        InventoryUI.Instance.ShowItemDescription(Index);
+        AudioManager02.Instance.PlayOneShot("event:/UI/Selection_Sound");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        InventoryUI.Instance.HideItemDescription(); 
+        InventoryUI.Instance.HideItemDescription();
     }
 }

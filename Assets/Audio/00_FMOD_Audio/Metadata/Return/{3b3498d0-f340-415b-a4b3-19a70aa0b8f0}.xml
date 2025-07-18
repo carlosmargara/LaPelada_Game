@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="MixerReturn" id="{3b3498d0-f340-415b-a4b3-19a70aa0b8f0}">
+		<property name="volume">
+			<value>-11</value>
+		</property>
 		<property name="overridingInputFormat">
 			<value>2</value>
 		</property>
@@ -25,6 +28,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{f01b4664-6293-49e2-8a9a-7a6276266554}" />
 	<object class="SFXReverbEffect" id="{30e87834-75c9-418d-890f-63ed1f38608a}">
+		<property name="diffusion">
+			<value>89.5</value>
+		</property>
 		<property name="wetLevel">
 			<value>0</value>
 		</property>

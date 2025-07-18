@@ -15,6 +15,7 @@ MonoBehaviour:
   noteTitle: Diario "La Voz del Interior"
   foregroundImage: {fileID: 21300000, guid: 0d9aa8001ea34dd479a780ca8f242529, type: 3}
   activaIA: 1
+  playAudioOnRead: 1
   interacText01: Es un pedazo de Diario de La Voz Del Interior
   interacText02: Quieres leerlo?
   pages:

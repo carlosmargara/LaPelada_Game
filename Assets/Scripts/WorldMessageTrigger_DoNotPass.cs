@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class WorldMessageTrigger_DoNotPass : MonoBehaviour
 {
+    private DiffetentTypes_footSteps_with_FmodEvent footSteps_Player;
     [TextArea]
     [SerializeField] private string message;
     [SerializeField] private float cooldownTime = 3f;
 
     private bool canShowMessage = true;
+
+    void Start()
+    {
+        footSteps_Player = FindObjectOfType<DiffetentTypes_footSteps_with_FmodEvent>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,6 +24,7 @@ public class WorldMessageTrigger_DoNotPass : MonoBehaviour
         {
             DialogueManager.Instance.ShowWorldMessage(message);
             StartCoroutine(CooldownCoroutine());
+            footSteps_Player.StopAllFootsteps();
         }
     }
 

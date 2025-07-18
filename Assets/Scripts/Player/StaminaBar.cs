@@ -6,13 +6,16 @@ using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour
 {
-    //Eventos que se comunican con el AudioManager 
+    //Eventos que se comunican con el AudioManager para lanzar SoundStamina
     public static System.Action OnStaminaDepleted;
     public static System.Action OnStaminaRecovered;
 
     [SerializeField] private GameObject uiPlayerPanel;
-    
+
     [SerializeField] private Image staminaBar;
+
+    [Header("Otros paneles que ocultan el UIPlayer")]
+    [SerializeField] private List<GameObject> panelsThatHideUIPlayer;
 
     private float maxStamina = 100f;
     [SerializeField] private float staminaRegenRate = 10f;
@@ -40,6 +43,34 @@ public class StaminaBar : MonoBehaviour
 
     void Update()
     {
+        //Chequear si algÃºn otro panel estÃ¡ activo
+        if (IsAnyOtherPanelActive())
+        {
+            if (uiPlayerPanel.activeSelf)
+                uiPlayerPanel.SetActive(false);
+        }
+        else
+        {
+            HandleStaminaUI();
+        }
+
+        HandleStamina();
+        UpdateStaminaBar();
+    }
+
+    private bool IsAnyOtherPanelActive()
+    {
+        foreach (var panel in panelsThatHideUIPlayer)
+        {
+            if (panel != null && panel.activeSelf)
+                return true;
+        }
+        return false;
+    }
+
+
+    private void HandleStaminaUI()
+    {
         bool shiftPressed = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
         if (playerController.Move.magnitude > 0.1 && shiftPressed)
         {
@@ -49,9 +80,6 @@ public class StaminaBar : MonoBehaviour
         {
             uiPlayerPanel.SetActive(false);
         }
-
-        HandleStamina();
-        UpdateStaminaBar();           
     }
 
     private void HandleStamina()
@@ -65,7 +93,7 @@ public class StaminaBar : MonoBehaviour
         }
         else
         {
-            // Opción A: mientras siga presionando Shift, aunque no corra, se reinicia el delay
+            // Opciï¿½n A: mientras siga presionando Shift, aunque no corra, se reinicia el delay
             if (wasRunningLastFrame)
             {
                 regenTimer = 0f;
@@ -88,7 +116,7 @@ public class StaminaBar : MonoBehaviour
 
         wasRunningLastFrame = playerController.isRunning;
 
-        // Disparar eventos si el estado cambió
+        // Disparar eventos si el estado cambiï¿½
         if (IsExhausted && !wasExhausted)
             OnStaminaDepleted?.Invoke();
         else if (IsRecovered)

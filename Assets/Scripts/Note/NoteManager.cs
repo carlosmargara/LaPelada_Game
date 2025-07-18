@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class NoteManager : Singleton<NoteManager>
-{   
+{
     [Header("Notas")]
     [SerializeField] private GameObject panelNote;
     [SerializeField] private Image foregroundImage;
@@ -27,6 +27,7 @@ public class NoteManager : Singleton<NoteManager>
     [SerializeField] private TextMeshProUGUI messageText;
     [SerializeField] private Button yesButton;
     [SerializeField] private Button noButton;
+    private string currentTextAnimating; // Guarda el texto que se estÃ¡ mostrando
 
     public Note_Interaction noteInteraction { get; set; }
 
@@ -39,7 +40,7 @@ public class NoteManager : Singleton<NoteManager>
     [SerializeField] private GameObject spawnerPelada;
 
     private void Start()
-    {       
+    {
         panelNote.SetActive(false);
         panelTextInterac.SetActive(false);
     }
@@ -55,12 +56,31 @@ public class NoteManager : Singleton<NoteManager>
             GameStateManager.Instance.UnlockPlayer(priority: 1);
         }
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && firtTextWasShown)
+        if (panelTextInterac.activeSelf)
         {
-            ShowInteracText_Second();
-        }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ClosedPanelTextInterac();
+                return;
+            }
 
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
+            {
+                if (!textAmin)
+                {
+                    SkipTextAnimation(); // Acelera animaciÃ³n
+                    return;
+                }
+
+                if (firtTextWasShown)
+                {
+                    ShowInteracText_Second();
+                }
+            }
+        }
     }
+
+
     #region logica de notas
     public void ShowSetupNotes(NoteData note)
     {
@@ -79,12 +99,13 @@ public class NoteManager : Singleton<NoteManager>
     {
         Debug.Log("_EXIT");
         panelNote.SetActive(false);
+        AudioManager02.Instance.PlayOneShot("event:/UI/Note_Close");
 
-        if (currentNote != null && currentNote.activaIA) // Primero chequeás esto
+        if (currentNote != null && currentNote.activaIA) // Primero chequeï¿½s esto
         {
             pelada.SetActive(true);
-            spawnerPelada.SetActive(true);
-            Debug.Log("¡La Pelada fue activada por la nota!");
+            //spawnerPelada.SetActive(true);
+            Debug.Log("ï¿½La Pelada fue activada por la nota!");
 
             /*
             //Todo este chorizo es para lanzar un Audio, TENGO QUE REFACTORIZAR!!!
@@ -95,11 +116,12 @@ public class NoteManager : Singleton<NoteManager>
                 AudioManager.Instance.MusicSourse.Play();
             }
             */
-            AudioManager.Instance.PlayMusic(AudioManager.Instance.suspenso, false);
+            //AudioManager.Instance.PlayMusic(AudioManager.Instance.suspenso, false);
+            //AudioManager02.Instance.Read_Dario_LaVoz.start();
         }
 
         currentNote = null;
-        
+
         ClosedPanelTextInterac();
     }
 
@@ -126,7 +148,7 @@ public class NoteManager : Singleton<NoteManager>
         if (currentNote != null)
         {
             pageText.text = currentNote.pages[currentPageIndex];
-            pageCounterText.text = $"Página {currentPageIndex + 1}/{currentNote.pages.Count}";
+            pageCounterText.text = $"Pï¿½gina {currentPageIndex + 1}/{currentNote.pages.Count}";
 
             // Activar o desactivar botones
             backButton.gameObject.SetActive(currentPageIndex > 0);
@@ -138,7 +160,9 @@ public class NoteManager : Singleton<NoteManager>
     #region lociga de panel Interacion
     private void ShowTextAmin(string text)
     {
-        isDescribing = true;  // Comienza a describir
+        isDescribing = true;
+        currentTextAnimating = text; // Guardamos el texto actual
+        StopAllCoroutines(); // Por si se estaba animando otro texto
         StartCoroutine(AminText(text));
     }
 
@@ -172,12 +196,12 @@ public class NoteManager : Singleton<NoteManager>
         {
             string secondtext = noteInteraction.Data.interacText02;
             ShowTextAmin(secondtext);
-            firtTextWasShown= false;
+            firtTextWasShown = false;
             yesButton.gameObject.SetActive(true);
             noButton.gameObject.SetActive(true);
         }
     }
-    
+
     private void ClosedPanelTextInterac()
     {
         panelTextInterac.SetActive(false);
@@ -189,9 +213,10 @@ public class NoteManager : Singleton<NoteManager>
     {
         isDescribing = false;
         ShowSetupNotes(noteInteraction.Data);
-        Debug.Log("_Yes");        
+        AudioManager02.Instance.PlayOneShot("event:/UI/Note_Open");
+        Debug.Log("_Yes");
     }
-    
+
     public void NoButton() //Esto esta en el Onclik del boton
     {
         isDescribing = false;
@@ -199,4 +224,12 @@ public class NoteManager : Singleton<NoteManager>
         Debug.Log("_No");
     }
     #endregion
+
+    private void SkipTextAnimation()
+    {
+        StopAllCoroutines();
+        messageText.text = currentTextAnimating; // Mostrar todo el texto al instante
+        textAmin = true;
+    }
+
 }

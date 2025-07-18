@@ -11,12 +11,15 @@ public class NoteData : ScriptableObject
     public Sprite foregroundImage;
     public bool activaIA;
 
+    [Header("Audio")]
+    public bool playAudioOnRead;  //define si esta nota lanza el audio
+
     [Header("Texto Interac")]
     [TextArea] public string interacText01;
     [TextArea] public string interacText02;
-    
-    [Space]        
-    
+
+    [Space]
+
     [Header("Texto Notas")]
-    [TextArea(5,8)] public List<string> pages;
+    [TextArea(5, 8)] public List<string> pages;
 }
