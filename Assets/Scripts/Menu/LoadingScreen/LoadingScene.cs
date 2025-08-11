@@ -6,31 +6,31 @@ using TMPro;
 
 public class LoadingScene : MonoBehaviour
 {
-    public string sceneToLoad;
-    public TextMeshProUGUI loadingText; // Texto pixelado que parpadea
+    public TextMeshProUGUI loadingText;
 
     void Start()
     {
-        sceneToLoad = SceneLoader.nextScene;
         StartCoroutine(LoadSceneAsync());
-        StartCoroutine(BlinkText());
+        //StartCoroutine(BlinkText());
     }
 
     IEnumerator LoadSceneAsync()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
+        // Empezamos la carga de la escena que guard√≥ SceneLoader
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneLoader.nextScene); //aca se carga la escena a la que voy
         asyncLoad.allowSceneActivation = false;
 
-        // Simular un mÌnimo de tiempo de espera si querÈs un efecto m·s largo
+        // Espera m√≠nima (tu efecto)
         yield return new WaitForSeconds(3f);
 
+        // Esperamos a que est√© listo
         while (asyncLoad.progress < 0.9f)
-        {
             yield return null;
-        }
 
-        // Mostrar un efecto final antes de activar la escena (opcional)
+        // Breve efecto final
         yield return new WaitForSeconds(0.5f);
+
+        // Activamos la escena destino
         asyncLoad.allowSceneActivation = true;
     }
 

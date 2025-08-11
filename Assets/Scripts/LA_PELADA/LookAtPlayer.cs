@@ -10,6 +10,11 @@ public class LookAtPlayer : MonoBehaviour
 
     private Vector3 dir;
 
+    void Start()
+    {
+        playerTransform = FindObjectOfType<PlayerController>().transform;
+    }
+
     void Update()
     {
         dir = (playerTransform.position - transform.position).normalized;

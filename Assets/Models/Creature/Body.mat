@@ -19,7 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _Alpha_Multiplier
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -92,14 +92,16 @@ Material:
     - Boolean_85059BBE: 1
     - Boolean_8BBF99CD: 1
     - Boolean_D258FF8E: 1
-    - DeformMagnitude: 0
+    - DeformMagnitude: 0.009
     - Vector1_21C41D02: 256
-    - Vector1_6F288C5B: 0.5
+    - Vector1_6F288C5B: 3.61
     - Vector1_B2CC132F: 16
     - Vector1_B9994903: 11
     - Vector1_E8746023: 16
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _Alpha_Clipping: -8.61
+    - _Alpha_Multiplier: 10.09
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{aa053924-d8c0-4206-bdd6-b73954bc7785}">
 		<property name="assetPath">
-			<value>MainMenu/MainMenu_PELADA.wav</value>
+			<value>musica/MainMenu_PELADA.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

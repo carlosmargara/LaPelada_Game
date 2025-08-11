@@ -11,6 +11,7 @@ TagManager:
   - Asphalt
   - Cobblestones
   - Concrete
+  - Emitter_LookAtYou
   layers:
   - Default
   - TransparentFX

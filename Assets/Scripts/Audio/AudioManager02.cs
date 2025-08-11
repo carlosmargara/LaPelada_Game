@@ -58,6 +58,7 @@ public class AudioManager02 : MonoBehaviour
     [SerializeField] private FMODUnity.StudioEventEmitter musicEmitter_MainMenu;
     [SerializeField] private FMODUnity.StudioEventEmitter ambienceEmitter;
     [SerializeField] private FMODUnity.StudioEventEmitter pantingEmitter;
+    [HideInInspector] public FMODUnity.StudioEventEmitter SheIsLookingAtYou_Emitter;
 
     [Header("Fade Durations")]
     [SerializeField] private float fadeInDuration = 2.5f;
@@ -140,7 +141,7 @@ public class AudioManager02 : MonoBehaviour
     /* - PlayOneShot -
     Esta funcion lo que hace es lanzar el evento de Fmod una sola ves
     RuntimeManager.PlayoneShot, se encarga de buscar el evento, lanzarlo osea darle play 
-    y una ves que termina destruilo
+    y una ves que termina destruirlo
     */
     public void PlayOneShot(string eventPath)
     {
@@ -312,6 +313,22 @@ public class AudioManager02 : MonoBehaviour
         if (footSteps != null)
         {
             footSteps.StopAllFootsteps();
+        }
+    }
+
+    public void TryFindEmittersIfNull()
+    {
+        if (SheIsLookingAtYou_Emitter == null)
+        {
+            GameObject emitterObj = GameObject.FindWithTag("Emitter_LookAtYou");
+            if (emitterObj != null)
+            {
+                SheIsLookingAtYou_Emitter = emitterObj.GetComponent<FMODUnity.StudioEventEmitter>();
+            }
+            else
+            {
+                Debug.LogWarning("No se encontró el GameObject con el tag 'Emitter_LookAtYou'");
+            }
         }
     }
 

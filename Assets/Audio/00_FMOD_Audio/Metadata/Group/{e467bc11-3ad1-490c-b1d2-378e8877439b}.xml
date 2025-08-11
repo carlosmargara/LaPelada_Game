@@ -30,10 +30,10 @@
 	<object class="MixerBusFader" id="{f968ebcd-279e-43aa-998d-47b80d2b485d}" />
 	<object class="ThreeEQEffect" id="{e27ae988-fb0d-4d2f-acfd-e4f4bba03385}">
 		<property name="midGain">
-			<value>-10.5</value>
+			<value>-28.5</value>
 		</property>
 		<property name="highGain">
-			<value>-25.5</value>
+			<value>-10</value>
 		</property>
 		<property name="highCrossover">
 			<value>2800</value>

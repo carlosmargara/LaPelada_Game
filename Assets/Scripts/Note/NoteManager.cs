@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NoteManager : Singleton<NoteManager>
 {
@@ -104,7 +105,7 @@ public class NoteManager : Singleton<NoteManager>
         if (currentNote != null && currentNote.activaIA) // Primero cheque�s esto
         {
             pelada.SetActive(true);
-            //spawnerPelada.SetActive(true);
+            spawnerPelada.SetActive(true);
             Debug.Log("�La Pelada fue activada por la nota!");
 
             /*
@@ -232,4 +233,83 @@ public class NoteManager : Singleton<NoteManager>
         textAmin = true;
     }
 
+    private GameObject FindInChildrenIncludingInactive(GameObject parent, string name)
+    {
+        Transform[] children = parent.GetComponentsInChildren<Transform>(true); // true = incluye inactivos
+        foreach (Transform child in children)
+        {
+            if (child.name == name)
+                return child.gameObject;
+        }
+        return null;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Intentamos encontrar el CanvasPanel persistente o recién cargado
+        GameObject canvas = GameObject.Find("CanvasPanel");
+        if (canvas == null)
+        {
+            Debug.LogWarning("No se encontró CanvasPanel en la escena.");
+            return;
+        }
+
+        // UI Notas
+        if (panelNote == null)
+            panelNote = FindInChildrenIncludingInactive(canvas, "Note Panel");
+
+        if (foregroundImage == null)
+            foregroundImage = FindInChildrenIncludingInactive(canvas, "foreground - Image")?.GetComponent<Image>();
+
+        if (title == null)
+            title = FindInChildrenIncludingInactive(canvas, "Title - Text (TMP)")?.GetComponent<TextMeshProUGUI>();
+
+        if (pageText == null)
+            pageText = FindInChildrenIncludingInactive(canvas, "PageText - Text (TMP)")?.GetComponent<TextMeshProUGUI>();
+
+        if (pageCounterText == null)
+            pageCounterText = FindInChildrenIncludingInactive(canvas, "pageCounterText - Text (TMP)")?.GetComponent<TextMeshProUGUI>();
+
+        if (nextButton == null)
+            nextButton = FindInChildrenIncludingInactive(canvas, "Next - Button")?.GetComponent<Button>();
+
+        if (backButton == null)
+            backButton = FindInChildrenIncludingInactive(canvas, "Back - Button")?.GetComponent<Button>();
+
+        // UI Interacción
+        if (panelTextInterac == null)
+            panelTextInterac = FindInChildrenIncludingInactive(canvas, "Note Interac");
+
+        if (messageText == null)
+            messageText = FindInChildrenIncludingInactive(canvas, "interacText - Text (TMP)")?.GetComponent<TextMeshProUGUI>();
+
+        if (yesButton == null)
+            yesButton = FindInChildrenIncludingInactive(canvas, "Yes - Button")?.GetComponent<Button>();
+
+        if (noButton == null)
+            noButton = FindInChildrenIncludingInactive(canvas, "No - Button")?.GetComponent<Button>();
+
+        // Pelada
+        if (pelada == null)
+            pelada = GameObject.Find("La Pelada");
+
+        if (spawnerPelada == null)
+            spawnerPelada = GameObject.Find("Spawner_PELADA");
+
+        // Desactivar paneles por defecto
+        if (panelNote != null) panelNote.SetActive(false);
+        if (panelTextInterac != null) panelTextInterac.SetActive(false);
+
+        Debug.Log("NoteManager: referencias cargadas tras escena " + scene.name);
+    }
 }

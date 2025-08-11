@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ScreenLoading.unity
     guid: 4624915d25799884a83f9934d5053542
+  - enabled: 1
+    path: Assets/Scenes/PatioInterno_TheOffice.unity
+    guid: ea64f62d66e917d4cb5e6a3213cde905
   m_configObjects: {}

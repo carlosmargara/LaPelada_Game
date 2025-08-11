@@ -15,6 +15,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private Queue<string> dialogueSequence;
     private Queue<string> doorSequence;
+    private Queue<string> thoughtSequence;
+    private bool isThinking = false;
 
     private float inputCooldown = 0f;
     private bool dialogueAmin;
@@ -28,10 +30,15 @@ public class DialogueManager : Singleton<DialogueManager>
     public bool IsTalking => isTalking; //propiedad public que devuelve el resultado del bool isTalking (siempre son publicas estas propertys
                                         //porque necesito usarla desde otro scritp)
 
+    private DiffetentTypes_footSteps_with_FmodEvent footSteps_Player;
+
     private void Start()
     {
+        footSteps_Player = FindObjectOfType<DiffetentTypes_footSteps_with_FmodEvent>();
+
         dialogueSequence = new Queue<string>();
         doorSequence = new Queue<string>();
+        thoughtSequence = new Queue<string>();
     }
 
     private void Update()
@@ -144,6 +151,24 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void ContinueDialogue()
     {
+        // Pensamientos internos del jugador
+        if (isThinking)
+        {
+            if (thoughtSequence.Count > 0)
+            {
+                string nextText = thoughtSequence.Dequeue();
+                ShowTextAmin(nextText);
+            }
+            else
+            {
+                OpenCloseDialoguePanel(false);
+                isTalking = false;
+                isThinking = false;
+            }
+            return;
+        }
+
+        // Descripciones de puertas
         if (isDoorDescription)
         {
             if (doorSequence.Count > 0)
@@ -236,9 +261,11 @@ public class DialogueManager : Singleton<DialogueManager>
         farewellShown = false;
         isDoorDescription = false;
         isWorldMessage = false;
+        isThinking = false;
 
         dialogueSequence.Clear();
         doorSequence.Clear();
+        thoughtSequence.Clear();
 
         GameStateManager.Instance.UnlockPlayer();
     }
@@ -257,4 +284,26 @@ public class DialogueManager : Singleton<DialogueManager>
     }
 
     #endregion
+
+    public void ShowThoughts(PlayerThoughts thoughtAsset)
+    {
+        footSteps_Player.StopAllFootsteps(); //Detiene el sonido de pasos
+
+        thoughtSequence.Clear();
+        foreach (var thought in thoughtAsset.thoughts)
+        {
+            thoughtSequence.Enqueue(thought.text);
+        }
+
+        if (thoughtSequence.Count == 0) return;
+
+        OpenCloseDialoguePanel(true);
+        npcNameTMP.text = ""; // Sin nombre
+        isTalking = true;
+        isThinking = true;
+
+        string currentText = thoughtSequence.Dequeue();
+        ShowTextAmin(currentText);
+        inputCooldown = 0.1f;
+    }
 }

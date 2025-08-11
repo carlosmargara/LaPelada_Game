@@ -8,6 +8,11 @@ public class GameStateManager : Singleton<GameStateManager>
     [SerializeField] private PlayerController playerController;
     private int _currentPriority = 0;
 
+    void Start()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
+
     public void LockPlayer(int priority = 0)
     {
         if (priority >= _currentPriority)

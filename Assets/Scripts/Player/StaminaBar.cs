@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StaminaBar : MonoBehaviour
+public class StaminaBar : Singleton<StaminaBar>
 {
     //Eventos que se comunican con el AudioManager para lanzar SoundStamina
     public static System.Action OnStaminaDepleted;

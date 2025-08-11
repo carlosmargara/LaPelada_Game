@@ -63,7 +63,7 @@ public class Slot_Inventory : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         InventoryUI.Instance.ShowItemDescription(Index);
-        AudioManager02.Instance.PlayOneShot("event:/UI/Selection_Sound");
+        AudioManager02.Instance.PlayOneShot("event:/UI/Selection_Sound (Inventary)");
     }
 
     public void OnPointerExit(PointerEventData eventData)

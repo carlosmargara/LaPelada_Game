@@ -5,7 +5,7 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : Component
 {
     private static T _instance; //Es donde se guarda la referencia interna del Singleton. No es accesible desde fuera de la clase.
-    public static T Instance // Es la propiedad pública que permite a otros scripts acceder a la única instancia del Singleton. Si no existe, se crea automáticamente.
+    public static T Instance // Es la propiedad pï¿½blica que permite a otros scripts acceder a la ï¿½nica instancia del Singleton. Si no existe, se crea automï¿½ticamente.
     {
         get
         {
@@ -24,6 +24,14 @@ public class Singleton<T> : MonoBehaviour where T : Component
 
     protected virtual void Awake()
     {
-        _instance = this as T;
+        if (_instance == null)
+        {
+            _instance = this as T;
+            DontDestroyOnLoad(gameObject); // Hace persistente al singleton
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject); // Evita duplicados
+        }
     }
 }

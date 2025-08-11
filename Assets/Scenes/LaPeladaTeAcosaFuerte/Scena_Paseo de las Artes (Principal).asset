@@ -1,73 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5875867991911722560
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a074ec59f6e910b4e8c49f57e56cf95a, type: 3}
-  m_Name: VolumetricFogVolumeComponent
-  m_EditorClassIdentifier: 
-  active: 1
-  distance:
-    m_OverrideState: 1
-    m_Value: 508
-  baseHeight:
-    m_OverrideState: 1
-    m_Value: 47.92
-  maximumHeight:
-    m_OverrideState: 1
-    m_Value: 1262.6
-  enableGround:
-    m_OverrideState: 1
-    m_Value: 1
-  groundHeight:
-    m_OverrideState: 1
-    m_Value: 0
-  density:
-    m_OverrideState: 1
-    m_Value: 0.335
-  attenuationDistance:
-    m_OverrideState: 1
-    m_Value: 16.86
-  enableMainLightContribution:
-    m_OverrideState: 1
-    m_Value: 1
-  mainLightAnisotropy:
-    m_OverrideState: 1
-    m_Value: 0
-  mainLightScattering:
-    m_OverrideState: 1
-    m_Value: 0.588
-  mainLightColorTint:
-    m_OverrideState: 1
-    m_Value: {r: 0.381132, g: 0.381132, b: 0.381132, a: 1}
-  enableAdditionalLightsContribution:
-    m_OverrideState: 1
-    m_Value: 0
-  additionalLightsAnisotropy:
-    m_OverrideState: 1
-    m_Value: 0.99
-  additionalLightsScattering:
-    m_OverrideState: 1
-    m_Value: 5.65
-  additionalLightsRadius:
-    m_OverrideState: 1
-    m_Value: 0.18
-  maxSteps:
-    m_OverrideState: 1
-    m_Value: 38
-  blurIterations:
-    m_OverrideState: 1
-    m_Value: 2
-  enabled:
-    m_OverrideState: 1
-    m_Value: 1
---- !u!114 &-5822274421591536587
+--- !u!114 &-8263111424046562070
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,24 +28,7 @@ MonoBehaviour:
   saturation:
     m_OverrideState: 1
     m_Value: -35
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Scena_Paseo de las Artes (Principal)
-  m_EditorClassIdentifier: 
-  components:
-  - {fileID: -5875867991911722560}
-  - {fileID: 6913645614324211121}
-  - {fileID: 2962113978114874201}
-  - {fileID: -5822274421591536587}
---- !u!114 &2962113978114874201
+--- !u!114 &-6085318759074013565
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +47,74 @@ MonoBehaviour:
   tint:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &6913645614324211121
+--- !u!114 &-3124791092230929029
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a074ec59f6e910b4e8c49f57e56cf95a, type: 3}
+  m_Name: VolumetricFogVolumeComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  distance:
+    m_OverrideState: 1
+    m_Value: 419
+  baseHeight:
+    m_OverrideState: 1
+    m_Value: -4306.4
+  maximumHeight:
+    m_OverrideState: 1
+    m_Value: 1260.6
+  enableGround:
+    m_OverrideState: 1
+    m_Value: 0
+  groundHeight:
+    m_OverrideState: 1
+    m_Value: 0
+  density:
+    m_OverrideState: 1
+    m_Value: 0.253
+  attenuationDistance:
+    m_OverrideState: 1
+    m_Value: 8.84
+  enableMainLightContribution:
+    m_OverrideState: 1
+    m_Value: 1
+  mainLightAnisotropy:
+    m_OverrideState: 1
+    m_Value: 0
+  mainLightScattering:
+    m_OverrideState: 1
+    m_Value: 0.706
+  mainLightColorTint:
+    m_OverrideState: 1
+    m_Value: {r: 0.86415094, g: 0.86415094, b: 0.86415094, a: 1}
+  enableAdditionalLightsContribution:
+    m_OverrideState: 1
+    m_Value: 0
+  additionalLightsAnisotropy:
+    m_OverrideState: 1
+    m_Value: 0.99
+  additionalLightsScattering:
+    m_OverrideState: 1
+    m_Value: 0
+  additionalLightsRadius:
+    m_OverrideState: 1
+    m_Value: 0
+  maxSteps:
+    m_OverrideState: 1
+    m_Value: 102
+  blurIterations:
+    m_OverrideState: 1
+    m_Value: 1
+  enabled:
+    m_OverrideState: 1
+    m_Value: 1
+--- !u!114 &-158053155922609053
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,3 +142,20 @@ MonoBehaviour:
   rounded:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Scena_Paseo de las Artes (Principal)
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -3124791092230929029}
+  - {fileID: -158053155922609053}
+  - {fileID: -6085318759074013565}
+  - {fileID: -8263111424046562070}

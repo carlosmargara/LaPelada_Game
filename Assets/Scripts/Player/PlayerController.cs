@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class PlayerController : MonoBehaviour
 {
     [Header("Movimiento")]
@@ -20,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 moveDirection;
     public Vector3 Move => moveDirection;
+
+    private Animator animator;
 
     [Space]
     //private PlayerFootsteps playerFootsteps;
@@ -42,6 +43,8 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        animator = GetComponentInChildren<Animator>();
         currentSpeed = moveSpeed;
 
         if (rb != null)
@@ -58,6 +61,13 @@ public class PlayerController : MonoBehaviour
         HandleRotationInput();
         _MechanicsLookBack();
 
+        // 🔹 Pasar inputs crudos al Animator con damping
+        animator.SetFloat("InputX", moveDirection.x, 0.15f, Time.deltaTime);
+        animator.SetFloat("InputY", moveDirection.z, 0.15f, Time.deltaTime);
+
+        // Detectar correr
+        bool isRunning = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && moveDirection.magnitude > 0.1f;
+        animator.SetBool("IsRunning", isRunning);
 
         if (moveDirection.magnitude > 0.1f)
         {
@@ -65,7 +75,6 @@ public class PlayerController : MonoBehaviour
             //different_Types_Of_Raycast_And_Tag_Steps.HandleFootsteps(rb, isRunning); //sistema viejo con motor de Audio de Unity 
             diffetentTypes_footSteps_with_FmodEvent.HandleFootsteps(Move, isRunning); //sistema con Fmod
         }
-
     }
 
     void FixedUpdate()
