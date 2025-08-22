@@ -17,5 +17,7 @@ MonoBehaviour:
   - text: 'El paseo de las Artes... que loco lo recordaba mas feliz y con mas ruido
       de gente y cosas. '
   - text: 'Donde esta todo el mundo? esta creepy esto. '
-  - text: "Bueno, no importa.\nMi amigo me dijo que me esperaba en el bar que esta
-      en Achaval Rodriguez 357, casi esquina Ca\xF1ada"
+  - text: 'Bueno, no importa. '
+  - text: Mi amigo me dijo que me esperaba en el bar que esta en Achaval Rodriguez
+      357
+  - text: "Pasando la casa Verde, casi esquina con Ca\xF1ada(Marcelo T. Alvear)"

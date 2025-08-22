@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Cinemachine;
 
 public class PeladaSightEvent : MonoBehaviour
@@ -14,16 +13,17 @@ public class PeladaSightEvent : MonoBehaviour
     public float barHeight = 100f;
     public float barSpeed = 300f;
 
-    [SerializeField] private PlayerThoughts firstSight_PELADA;
+    [Header("Probabilidad")]
+    [Range(0f, 1f)]
+    public float chanceToTrigger = 0.5f; // 50% por defecto
 
+    [SerializeField] private PlayerThoughts firstSight_PELADA;
     public GameObject pelada;
 
     private Vector2 topTarget;
     private Vector2 bottomTarget;
     public bool triggered = false;
     public bool restoring = false;
-
-    private PlayerController playerController;
 
     private void Start()
     {
@@ -36,6 +36,9 @@ public class PeladaSightEvent : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (triggered || !other.CompareTag("Player")) return;
+
+        // Chequear probabilidad
+        if (Random.value > chanceToTrigger) return;
 
         AudioManager02.Instance.PlayOneShot("event:/PeladaSightEvent");
 
@@ -52,7 +55,7 @@ public class PeladaSightEvent : MonoBehaviour
         Invoke(nameof(EndEvent), duration);
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
             triggered = false;
@@ -75,13 +78,10 @@ public class PeladaSightEvent : MonoBehaviour
             topBar.sizeDelta = Vector2.MoveTowards(topBar.sizeDelta, new Vector2(topTarget.x, 0), Time.deltaTime * barSpeed);
             bottomBar.sizeDelta = Vector2.MoveTowards(bottomBar.sizeDelta, new Vector2(bottomTarget.x, 0), Time.deltaTime * barSpeed);
 
-            // Si ambas barras ya están cerradas por completo, apagamos a la pelada
-            if (topBar.sizeDelta.y <= 0.1f && bottomBar.sizeDelta.y <= 0.1f)
+            // Apagar la pelada cuando las barras cierran
+            if (topBar.sizeDelta.y <= 0.1f && bottomBar.sizeDelta.y <= 0.1f && pelada.activeSelf)
             {
-                if (pelada.activeSelf)
-                {
-                    pelada.SetActive(false);
-                }
+                pelada.SetActive(false);
             }
         }
     }
@@ -92,9 +92,18 @@ public class PeladaSightEvent : MonoBehaviour
         restoring = true;
 
         GameStateManager.Instance.UnlockPlayer(10);
-
         DialogueManager.Instance.ShowThoughts(firstSight_PELADA);
     }
 
+    private void OnDrawGizmos()
+    {
+        BoxCollider box = GetComponent<BoxCollider>();
+        if (box == null) return;
+
+        Gizmos.color = Color.white;
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireCube(box.center, box.size);
+    }
 }
+
 

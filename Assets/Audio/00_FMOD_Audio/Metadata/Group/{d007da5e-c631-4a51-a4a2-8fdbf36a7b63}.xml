@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{d007da5e-c631-4a51-a4a2-8fdbf36a7b63}">
+		<property name="volume">
+			<value>3</value>
+		</property>
+		<property name="name">
+			<value>BlinkingLight</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{d4e6bd8d-c6b7-49e8-a19c-acfc9c96acb3}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{11b0d28e-8b13-4bd3-bf7e-318c92d611d8}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{991b61c3-5ddc-4151-b6eb-fa3d35ad040d}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{d4e6bd8d-c6b7-49e8-a19c-acfc9c96acb3}">
+		<relationship name="effects">
+			<destination>{f4cbe80b-83b7-48f9-b0f7-2d6b25e8a55f}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{11b0d28e-8b13-4bd3-bf7e-318c92d611d8}" />
+	<object class="MixerBusFader" id="{f4cbe80b-83b7-48f9-b0f7-2d6b25e8a55f}" />
+</objects>

@@ -127,8 +127,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
 
     public void ConfirmPickup()
     {
-        //AudioManager.Instance.PlaySoundFX(AudioManager.Instance.pickUP_Sound, 0.6f); //Laza el sonido de PickUp_Item
-        AudioManager02.Instance.PlayOneShot("");
+        AudioManager02.Instance.PlayOneShot("event:/Fxs/PickUp Item");
 
         StopAllCoroutines();
         ShowTextAmin(currentItem.Ref_ScriptableObject.confirmationText);

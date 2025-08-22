@@ -16,7 +16,7 @@ public class Inventory : Singleton<Inventory>
     {
         items = new Inventory_Item[numberSlot]; //le dijo al array la cantidad de item que hay, numero fijo porque es un array 
     }
-    
+
     public void AddItem(Inventory_Item itemToAdd, int amount)
     {
         if (itemToAdd == null)
@@ -25,16 +25,16 @@ public class Inventory : Singleton<Inventory>
         }
 
         List<int> indexes = CheckStock(itemToAdd.ID);
-        if(itemToAdd.isCumulative) //se puede acumular 
+        if (itemToAdd.isCumulative) //se puede acumular 
         {
-            if(indexes.Count > 0)
+            if (indexes.Count > 0)
             {
                 for (int i = 0; i < indexes.Count; i++)
                 {
                     if (items[indexes[i]].amount < itemToAdd.maxiAccumulation)
                     {
                         items[indexes[i]].amount += amount;
-                        if(items[indexes[i]].amount > itemToAdd.maxiAccumulation)
+                        if (items[indexes[i]].amount > itemToAdd.maxiAccumulation)
                         {
                             int difference = items[indexes[i]].amount - itemToAdd.maxiAccumulation;
                             items[indexes[i]].amount = itemToAdd.maxiAccumulation;
@@ -47,12 +47,12 @@ public class Inventory : Singleton<Inventory>
                 }
             }
         }
-        
+
         if (amount <= 0)
         {
-            return ;
+            return;
         }
-        
+
         if (amount > itemToAdd.maxiAccumulation)
         {
             AddItemToAvailableSlot(itemToAdd, itemToAdd.maxiAccumulation);
@@ -65,7 +65,7 @@ public class Inventory : Singleton<Inventory>
         }
     }
 
-    private  List<int> CheckStock(string itemID) //Verificar existencias 
+    private List<int> CheckStock(string itemID) //Verificar existencias 
     {
         List<int> indexesResult = new List<int>();
         for (int i = 0; i < items.Length; i++)
@@ -77,14 +77,14 @@ public class Inventory : Singleton<Inventory>
                     indexesResult.Add(i);
                 }
             }
-        }        
+        }
         return indexesResult;
     }
-    
+
     //Este metodo lo que hace es agregar un item a un slot basio
-    private void AddItemToAvailableSlot(Inventory_Item item, int amount) //añadir item en slot disponible
+    private void AddItemToAvailableSlot(Inventory_Item item, int amount) //aï¿½adir item en slot disponible
     {
-        for(int i = 0;i < items.Length;i++)
+        for (int i = 0; i < items.Length; i++)
         {
             if (items[i] == null) //si el item es null quiere decir que el slot esta disponible
             {
@@ -118,4 +118,8 @@ public class Inventory : Singleton<Inventory>
     }
     #endregion
 
+    public bool HasItem(string itemID)
+    {
+        return CheckStock(itemID).Count > 0;
+    }
 }

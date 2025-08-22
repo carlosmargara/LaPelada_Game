@@ -11,6 +11,9 @@ public class FadeManager : MonoBehaviour
     [SerializeField] private float fadeDuration = 1f;
     [SerializeField] private PlayerThoughts introThoughts;
 
+    private static bool introAlreadyShown = false; //variable que permite mostrar una sola ves los pesamientos 
+                                                   //al comienzo del juego 
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -20,7 +23,18 @@ public class FadeManager : MonoBehaviour
     private void Start()
     {
         blackFade_Image.SetActive(true);
-        StartCoroutine(FadeOutAndStartIntro());
+
+        if (!introAlreadyShown && introThoughts != null)
+        {
+            // Primera vez: fade + pensamientos
+            StartCoroutine(FadeOutAndStartIntro());
+            introAlreadyShown = true;
+        }
+        else
+        {
+            // Solo fade normal
+            StartCoroutine(FadeOut());
+        }
     }
 
     private IEnumerator FadeOutAndStartIntro()
