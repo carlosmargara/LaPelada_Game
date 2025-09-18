@@ -977,7 +977,7 @@ GameObject:
   - component: {fileID: 1025708238820280732}
   - component: {fileID: 7724078935419274551}
   - component: {fileID: 4939808813956466453}
-  - component: {fileID: 8156679686821092372}
+  - component: {fileID: 262099747141664318}
   m_Layer: 5
   m_Name: CanvasPanel
   m_TagString: Untagged
@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8156679686821092372
+--- !u!114 &262099747141664318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1858,7 +1858,7 @@ GameObject:
   - component: {fileID: 8565577150975189310}
   m_Layer: 5
   m_Name: Panel Description
-  m_TagString: Untagged
+  m_TagString: InventoryDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3086,7 +3086,7 @@ GameObject:
   - component: {fileID: 4560782546285469660}
   m_Layer: 5
   m_Name: Panel Inventory
-  m_TagString: Untagged
+  m_TagString: InventoryPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

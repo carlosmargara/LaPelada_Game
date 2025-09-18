@@ -313,3 +313,4 @@ public class NoteManager : Singleton<NoteManager>
         Debug.Log("NoteManager: referencias cargadas tras escena " + scene.name);
     }
 }
+

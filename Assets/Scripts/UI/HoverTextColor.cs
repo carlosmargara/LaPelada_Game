@@ -29,6 +29,7 @@ public class HoverTextColor : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager02.Instance.PlayOneShot("event:/UI/Selection_Sound (Inventary)");
         buttonText.color = hoverColor;
 
         if (tipoBoton == ButtonType.Si && flecha_uiSi != null)

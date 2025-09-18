@@ -12,6 +12,8 @@ TagManager:
   - Cobblestones
   - Concrete
   - Emitter_LookAtYou
+  - InventoryPanel
+  - InventoryDescription
   layers:
   - Default
   - TransparentFX

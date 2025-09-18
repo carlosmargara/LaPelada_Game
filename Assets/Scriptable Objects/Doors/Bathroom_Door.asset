@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Bathroom_Door
   m_EditorClassIdentifier: 
   ID: bathroom door
+  requiredKeyID: 
+  lockedText: 
+  unlockedText: 
   descriptonInterac:
-  - text: Esta cerrada
-  - text: 'pero si encontrara la llave o algo talvez pueda pasar '
+  - text: Esta cerrada, parece trabada desde adentro

@@ -34,6 +34,7 @@ public class StaminaBar : Singleton<StaminaBar>
 
     private PlayerController playerController;
 
+
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();

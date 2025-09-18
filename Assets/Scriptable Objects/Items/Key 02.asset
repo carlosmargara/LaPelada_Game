@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fa8c0ebd44ad340a99266f0dd1c3b0, type: 3}
+  m_Name: Key 02
+  m_EditorClassIdentifier: 
+  ID: "Ba\xF1os"
+  Name: "Ba\xF1os de la Plaza"
+  Icono_default: {fileID: 21300000, guid: 6678d6d0ee4d7c346a547c5611210c82, type: 3}
+  Icono_equipped: {fileID: 21300000, guid: c338e10177fcc604faa88ad79cf66f20, type: 3}
+  prefabModel: {fileID: 7052917966355167103, guid: 6055f066bc3def94ba12220f701cbc43, type: 3}
+  Description: "Llave candado, tieneu una incripcion.\n\"Llave del candado de los
+    ba\xF1os\""
+  pickupText: Es la llave de un candado, de que podra ser?
+  pickupText02: Quieres agarrar la llave candado?
+  confirmationText: Has agarrado la llave candado
+  TypeItem: 0
+  isConsumable: 0
+  isCumulative: 0
+  maxiAccumulation: 1
+  amount: 0

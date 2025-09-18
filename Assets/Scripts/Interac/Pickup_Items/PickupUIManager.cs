@@ -61,7 +61,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
             ClosePanel();
             return;
         }
-
+        /*
         if (panel.activeSelf)
         {
             GameStateManager.Instance.LockPlayer();
@@ -70,7 +70,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
         {
             GameStateManager.Instance.UnlockPlayer();
         }
-
+        */
         if (Input.GetMouseButtonDown(0))
         {
             if (!descriptionItemAmin)
@@ -105,6 +105,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
     {
         currentItem = item;
         panel.SetActive(true);
+        GameStateManager.Instance.LockPlayer(priority: 3); // bloqueamos solo al abrir
         ShowTextAmin(item.Ref_ScriptableObject.pickupText);
         _yesButton.SetActive(false);
         _noButton.SetActive(false);
@@ -127,8 +128,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
 
     public void ConfirmPickup()
     {
-        //AudioManager.Instance.PlaySoundFX(AudioManager.Instance.pickUP_Sound, 0.6f); //Laza el sonido de PickUp_Item
-        AudioManager02.Instance.PlayOneShot("");
+        AudioManager02.Instance.PlayOneShot("event:/Fxs/PickUp Item");
 
         StopAllCoroutines();
         ShowTextAmin(currentItem.Ref_ScriptableObject.confirmationText);
@@ -154,6 +154,8 @@ public class PickupUIManager : Singleton<PickupUIManager>
         currentItem = null;
 
         HideItemPreview();
+
+        GameStateManager.Instance.UnlockPlayer(priority: 3); // desbloqueamos solo al cerrar
         // AudioManager02.Instance.PlayOneShot("event:/UI/ClosePanel");
     }
 

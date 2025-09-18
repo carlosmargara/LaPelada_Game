@@ -66,10 +66,10 @@ MonoBehaviour:
   Path: Assets/Audio/00_FMOD_Audio/Build/Desktop/AllSound.bank
   Name: AllSound
   StudioPath: bank:/AllSound
-  lastModified: 638897562300414746
+  lastModified: 638915357318422439
   FileSizes:
   - Name: Desktop
-    Value: 15927968
+    Value: 15401440
   Exists: 1
 --- !u!114 &-7994671404479571919
 MonoBehaviour:
@@ -258,6 +258,87 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6418
+--- !u!114 &-4593422130667051111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Fxs/the key slides into the lock_Sound
+  m_EditorClassIdentifier: 
+  Path: event:/Fxs/the key slides into the lock_Sound
+  Guid:
+    Data1: -1005141239
+    Data2: 1204563982
+    Data3: -321867126
+    Data4: 1485642630
+  Banks:
+  - {fileID: -8093744027044427383}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3697
+--- !u!114 &-4229219773545418816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Amb/PlazaColon
+  m_EditorClassIdentifier: 
+  Path: event:/Amb/PlazaColon
+  Guid:
+    Data1: 633452219
+    Data2: 1342041014
+    Data3: 1675570095
+    Data4: -1574969967
+  Banks:
+  - {fileID: -8093744027044427383}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 73000
+--- !u!114 &-4213569881833713122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/00_Trailler
+  m_EditorClassIdentifier: 
+  Path: event:/00_Trailler
+  Guid:
+    Data1: -1011602418
+    Data2: 1131724429
+    Data3: 1994927238
+    Data4: 1007864482
+  Banks:
+  - {fileID: -8093744027044427383}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 99047
 --- !u!114 &-3816698167472481351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,10 +354,10 @@ MonoBehaviour:
   Path: Assets/Audio/00_FMOD_Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638897562301154820
+  lastModified: 638915341626540075
   FileSizes:
   - Name: Desktop
-    Value: 3156
+    Value: 3594
   Exists: 1
 --- !u!114 &-3785434593648740346
 MonoBehaviour:
@@ -308,6 +389,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 163537
+--- !u!114 &-3687241968787848441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Fxs/OpenDoor_withKey
+  m_EditorClassIdentifier: 
+  Path: event:/Fxs/OpenDoor_withKey
+  Guid:
+    Data1: -1408133544
+    Data2: 1114676826
+    Data3: 281344386
+    Data4: -106911329
+  Banks:
+  - {fileID: -8093744027044427383}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3697
 --- !u!114 &-3370317001503601618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,33 +443,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 160000
---- !u!114 &-2445494889901358848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Amb/Plaza_bird
-  m_EditorClassIdentifier: 
-  Path: event:/Amb/Plaza_bird
-  Guid:
-    Data1: 1638420345
-    Data2: 1307744042
-    Data3: -1180160089
-    Data4: 1607024313
-  Banks:
-  - {fileID: -8093744027044427383}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 132028
 --- !u!114 &-2403527630577868609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,10 +458,10 @@ MonoBehaviour:
   Path: Assets/Audio/00_FMOD_Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638897562301234798
+  lastModified: 638915341626559891
   FileSizes:
   - Name: Desktop
-    Value: 2476
+    Value: 2896
   Exists: 1
 --- !u!114 &-2146149872273964484
 MonoBehaviour:
@@ -410,6 +491,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 380
+--- !u!114 &-1949715081199286671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/susurros
+  m_EditorClassIdentifier: 
+  Path: event:/susurros
+  Guid:
+    Data1: 379104
+    Data2: 1214422442
+    Data3: -1096258130
+    Data4: 854435058
+  Banks:
+  - {fileID: -8093744027044427383}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 15230
 --- !u!114 &-1867618766034891834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +625,6 @@ MonoBehaviour:
   - {fileID: -2146149872273964484}
   - {fileID: 8347363860046522448}
   - {fileID: -1867618766034891834}
-  - {fileID: -2445494889901358848}
   - {fileID: -7731228032990647968}
   - {fileID: 8467391992691685127}
   - {fileID: -3370317001503601618}
@@ -533,13 +640,46 @@ MonoBehaviour:
   - {fileID: 8749150075022009854}
   - {fileID: 5624560526230731206}
   - {fileID: -5836959733643511365}
+  - {fileID: -4213569881833713122}
+  - {fileID: -4229219773545418816}
+  - {fileID: -3687241968787848441}
+  - {fileID: -4593422130667051111}
+  - {fileID: 189893627297453249}
+  - {fileID: -1949715081199286671}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3816698167472481351}
   StringsBanks:
   - {fileID: -2403527630577868609}
-  cacheTime: 638897562301234798
+  cacheTime: 638915357318422439
   cacheVersion: 131625
+--- !u!114 &189893627297453249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Fxs/Click-on_off_Lightwall_Sound
+  m_EditorClassIdentifier: 
+  Path: event:/Fxs/Click-on_off_Lightwall_Sound
+  Guid:
+    Data1: -490669978
+    Data2: 1214542187
+    Data3: -221080677
+    Data4: 1196075612
+  Banks:
+  - {fileID: -8093744027044427383}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &2389185301745844250
 MonoBehaviour:
   m_ObjectHideFlags: 0

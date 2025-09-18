@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Camera Blends_Scena_La Pelada te acosa Fuerte
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: CM_PlayerCam
-    m_To: CM_She is looking at you_Garage
+  - m_From: CM_Player
+    m_To: CM_Garage
     m_Blend:
       m_Style: 0
       m_Time: 2
@@ -24,8 +24,8 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM_She is looking at you_Garage
-    m_To: CM_PlayerCam
+  - m_From: CM_Garage
+    m_To: CM_Player
     m_Blend:
       m_Style: 0
       m_Time: 2
@@ -35,7 +35,7 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM_PlayerCam
+  - m_From: CM_Player
     m_To: CM_PeladaZoomCam
     m_Blend:
       m_Style: 1
@@ -47,7 +47,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - m_From: CM_PeladaZoomCam
-    m_To: CM_PlayerCam
+    m_To: CM_Player
     m_Blend:
       m_Style: 0
       m_Time: 2
@@ -57,8 +57,8 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM_PlayerCam
-    m_To: CM_She is looking at you_Esq
+  - m_From: CM_Player
+    m_To: CM_Esq
     m_Blend:
       m_Style: 0
       m_Time: 2
@@ -68,8 +68,8 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM_She is looking at you_Esq
-    m_To: CM_PlayerCam
+  - m_From: CM_Esq
+    m_To: CM_Player
     m_Blend:
       m_Style: 0
       m_Time: 2

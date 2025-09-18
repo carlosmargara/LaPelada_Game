@@ -1,44 +1,44 @@
 ﻿/*
 ===========================================================
- FMOD QUICK GUIDE - Uso en Unity
+FMOD QUICK GUIDE - Uso en Unity
 ===========================================================
 
 1) RuntimeManager.PlayOneShot()
-   - Para reproducir sonidos cortos (SFX) que no necesitan control posterior.
-   - FMOD maneja y destruye la instancia automáticamente.
-   - Ejemplo: disparos, pasos, abrir puerta.
-   - No permite stop, pause ni setParameter.
+  - Para reproducir sonidos cortos (SFX) que no necesitan control posterior.
+  - FMOD maneja y destruye la instancia automáticamente.
+  - Ejemplo: disparos, pasos, abrir puerta.
+  - No permite stop, pause ni setParameter.
 
-   Ej:
-     RuntimeManager.PlayOneShot("event:/SFX/Explosion", transform.position);
+  Ej:
+    RuntimeManager.PlayOneShot("event:/SFX/Explosion", transform.position);
 
 -----------------------------------------------------------
 
 2) EventInstance
-   - Para sonidos que requieren control manual (start, stop, pause, parámetros).
-   - Ideal para música, loops o ambientes dinámicos.
-   - IMPORTANTE: siempre hacer .release() al final para liberar recursos.
+  - Para sonidos que requieren control manual (start, stop, pause, parámetros).
+  - Ideal para música, loops o ambientes dinámicos.
+  - IMPORTANTE: siempre hacer .release() al final para liberar recursos.
 
-   Ej:
-     private EventInstance music;
-     music = RuntimeManager.CreateInstance("event:/Music/Level1");
-     music.start();
-     music.setParameterByName("Mood", 0.5f);
-     music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-     music.release();
+  Ej:
+    private EventInstance music;
+    music = RuntimeManager.CreateInstance("event:/Music/Level1");
+    music.start();
+    music.setParameterByName("Mood", 0.5f);
+    music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    music.release();
 
 -----------------------------------------------------------
 
 3) StudioEventEmitter
-   - Componente en un GameObject, se configura desde el Inspector.
-   - Útil para sonidos localizados que sigan la posición del objeto.
-   - Se controla con .Play(), .Stop(), .SetParameter(), etc.
+  - Componente en un GameObject, se configura desde el Inspector.
+  - Útil para sonidos localizados que sigan la posición del objeto.
+  - Se controla con .Play(), .Stop(), .SetParameter(), etc.
 
-   Ej:
-     public StudioEventEmitter emitter;
-     emitter.Play();
-     emitter.SetParameter("Intensity", 1.0f);
-     emitter.Stop();
+  Ej:
+    public StudioEventEmitter emitter;
+    emitter.Play();
+    emitter.SetParameter("Intensity", 1.0f);
+    emitter.Stop();
 
 ===========================================================
 */
