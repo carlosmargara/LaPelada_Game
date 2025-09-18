@@ -1,31 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class Trigger_PatioInteno_Oficinas_ : MonoBehaviour
 {
-    [SerializeField] private Light _light;
+    [Header("Lighting")]
+    [SerializeField] private Light steadyLight;
+    [SerializeField] private GameObject blueLight;
+    [SerializeField] private BlinkingLight_con_patrón_irregular flickeringLight;
+
+    [Space]
+
+    [Header("Pelada")]
     [SerializeField] private GameObject pelada;
 
+    [Space]
+
+    [SerializeField] private LookAtPlayer lookAtPlayer;
+
+
+    [SerializeField] private StudioEventEmitter studioEventEmitter;
+
     public float time;
-    private bool paso;
-    // Start is called before the first frame update
+    private bool inSide;
+
     void Start()
     {
-        time = 10f;
+        time = 4f;
         pelada.SetActive(false);
+        blueLight.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (pelada.activeSelf == true)
         {
+            lookAtPlayer.Approach();
             time -= Time.deltaTime;
             if (time <= 0)
             {
                 time = 0;
                 pelada.SetActive(false);
+                blueLight.SetActive(false);
+                studioEventEmitter.Stop();
             }
         }
     }
@@ -34,15 +50,20 @@ public class Trigger_PatioInteno_Oficinas_ : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (!paso)
+            if (!inSide)
             {
-                _light.enabled = false;
+                // Apago la luz fija
+                if (steadyLight != null) steadyLight.enabled = false;
+
+                // Apago el parpadeo + sonido
+                if (flickeringLight != null) flickeringLight.enabled = false;
+
                 pelada.SetActive(true);
-                paso = true;
+                blueLight.SetActive(true);
+                inSide = true;
 
                 AudioManager02.Instance.PlaySound_MeetingWithPELADA();
             }
-
         }
     }
 
@@ -56,3 +77,4 @@ public class Trigger_PatioInteno_Oficinas_ : MonoBehaviour
         Gizmos.DrawWireCube(box.center, box.size);
     }
 }
+

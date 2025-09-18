@@ -27,8 +27,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Puerta_madera
+    second: {fileID: 2100000, guid: d7f9c591cb1cd4e4a89b99d9c8ccb9d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Ventana
     second: {fileID: 2100000, guid: 4233d1d94a8d2f144a95cb06f97737e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: VentanaOficina
+    second: {fileID: 2100000, guid: 7cfe5b339fcf89b40b49b895900dc280, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -52,8 +62,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: ground_pasillo
+    second: {fileID: 2100000, guid: 3ce759e0426610c42a54aea20be2deca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: wall
     second: {fileID: 2100000, guid: 59ee9f901bd3a8440900a719b63f16ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall oficina
+    second: {fileID: 2100000, guid: 2a91ec8a47e79a24799952aad1aa039e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall pasillo
+    second: {fileID: 2100000, guid: 307060162439523449f657075a26ef5d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae545224c6ad064b92874c76ce9d67d, type: 3}
   m_Name: You need a key to open it_Door to patioInterno
   m_EditorClassIdentifier: 
-  ID: YouNeedAKeyToOpenIt_Door
+  ID: You need a key to open it_Door to patioInterno
   requiredKeyID: PatioInterno_Oficinas
   lockedText: 'Esta Cerrada pero si encuentro la llave, tal vez
 

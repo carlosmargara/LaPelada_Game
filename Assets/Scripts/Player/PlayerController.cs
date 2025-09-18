@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum ControlMode { FirstPerson, Tank }
 
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject bodyPlayer;
 
     [Space]
-    [SerializeField] private StaminaBar staminaBar;
+    private StaminaBar staminaBar;
     [SerializeField] private DiffetentTypes_footSteps_with_FmodEvent footstepSystem; // sistema con Fmod
 
     private Rigidbody rb;
@@ -52,6 +53,8 @@ public class PlayerController : MonoBehaviour
 
         if (rb != null)
             rb.freezeRotation = true;
+
+        staminaBar = StaminaBar.Instance;
     }
 
     void Update()

@@ -24,13 +24,13 @@ public class ItemInteractionManager : Singleton<ItemInteractionManager>
                                 Inventory.Instance.Items[index] = null;
                             }
                         }
-                        else 
+                        else
                         {
                             item.amount--;
-                            if(item.amount <= 0)
+                            if (item.amount <= 0)
                             {
                                 Inventory.Instance.Items[index] = null;
-                                InventoryUI.Instance.DrawItemInInventory(null , 0 , index);
+                                InventoryUI.Instance.DrawItemInInventory(null, 0, index);
                                 Debug.Log("Llave usada correctamente en la zona.");
                                 return;
                             }
@@ -46,7 +46,7 @@ public class ItemInteractionManager : Singleton<ItemInteractionManager>
                 }
                 else
                 {
-                    Debug.Log("No podÈs usar ese Ìtem ac·.");
+                    Debug.Log("No pod√©s usar ese √≠tem ac√°.");
                 }
                 break;
 

@@ -28,7 +28,7 @@ public class DiffetentTypes_footSteps_with_FmodEvent : MonoBehaviour
 
         if (Mathf.Abs(x) > 0.1f || Mathf.Abs(z) > 0.1f)
         {
-            Debug.Log("_Se esta moviendo");
+            //Debug.Log("_Se esta moviendo");
             SurfaceType surface = DetectSurfaceType();
 
             if (isRunning)
@@ -56,7 +56,7 @@ public class DiffetentTypes_footSteps_with_FmodEvent : MonoBehaviour
         }
         else
         {
-            Debug.Log("_No se esta moviendo ");
+            //Debug.Log("_No se esta moviendo ");
             if (isFootstepPlaying)
             {
                 StopAllFootsteps();

@@ -5,7 +5,7 @@ using static UnityEditor.Progress;
 
 public class Inventory : Singleton<Inventory>
 {
-    [SerializeField] private int numberSlot;
+    [SerializeField] private int numberSlot = 7;
     public int Numberslot => numberSlot;
 
     [Header("Items")]

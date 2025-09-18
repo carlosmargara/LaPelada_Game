@@ -17,7 +17,7 @@ MonoBehaviour:
   Icono_default: {fileID: 21300000, guid: c6f89de04bc468f429d826da1bd32d35, type: 3}
   Icono_equipped: {fileID: 21300000, guid: 7f0859e004a163a45a1079cb209e7469, type: 3}
   prefabModel: {fileID: 3767997097916317060, guid: acff8798711218e48bd17aff2d31dfe9, type: 3}
-  Description: "Usala para habir las puertas del ba\xF1o "
+  Description: Tiene una inscripcion que dice "Oficina Municipal"
   pickupText: 'Parece la llave vieja de algun lugar de la plaza
 
 '

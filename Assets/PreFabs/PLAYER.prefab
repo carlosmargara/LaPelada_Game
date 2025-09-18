@@ -370,13 +370,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMode: 0
   moveSpeed: 5
-  sprintSpeed: 8
-  rotationSpeed: 6.5
+  sprintSpeed: 10
+  rotationSpeed: 2.5
   tankTurnSpeed: 90
   cameraTransform: {fileID: 5878784770812550470}
-  rb: {fileID: 6178889043571778229}
   bodyPlayer: {fileID: 1051150219508677977}
-  staminaBar: {fileID: 0}
   footstepSystem: {fileID: 3962743556951424242}
   isRunning: 0
 --- !u!114 &3962743556951424242
