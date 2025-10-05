@@ -17,6 +17,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Mirror
+    second: {fileID: 2100000, guid: 046754043e9b988438eff5e52414adef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: _door
     second: {fileID: 2100000, guid: 1bbf756ed402afc4d9ede5d023800a6a, type: 2}
   - first:

@@ -47,6 +47,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FMODUnity;
+using UnityEditor;
 
 public class AudioManager02 : MonoBehaviour
 {
@@ -55,14 +56,9 @@ public class AudioManager02 : MonoBehaviour
     [SerializeField] private Ambient_PreChasing Chasing;
 
     [Header("Emitters")]
-    [SerializeField] private FMODUnity.StudioEventEmitter musicEmitter_MainMenu;
     [SerializeField] private FMODUnity.StudioEventEmitter ambienceEmitter;
     [SerializeField] private FMODUnity.StudioEventEmitter pantingEmitter;
     [HideInInspector] public FMODUnity.StudioEventEmitter SheIsLookingAtYou_Emitter;
-
-    [Header("Fade Durations")]
-    [SerializeField] private float fadeInDuration = 2.5f;
-    [SerializeField] private float fadeOutDuration = 2.5f;
 
     [Header("Suspense Loop")]
     [SerializeField] private float minDelaySuspense = 30f;
@@ -70,7 +66,7 @@ public class AudioManager02 : MonoBehaviour
 
     private DiffetentTypes_footSteps_with_FmodEvent diffetentTypes_FootSteps_With_FmodEvent;
 
-
+    private FMOD.Studio.EventInstance currentMusic; //EventInstance para la musica
     private FMOD.Studio.EventInstance Meeting_with_PELADA;
     public FMOD.Studio.EventInstance Read_Dario_LaVoz;
 
@@ -90,7 +86,8 @@ public class AudioManager02 : MonoBehaviour
 
     private void Start()
     {
-        PlayMusic(); // si querés que arranque música base
+        //PlayMusic(); // si querés que arranque música base
+        PlayMusic("event:/Music/MainMenu");
 
         Meeting_with_PELADA = FMODUnity.RuntimeManager.CreateInstance("event:/Chase/Meeting_with_PELADA");
         Read_Dario_LaVoz = FMODUnity.RuntimeManager.CreateInstance("event:/Chase/Read_Dario_LaVoz");
@@ -119,10 +116,16 @@ public class AudioManager02 : MonoBehaviour
         if (scene.name == "LaPeladaTeAcosaFuerte")
         {
             PlayAmbience(0.5f);
-            FadeOutMusic(fadeOutDuration);
+            FadeOutAndStopMusic(10f);
 
 
             //StartSuspenseLoop();
+        }
+        else if (scene.name == "PatioInterno_TheOffice" || scene.name == "Baños" || scene.name == "Bar")
+        {
+            ambienceEmitter.EventInstance.setParameterByNameWithLabel("Amb_cut off", "PatioInterno");
+            ambienceEmitter.EventInstance.setParameterByNameWithLabel("Amb_setLOW_eq", "PatioInterno");
+            ambienceEmitter.EventInstance.setParameterByNameWithLabel("Amb_setMID_eq", "PatioInterno");
         }
         else if (scene.name == "GameOver") // o el nombre real de tu escena
         {
@@ -131,13 +134,65 @@ public class AudioManager02 : MonoBehaviour
         }
     }
 
-    // --- Música ---
-    public void PlayMusic()
+    #region Metodos que lanzan la musica
+    /* - PlayMusic -  
+    Es una funcion que lo que hace es buscar el evento 
+    en Fmod y lanzarlo, fuciona parecido que PlayOneShot pero 
+    esta lo hace con EventInstance porque la muscia necesito ponerla en loop
+    setiar parametros y etc 
+    */
+    public void PlayMusic(string eventPath)
     {
-        if (!musicEmitter_MainMenu.IsPlaying())
-            musicEmitter_MainMenu.Play();
+        // Si ya había música sonando, la paramos con fade
+        if (currentMusic.isValid())
+        {
+            currentMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            currentMusic.release();
+        }
+
+        currentMusic = FMODUnity.RuntimeManager.CreateInstance(eventPath);
+        currentMusic.start();
     }
 
+    public void FadeOutMusic()
+    {
+        // Setear parámetro a 1 (fade out)
+        currentMusic.setParameterByName("FadeOut", 1f);
+    }
+
+    public void FadeOutAndStopMusic(float fadeDuration)
+    {
+        if (!currentMusic.isValid()) return;
+
+        // Primero mandar el parámetro para hacer el fade out
+        currentMusic.setParameterByName("FadeOut", 1f);
+
+        // Luego de unos segundos, detener y liberar
+        Instance.StartCoroutine(StopMusicAfterDelay(fadeDuration));
+    }
+
+    private IEnumerator StopMusicAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        StopMusic();
+    }
+
+    public void FadeInMusic()
+    {
+        // Setear parámetro a 0 (vuelve el volumen)
+        currentMusic.setParameterByName("FadeOut", 0f);
+    }
+
+    public void StopMusic()
+    {
+        if (currentMusic.isValid())
+        {
+            currentMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            currentMusic.release();
+            currentMusic.clearHandle();
+        }
+    }
+    #endregion
     /* - PlayOneShot -
     Esta funcion lo que hace es lanzar el evento de Fmod una sola ves
     RuntimeManager.PlayoneShot, se encarga de buscar el evento, lanzarlo osea darle play 
@@ -179,27 +234,13 @@ public class AudioManager02 : MonoBehaviour
         pantingEmitter.Stop();
     }
 
-    #region Metdos que llaman a los Fade de la musica
-    public void FadeOutMusic(float duration)
-    {
-        StartCoroutine(FadeOutCoroutine(musicEmitter_MainMenu, duration));
-    }
-
-    public void FadeInMusic(float duration)
-    {
-        StartCoroutine(FadeInCoroutine(musicEmitter_MainMenu, duration));
-    }
-
-    public void CrossfadeMusic(StudioEventEmitter newEmitter, float duration)
-    {
-        StartCoroutine(CrossfadeCoroutine(musicEmitter_MainMenu, newEmitter, duration));
-    }
-    #endregion
-
     // --- Ambience ---
     public void PlayAmbience(float volume)
     {
         ambienceEmitter.Play();
+        ambienceEmitter.EventInstance.setParameterByNameWithLabel("Amb_cut off", "Plaza");
+        ambienceEmitter.EventInstance.setParameterByNameWithLabel("Amb_setLOW_eq", "Plaza");
+        ambienceEmitter.EventInstance.setParameterByNameWithLabel("Amb_setMID_eq", "Plaza");
     }
 
     public void StopAmbience()

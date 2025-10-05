@@ -102,6 +102,11 @@ public class InventoryUI : Singleton<InventoryUI>
             GameStateManager.Instance.LockPlayer(priority: 2);
         else
             GameStateManager.Instance.UnlockPlayer(priority: 2);
+
+        if (panelDescription.activeSelf == true)
+        {
+            panelDescription.SetActive(false);
+        }
     }
 
     private void InitializeInventory()
@@ -137,7 +142,7 @@ public class InventoryUI : Singleton<InventoryUI>
     {
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
 
-        string description = "Empty";
+        string description = "Vacio";
         if (Inventory.Instance.Items[index] != null)
             description = Inventory.Instance.Items[index].Description;
 

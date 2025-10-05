@@ -13,10 +13,12 @@ public class DoorTeleport_Bidirectional : Interactable
     [Header("Configuración de puerta")]
     [SerializeField] private typoDoor doorType;
 
-    private bool isAtA = true; // Estado actual del player
+    private bool isTeleporting = false;
 
     public override void Interact()
     {
+        if (isTeleporting) return;
+
         if (!string.IsNullOrEmpty(descripcion.requiredKeyID))
         {
             // Requiere llave
@@ -41,6 +43,8 @@ public class DoorTeleport_Bidirectional : Interactable
 
     private IEnumerator TeleportWithFade()
     {
+        isTeleporting = true;
+
         // Sonido según tipo de puerta
         switch (doorType)
         {
@@ -48,21 +52,23 @@ public class DoorTeleport_Bidirectional : Interactable
                 AudioManager02.Instance.PlayOneShot("event:/Fxs/OpenDoor_withKey");
                 break;
             case typoDoor.wood:
-                // AudioManager02.Instance.PlayOneShot("event:/Fxs/OpenWoodDoor");
+                AudioManager02.Instance.PlayOneShot("event:/Fxs/OpenWoodDoor");
                 break;
         }
 
         yield return StartCoroutine(FadeManager.Instance.FadeIn());
 
-        // Teletransportar
         TeleportPlayer();
 
         yield return StartCoroutine(FadeManager.Instance.FadeOut());
+
+        isTeleporting = false;
     }
 
     private IEnumerator TeleportAfterDialogue()
     {
-        // Esperar a que cierre el cartel
+        isTeleporting = true;
+
         while (DialogueManager.Instance.IsTalking)
             yield return null;
 
@@ -73,25 +79,35 @@ public class DoorTeleport_Bidirectional : Interactable
         TeleportPlayer();
 
         yield return StartCoroutine(FadeManager.Instance.FadeOut());
+
+        isTeleporting = false;
     }
 
     private void TeleportPlayer()
     {
+        if (descripcion == null || string.IsNullOrEmpty(descripcion.ID))
+        {
+            Debug.LogWarning("[DoorTeleport] DoorID no asignado en " + gameObject.name);
+            return;
+        }
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
 
+        // Recuperar estado actual
+        bool isAtA = GameStateManager.Instance.GetDoorState(descripcion.ID, true);
+
         if (isAtA && destinationPointB != null)
         {
-            player.transform.position = destinationPointB.position;
-            player.transform.rotation = destinationPointB.rotation;
-            isAtA = false;
+            player.transform.SetPositionAndRotation(destinationPointB.position, destinationPointB.rotation);
+            GameStateManager.Instance.SaveDoorState(descripcion.ID, false);
         }
         else if (!isAtA && destinationPointA != null)
         {
-            player.transform.position = destinationPointA.position;
-            player.transform.rotation = destinationPointA.rotation;
-            isAtA = true;
+            player.transform.SetPositionAndRotation(destinationPointA.position, destinationPointA.rotation);
+            GameStateManager.Instance.SaveDoorState(descripcion.ID, true);
         }
     }
 }
+
 

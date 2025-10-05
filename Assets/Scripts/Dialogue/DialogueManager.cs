@@ -276,4 +276,3 @@ public class DialogueManager : Singleton<DialogueManager>
     #endregion
 }
 
-

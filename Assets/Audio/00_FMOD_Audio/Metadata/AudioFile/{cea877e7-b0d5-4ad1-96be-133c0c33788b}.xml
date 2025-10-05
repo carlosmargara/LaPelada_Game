@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{cea877e7-b0d5-4ad1-96be-133c0c33788b}">
+		<property name="assetPath">
+			<value>musica/SaveRoom/Lead_step.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>31.506145124716554</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ee8faee4-6ebc-40e7-839e-4a1be970f142}</destination>
+		</relationship>
+	</object>
+</objects>

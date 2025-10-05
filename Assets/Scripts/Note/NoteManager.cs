@@ -36,9 +36,6 @@ public class NoteManager : Singleton<NoteManager>
     public bool isDescribing { get; private set; }
     private bool firtTextWasShown;
 
-    [Space]
-    [SerializeField] private GameObject pelada;
-    [SerializeField] private GameObject spawnerPelada;
 
     private void Start()
     {
@@ -104,9 +101,21 @@ public class NoteManager : Singleton<NoteManager>
 
         if (currentNote != null && currentNote.activaIA) // Primero cheque�s esto
         {
-            pelada.SetActive(true);
-            spawnerPelada.SetActive(true);
-            Debug.Log("�La Pelada fue activada por la nota!");
+            Debug.LogError("Entro al primer IF DEL BOTON EXIT");
+
+
+            if (!GameStateManager.Instance.peladaTriggered) // solo si no está ya activa
+            {
+                AI_VersionWithState pelada_ = FindObjectOfType<AI_VersionWithState>(true);
+                PeladaSpawner spawner = FindObjectOfType<PeladaSpawner>(true);
+
+                if (pelada_ != null) pelada_.gameObject.SetActive(true);
+                if (spawner != null) spawner.gameObject.SetActive(true);
+
+                GameStateManager.Instance.peladaTriggered = true;
+                Debug.LogError("¡La Pelada fue activada por la nota!");
+
+            }
 
             /*
             //Todo este chorizo es para lanzar un Audio, TENGO QUE REFACTORIZAR!!!
@@ -298,13 +307,6 @@ public class NoteManager : Singleton<NoteManager>
 
         if (noButton == null)
             noButton = FindInChildrenIncludingInactive(canvas, "No - Button")?.GetComponent<Button>();
-
-        // Pelada
-        if (pelada == null)
-            pelada = GameObject.Find("La Pelada");
-
-        if (spawnerPelada == null)
-            spawnerPelada = GameObject.Find("Spawner_PELADA");
 
         // Desactivar paneles por defecto
         if (panelNote != null) panelNote.SetActive(false);

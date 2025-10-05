@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{222f5664-2bb4-46d7-ac80-9bb0d7c4effb}">
+		<property name="name">
+			<value>Amb_setMID_eq</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a23c0b78-3112-4a3a-bcde-e973ef9a27b9}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{a2250724-45ac-4cf2-b065-a57698a5548b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{a2250724-45ac-4cf2-b065-a57698a5548b}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Plaza</value>
+			<value>PatioInterno</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{e26c1050-277e-4c4a-93a9-f422d1fa380c}">
 		<property name="assetPath">
-			<value>musica/Inferno2_00_Trailler.wav</value>
+			<value>musica/Trailler/Inferno2_00_Trailler.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
