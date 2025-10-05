@@ -66,10 +66,10 @@ MonoBehaviour:
   Path: Assets/Audio/00_FMOD_Audio/Build/Desktop/AllSound.bank
   Name: AllSound
   StudioPath: bank:/AllSound
-  lastModified: 638915357318422439
+  lastModified: 638950728509448535
   FileSizes:
   - Name: Desktop
-    Value: 15401440
+    Value: 18445696
   Exists: 1
 --- !u!114 &-7994671404479571919
 MonoBehaviour:
@@ -149,6 +149,32 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-6382250259457787762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PlazaColon/Amb_setLOW_eq
+  m_EditorClassIdentifier: 
+  Name: Amb_setLOW_eq
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 783233259
+    data2: 2578622515
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Plaza
+  - PatioInterno
+  Exists: 1
 --- !u!114 &-5836959733643511365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +217,7 @@ MonoBehaviour:
   Name: Surface
   StudioPath: 
   Min: 0
-  Max: 3
+  Max: 4
   Default: 3
   ID:
     data1: 1021280330
@@ -203,6 +229,7 @@ MonoBehaviour:
   - Cobblestones
   - Alphalt
   - Concrete
+  - Wood
   Exists: 1
 --- !u!114 &-5477413827751314494
 MonoBehaviour:
@@ -231,6 +258,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
+--- !u!114 &-5065672335410559250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/SaveRoom
+  m_EditorClassIdentifier: 
+  Path: event:/Music/SaveRoom
+  Guid:
+    Data1: 545009168
+    Data2: 1230740745
+    Data3: 1693219230
+    Data4: -1625481268
+  Banks:
+  - {fileID: -8093744027044427383}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 7042075114029036946}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 63073
 --- !u!114 &-4631674200077891282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +340,58 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3697
+--- !u!114 &-4432791166851930524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PlazaColon/Amb_setMID_eq
+  m_EditorClassIdentifier: 
+  Name: Amb_setMID_eq
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 529644344
+    data2: 425232883
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Plaza
+  - PatioInterno
+  Exists: 1
+--- !u!114 &-4365067356370331217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PlazaColon/Amb_cut off
+  m_EditorClassIdentifier: 
+  Name: Amb_cut off
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 762165320
+    data2: 1677771850
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Plaza
+  - PatioInterno
+  Exists: 1
 --- !u!114 &-4229219773545418816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +415,10 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: -4365067356370331217}
+  - {fileID: -4432791166851930524}
+  - {fileID: -6382250259457787762}
   MinDistance: 1
   MaxDistance: 20
   Length: 73000
@@ -354,10 +464,10 @@ MonoBehaviour:
   Path: Assets/Audio/00_FMOD_Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638915341626540075
+  lastModified: 638950266194296056
   FileSizes:
   - Name: Desktop
-    Value: 3594
+    Value: 3084
   Exists: 1
 --- !u!114 &-3785434593648740346
 MonoBehaviour:
@@ -438,11 +548,38 @@ MonoBehaviour:
   - {fileID: -8093744027044427383}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 160000
+  Length: 151860
+--- !u!114 &-2418524637444940493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Fxs/OpenWoodDoor
+  m_EditorClassIdentifier: 
+  Path: event:/Fxs/OpenWoodDoor
+  Guid:
+    Data1: -1730916908
+    Data2: 1301007271
+    Data3: -822007114
+    Data4: -860459619
+  Banks:
+  - {fileID: -8093744027044427383}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5312
 --- !u!114 &-2403527630577868609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,10 +595,10 @@ MonoBehaviour:
   Path: Assets/Audio/00_FMOD_Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638915341626559891
+  lastModified: 638950266194435845
   FileSizes:
   - Name: Desktop
-    Value: 2896
+    Value: 3218
   Exists: 1
 --- !u!114 &-2146149872273964484
 MonoBehaviour:
@@ -618,7 +755,6 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: -4631674200077891282}
   - {fileID: 2389185301745844250}
-  - {fileID: 3786563342124332277}
   - {fileID: -327323817023490599}
   - {fileID: -1251897120453245271}
   - {fileID: -3785434593648740346}
@@ -646,12 +782,16 @@ MonoBehaviour:
   - {fileID: -4593422130667051111}
   - {fileID: 189893627297453249}
   - {fileID: -1949715081199286671}
+  - {fileID: -2418524637444940493}
+  - {fileID: -5065672335410559250}
+  - {fileID: 3649426322275622342}
+  - {fileID: 3447155317503323747}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3816698167472481351}
   StringsBanks:
   - {fileID: -2403527630577868609}
-  cacheTime: 638915357318422439
+  cacheTime: 638950728509448535
   cacheVersion: 131625
 --- !u!114 &189893627297453249
 MonoBehaviour:
@@ -708,7 +848,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 850
---- !u!114 &3786563342124332277
+--- !u!114 &3447155317503323747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -718,9 +858,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Main_Menu/MainMenu
+  m_Name: event:/Music/The Arrival
   m_EditorClassIdentifier: 
-  Path: event:/Main_Menu/MainMenu
+  Path: event:/Music/The Arrival
+  Guid:
+    Data1: 1412966587
+    Data2: 1108846323
+    Data3: 984454841
+    Data4: 505129959
+  Banks:
+  - {fileID: -8093744027044427383}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 201428
+--- !u!114 &3649426322275622342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/MainMenu
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MainMenu
   Guid:
     Data1: 70977824
     Data2: 1235113890
@@ -731,7 +898,8 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 7110045107726347649}
   MinDistance: 1
   MaxDistance: 20
   Length: 146052
@@ -750,7 +918,7 @@ MonoBehaviour:
   Name: Surface
   StudioPath: 
   Min: 0
-  Max: 3
+  Max: 4
   Default: 3
   ID:
     data1: 1021280330
@@ -762,6 +930,7 @@ MonoBehaviour:
   - Cobblestones
   - Alphalt
   - Concrete
+  - Wood
   Exists: 1
 --- !u!114 &5624560526230731206
 MonoBehaviour:
@@ -817,6 +986,54 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &7042075114029036946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SaveRoom/FadeOut
+  m_EditorClassIdentifier: 
+  Name: FadeOut
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4150922201
+    data2: 3499446792
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &7110045107726347649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MainMenu/FadeOut
+  m_EditorClassIdentifier: 
+  Name: FadeOut
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4150922201
+    data2: 3499446792
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &7411013891743410027
 MonoBehaviour:
   m_ObjectHideFlags: 0

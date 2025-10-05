@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfa98dde68c1114d87a922a3ad97954, type: 3}
+  m_Name: Bartender
+  m_EditorClassIdentifier: 
+  Name: Jonas
+  greeting: Hola amigo, en que puedo ayudarte? Quieres tomar algo?
+  covertation:
+  - text: Conque estas buscando a tu amigo eh?
+  - text: Nose?.. imaginate que pasa un monton de gente por aca por noche
+  - text: 'no puedo recordarlas todas '
+  farewell: 'De todos modos, si necesitas algo o quieres un trago
+
+    voy a esta
+    aca.
+
+    Nos vemos!'

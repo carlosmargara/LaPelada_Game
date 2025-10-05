@@ -21,6 +21,7 @@ public class Door_Interaction : Interactable
     {
         if (DialogueManager.Instance != null)
         {
+            //Debug.Log($"Door.Interact called on {name} -> DialogueManager.Instance id {DialogueManager.Instance.GetInstanceID()}");
             DialogueManager.Instance.ShowDoorDescription(this); // Le pas�s el script, no el ScriptableObject
             //AudioManager.Instance.PlaySoundFX(ref_ScriptableObjets.effectDoorSound, 0.5f);
             AudioManager02.Instance.PlayOneShot("event:/Fxs/Closed_Door");

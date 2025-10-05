@@ -2765,7 +2765,7 @@ MonoBehaviour:
       Data2: 1235113890
       Data3: -274342483
       Data4: -1183760411
-    Path: event:/Main_Menu/MainMenu
+    Path: event:/Music/MainMenu
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0

@@ -14,6 +14,7 @@ public class PeladaSightEvent : MonoBehaviour
     public float barSpeed = 300f;
 
     [Header("Probabilidad")]
+    //El atributo [Range(0f, 1f)] le dice al Inspector de Unity: 👉 “Mostrame este float como un slider que va entre 0 y 1”.
     [Range(0f, 1f)]
     public float chanceToTrigger = 0.5f; // 50% por defecto
 
@@ -35,7 +36,9 @@ public class PeladaSightEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (triggered || !other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player")) return;
+
+        if (triggered || GameStateManager.Instance.peladaSightEventTriggered) return;
 
         // Chequear probabilidad
         if (Random.value > chanceToTrigger) return;
@@ -44,6 +47,7 @@ public class PeladaSightEvent : MonoBehaviour
 
         pelada.SetActive(true);
         triggered = true;
+        GameStateManager.Instance.peladaSightEventTriggered = true;
         peladaCam.Priority = 20;
 
         // Mostrar barras
@@ -54,14 +58,19 @@ public class PeladaSightEvent : MonoBehaviour
 
         Invoke(nameof(EndEvent), duration);
     }
-
+    /*
+    Si yo quisiera que este evento pasara mas de una ves
+    en el juego deberia descomentar estas lineas    
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             triggered = false;
-        restoring = false;
+            restoring = false;
+        }
     }
-
+    */
     private void Update()
     {
         if (!triggered) return;

@@ -45,7 +45,7 @@ public class DoorTeleport_keyLess : Interactable
                 AudioManager02.Instance.PlayOneShot("event:/Fxs/OpenDoor_withKey");
                 break;
             case typoDoor.wood:
-                // AudioManager02.Instance.PlayOneShot("event:/Fxs/OpenWoodDoor");
+                AudioManager02.Instance.PlayOneShot("event:/Fxs/OpenWoodDoor");
                 break;
         }
 
@@ -68,7 +68,16 @@ public class DoorTeleport_keyLess : Interactable
         while (DialogueManager.Instance.IsTalking)
             yield return null;
 
-        AudioManager02.Instance.PlayOneShot("event:/Fxs/OpenDoor_withKey");
+        // Sonido según tipo de puerta
+        switch (doorType)
+        {
+            case typoDoor.metal:
+                AudioManager02.Instance.PlayOneShot("event:/Fxs/OpenDoor_withKey");
+                break;
+            case typoDoor.wood:
+                AudioManager02.Instance.PlayOneShot("event:/Fxs/OpenWoodDoor");
+                break;
+        }
 
         yield return StartCoroutine(FadeManager.Instance.FadeIn());
 

@@ -46,6 +46,11 @@ public class FadeManager : MonoBehaviour
         {
             DialogueManager.Instance.ShowThoughts(introThoughts);
         }
+
+        yield return new WaitForSeconds(15f);
+        Debug.Log("_The Arrival");
+        AudioManager02.Instance.PlayMusic("event:/Music/The Arrival");
+
     }
 
     public IEnumerator FadeIn()

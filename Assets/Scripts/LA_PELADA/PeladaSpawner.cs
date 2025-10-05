@@ -23,6 +23,11 @@ public class PeladaSpawner : MonoBehaviour
 
     void Start()
     {
+        if (player == null)
+        {
+            player = GameStateManager.Instance.PlayerTransform;
+        }
+
         ResetSpawnTimer();
     }
 

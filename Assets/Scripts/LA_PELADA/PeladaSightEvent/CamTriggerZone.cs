@@ -19,6 +19,9 @@ public class CamTriggerZone : MonoBehaviour
 
     private bool triggered = false; // Para saber si esta vez se activó la cámara
 
+    [Header("Pensamiento jugador")]
+    [SerializeField] private PlayerThoughts sight_PeladaEsq;
+
     void Start()
     {
         laPelada.SetActive(false);
@@ -26,6 +29,7 @@ public class CamTriggerZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (GameStateManager.Instance.camTriggerZoneTriggered) return;
         if (other.CompareTag("Player"))
         {
             // Asignar referencia si no está puesta en el inspector
@@ -35,6 +39,7 @@ public class CamTriggerZone : MonoBehaviour
             if (Random.value <= chanceToTrigger)
             {
                 triggered = true;
+                GameStateManager.Instance.camTriggerZoneTriggered = true;
 
                 // Cambiar a modo tanque
                 if (playerController != null)
@@ -67,6 +72,7 @@ public class CamTriggerZone : MonoBehaviour
             laPelada?.SetActive(false);
             crossHair.SetActive(true);
             triggered = false;
+            DialogueManager.Instance.ShowThoughts(sight_PeladaEsq);
         }
     }
 

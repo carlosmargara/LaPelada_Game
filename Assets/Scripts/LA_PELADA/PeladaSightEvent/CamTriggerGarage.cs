@@ -1,10 +1,11 @@
 using UnityEngine;
 using Cinemachine;
+using Unity.VisualScripting;
 
 public class CamTriggerGarage : MonoBehaviour
 {
     [Header("Cámaras")]
-    public CinemachineVirtualCamera camFija;
+    public CinemachineVirtualCamera camGarage;
 
     [Header("Objetos")]
     public GameObject crossHair;
@@ -17,27 +18,47 @@ public class CamTriggerGarage : MonoBehaviour
     public PlayerController playerController; // referencia a tu PlayerController refactorizado
 
     private bool triggered = false;
+    //private bool hasTriggeredOnce = false;
 
     [Header("Pensamientos Player")]
     [SerializeField] private PlayerThoughts sheWatchesYou_Garage;
 
+    // 🔑 Este método que setea el follow y el look at de la virtual camera
+    public void SetPlayer(PlayerController player)
+    {
+        playerController = player;
+
+        if (camGarage != null)
+        {
+            camGarage.Follow = player.transform;
+            camGarage.LookAt = player.transform;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        if (GameStateManager.Instance.camTriggerGarageTriggered) return;
         if (other.CompareTag("Player"))
         {
             // Asignar referencia si no está puesta en el inspector
             if (playerController == null)
+            {
                 playerController = other.GetComponent<PlayerController>();
+                SetPlayer(playerController);
+            }
+
 
             if (Random.value <= chanceToTrigger)
             {
                 triggered = true;
+                GameStateManager.Instance.camTriggerGarageTriggered = true; // <-- SE GUARDA GLOBAL
+
 
                 // Cambiar a modo tanque
                 if (playerController != null)
                     playerController.currentMode = ControlMode.Tank;
 
-                camFija.Priority = 20;
+                camGarage.Priority = 20;
                 crossHair.SetActive(false);
 
                 AudioManager02.Instance.TryFindEmittersIfNull();
@@ -65,7 +86,7 @@ public class CamTriggerGarage : MonoBehaviour
             if (playerController != null)
                 playerController.currentMode = ControlMode.FirstPerson;
 
-            camFija.Priority = 5; // Vuelve a su prioridad normal
+            camGarage.Priority = 5; // Vuelve a su prioridad normal
             crossHair.SetActive(true);
             triggered = false;
 

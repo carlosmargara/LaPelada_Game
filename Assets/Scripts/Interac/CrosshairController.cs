@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,37 +7,75 @@ public class CrosshairController : MonoBehaviour
     [SerializeField] private Image crosshairImage;
     [SerializeField] private float rayDistance = 3f;
     private Color defaultColor = Color.gray;
-    private Color32 interactColor = new Color32(163,3,3,255); //Color RojoOscuro
+    private Color32 interactColor = new Color32(163, 3, 3, 255); // Color RojoOscuro
     [SerializeField] private LayerMask interactableLayer;
 
+    [SerializeField] private float interactCooldown = 0.2f;
+    private float interactTimer = 0f;
+
     private Camera cam;
-    private Interactable currentInteractable; // guarda el objeto que tiene el intetacion
+    private Interactable currentInteractable;
+
+    // AnimaciÃ³n
+    [SerializeField] private float fadeDuration = 0.2f;
+    [SerializeField] private Vector3 activeScale = Vector3.one;
+    [SerializeField] private Vector3 hiddenScale = Vector3.zero;
+    private Coroutine fadeCoroutine;
 
     void Start()
     {
         cam = Camera.main;
         if (crosshairImage != null)
+        {
             crosshairImage.color = defaultColor;
+            crosshairImage.transform.localScale = hiddenScale; // empieza escondido
+            SetCrosshairVisible(true); // aparece suave al inicio
+        }
     }
 
     void Update()
     {
-        if (!InventoryUI.Instance.IsInventoryOpen)
+        /*
+        // Debug de click
+        if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log(
+                $"Click detectado | IsTalking = {DialogueManager.Instance.IsTalking} " +
+                $"| currentInteractable = {currentInteractable} " +
+                $"| AnyPanelOpen = {IsAnyPanelOpen()}"
+            );
+        }
+        */
+        // Cooldown
+        if (interactTimer > 0)
+            interactTimer -= Time.deltaTime;
+
+        // --- Bloquear raycast si hay paneles abiertos ---
+        if (!IsAnyPanelOpen())
+        {
+            SetCrosshairVisible(true);
             CheckForInteractable();
         }
         else
         {
-            Debug.Log("Inventario abierto, no se lanza el raycast.");
+            SetCrosshairVisible(false);
+            currentInteractable = null;
+            return;
         }
 
-
-        // Comprobamos el input aquí
-        if (Input.GetMouseButtonDown(0) && currentInteractable != null && !DialogueManager.Instance.IsTalking
-            && !NoteManager.Instance.isDescribing && !PickupUIManager.Instance.firtTextWasShown && !InventoryUI.Instance.IsInventoryOpen)
+        // --- InteracciÃ³n ---
+        if (Input.GetMouseButtonDown(0)
+            && currentInteractable != null
+            && interactTimer <= 0f
+            && !IsAnyPanelOpen())
         {
-            currentInteractable.Interact();
-            currentInteractable = null; // Previene múltiples interacciones con el mismo objeto si sigue en pantalla
+            // cheque extra antes de llamar
+            if (!DialogueManager.Instance.IsTalking)
+            {
+                currentInteractable.Interact();
+                currentInteractable = null;
+                interactTimer = interactCooldown;
+            }
         }
     }
 
@@ -68,5 +105,49 @@ public class CrosshairController : MonoBehaviour
     {
         if (crosshairImage != null)
             crosshairImage.color = color;
+    }
+
+    bool IsAnyPanelOpen()
+    {
+        return DialogueManager.Instance.IsTalking
+            || NoteManager.Instance.isDescribing
+            || PickupUIManager.Instance.firtTextWasShown
+            || InventoryUI.Instance.IsInventoryOpen;
+    }
+
+    // --- AnimaciÃ³n crosshair ---
+    void SetCrosshairVisible(bool visible)
+    {
+        if (crosshairImage == null) return;
+
+        if (fadeCoroutine != null)
+            StopCoroutine(fadeCoroutine);
+
+        fadeCoroutine = StartCoroutine(FadeCrosshair(visible));
+    }
+
+    IEnumerator FadeCrosshair(bool show)
+    {
+        float elapsed = 0f;
+        Color startColor = crosshairImage.color;
+        Color endColor = startColor;
+        endColor.a = show ? 1f : 0f;
+
+        Vector3 startScale = crosshairImage.transform.localScale;
+        Vector3 endScale = show ? activeScale : hiddenScale;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / fadeDuration;
+
+            crosshairImage.color = Color.Lerp(startColor, endColor, t);
+            crosshairImage.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+
+            yield return null;
+        }
+
+        crosshairImage.color = endColor;
+        crosshairImage.transform.localScale = endScale;
     }
 }

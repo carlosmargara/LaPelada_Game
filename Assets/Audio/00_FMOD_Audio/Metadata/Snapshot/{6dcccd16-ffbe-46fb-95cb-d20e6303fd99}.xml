@@ -22,10 +22,6 @@
 		<relationship name="snapshotMasterTrack">
 			<destination>{8e0586a9-f455-4987-b9e2-353eabf87ddf}</destination>
 		</relationship>
-		<relationship name="snapshotProperties">
-			<destination>{b90e03c3-d395-458f-ad87-826efa83caef}</destination>
-			<destination>{a9c49428-7efd-450a-a47b-622cbc435218}</destination>
-		</relationship>
 		<relationship name="snapshotTracks">
 			<destination>{44a01cdc-6ca8-41a5-8c5f-c56fe1be4919}</destination>
 		</relationship>
@@ -34,28 +30,6 @@
 	<object class="MarkerTrack" id="{217e41a4-a11f-4852-8c24-6820a86137fd}" />
 	<object class="Timeline" id="{c2eeb4ae-e1d6-4bfd-b2e7-695a306f819c}" />
 	<object class="SnapshotMasterTrack" id="{8e0586a9-f455-4987-b9e2-353eabf87ddf}" />
-	<object class="SnapshotProperty" id="{b90e03c3-d395-458f-ad87-826efa83caef}">
-		<property name="propertyName">
-			<value>highCrossover</value>
-		</property>
-		<property name="value">
-			<value>1350</value>
-		</property>
-		<relationship name="automatableObject">
-			<destination>{e27ae988-fb0d-4d2f-acfd-e4f4bba03385}</destination>
-		</relationship>
-	</object>
-	<object class="SnapshotProperty" id="{a9c49428-7efd-450a-a47b-622cbc435218}">
-		<property name="propertyName">
-			<value>highGain</value>
-		</property>
-		<property name="value">
-			<value>-11</value>
-		</property>
-		<relationship name="automatableObject">
-			<destination>{e27ae988-fb0d-4d2f-acfd-e4f4bba03385}</destination>
-		</relationship>
-	</object>
 	<object class="SnapshotTrack" id="{44a01cdc-6ca8-41a5-8c5f-c56fe1be4919}">
 		<relationship name="mixerStrip">
 			<destination>{e467bc11-3ad1-490c-b1d2-378e8877439b}</destination>
