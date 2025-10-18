@@ -72,8 +72,7 @@ public class StaminaBar : Singleton<StaminaBar>
 
     private void HandleStaminaUI()
     {
-        bool shiftPressed = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
-        if (playerController.Move.magnitude > 0.1 && shiftPressed)
+        if (playerController.Move.magnitude > 0.1 && playerController.IsRunning)
         {
             uiPlayerPanel.SetActive(true);
         }
@@ -87,7 +86,7 @@ public class StaminaBar : Singleton<StaminaBar>
     {
         bool wasExhausted = IsExhausted;
 
-        if (playerController.isRunning && CurrentStamina > 0)
+        if (playerController.IsRunning && CurrentStamina > 0)
         {
             DrainStamina();
             regenTimer = 0f;
@@ -110,19 +109,14 @@ public class StaminaBar : Singleton<StaminaBar>
             }
         }
 
-        if (CurrentStamina <= 0)
-        {
-            playerController.isRunning = false;
-        }
-
-        wasRunningLastFrame = playerController.isRunning;
+        wasRunningLastFrame = playerController.IsRunning;
 
         // Disparar eventos si el estado cambi�
         if (IsExhausted && !wasExhausted)
             OnStaminaDepleted?.Invoke();
         else if (IsRecovered)
         {
-            Debug.Log("EVENTO: Stamina recuperada al 100%");
+            //Debug.Log("EVENTO: Stamina recuperada al 100%");
             OnStaminaRecovered?.Invoke();
         }
     }

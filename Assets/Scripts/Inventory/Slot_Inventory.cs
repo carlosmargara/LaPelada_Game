@@ -14,7 +14,7 @@ public enum InteractionType
     Remove
 }
 
-public class Slot_Inventory : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Slot_Inventory : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
     public static Action<InteractionType, int> SlotInteractionEvent; //Siempre de declaramos un evento es "public static" y en este caso ademas tiene
                                                                      //dos parametros
@@ -46,20 +46,13 @@ public class Slot_Inventory : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         amountTMP.gameObject.SetActive(state);
     }
 
-    public void ClickSlot()
+    public void ClickSlot() //Se llama cuando confirmas con mouse
     {
         SlotInteractionEvent?.Invoke(InteractionType.Click, Index);
         Debug.Log("Lanzando el evento de tipo Click");
-        /*
-        {
-            if (SlotInteractionEvent != null)
-            {
-                SlotInteractionEvent.Invoke(InteractionType.Click, Index);
-            }
-        }
-        */
     }
 
+    // --- EVENTOS DE MOUSE ---
     public void OnPointerEnter(PointerEventData eventData)
     {
         InventoryUI.Instance.ShowItemDescription(Index);
@@ -70,4 +63,21 @@ public class Slot_Inventory : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         InventoryUI.Instance.HideItemDescription();
     }
+
+
+    // --- NUEVOS EVENTOS DE NAVEGACIÓN (TECLADO / GAMEPAD) ---
+    public void OnSelect(BaseEventData eventData)
+    {
+        // Cuando el slot es seleccionado con teclado o joystick
+        InventoryUI.Instance.ShowItemDescription(Index);
+        AudioManager02.Instance.PlayOneShot("event:/UI/Selection_Sound (Inventary)");
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        // Cuando se cambia de slot
+        InventoryUI.Instance.HideItemDescription();
+    }
 }
+
+

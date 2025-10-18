@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
@@ -36,48 +37,68 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private int dialoguePriority = 2; // prioridad para bloquear al jugador
 
+    private PlayerInteraction playerInteraction;//Referencia al script PlayerInteraction
+
+    private InputMapController inputMapController;
+
     private void Start()
     {
         footSteps_Player = FindObjectOfType<DiffetentTypes_footSteps_with_FmodEvent>();
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
+        inputMapController = FindObjectOfType<InputMapController>();
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
     }
 
     private void Update()
     {
-        if (!IsTalking) return;
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            CloseDialogueCompletely();
-            return;
-        }
-
         if (inputCooldown > 0f)
         {
             inputCooldown -= Time.deltaTime;
             return;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-        {
-            if (isTextAnimating)
-            {
-                SkipTextAnimation();
-                return;
-            }
-
-            if (farewellShown)
-            {
-                EndDialogue();
-                return;
-            }
-
-            ShowNext();
-        }
     }
 
-    #region Mostrar texto
+    #region New Input Sistem ----- ActionMap "UI" ------
+    public void OnSubmit(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
 
+        if (!IsTalking || inputCooldown > 0f)
+            return;
+
+        if (isTextAnimating)
+        {
+            SkipTextAnimation();
+            return;
+        }
+
+        if (farewellShown)
+        {
+            EndDialogue();
+            return;
+        }
+
+        ShowNext();
+    }
+
+    public void OnClick(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        OnSubmit(ctx); // reutilizamos la misma lógica
+    }
+
+    public void OnCancel(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+
+        if (!IsTalking) return;
+
+        CloseDialogueCompletely();
+    }
+    #endregion
+
+
+    #region Mostrar texto
     private void ShowNext()
     {
         string next = null;
@@ -259,6 +280,7 @@ public class DialogueManager : Singleton<DialogueManager>
         doorQueue.Clear();
         thoughtQueue.Clear();
 
+        playerInteraction.BlockInteractFor(0.2f);
         GameStateManager.Instance?.UnlockPlayer(priority: dialoguePriority);
     }
 
@@ -270,7 +292,21 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void OpenCloseDialoguePanel(bool state)
     {
-        if (dialoguePanel != null) dialoguePanel.SetActive(state);
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(state);
+
+        // Cambiar action map
+        if (inputMapController != null)
+        {
+            if (state)
+                inputMapController.SwitchToUI();
+            else
+                inputMapController.SwitchToPlayer();
+        }
+        else
+        {
+            Debug.LogWarning("[DialogueManager] No se encontró InputMapController en la escena.");
+        }
     }
 
     #endregion

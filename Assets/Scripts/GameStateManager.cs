@@ -157,7 +157,7 @@ public class GameStateManager : Singleton<GameStateManager>
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            Debug.Log($"LockPlayer (Priority: {priority}) - PlayerController.enabled: {playerController.enabled}");
+            //Debug.Log($"LockPlayer (Priority: {priority}) - PlayerController.enabled: {playerController.enabled}");
         }
     }
 
@@ -172,7 +172,7 @@ public class GameStateManager : Singleton<GameStateManager>
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            Debug.Log($"UnlockPlayer - PlayerController.enabled: {playerController.enabled}");
+            //Debug.Log($"UnlockPlayer - PlayerController.enabled: {playerController.enabled}");
         }
     }
 

@@ -12,9 +12,9 @@ public class Flashlight : MonoBehaviour
         flashlight.SetActive(false);
     }
 
-    void Update()
+    public void ToggleFlashlight()
     {
-        if (Input.GetKeyDown(KeyCode.F) && FlashlightSystem.Instance.IsEquipped)
+        if (FlashlightSystem.Instance.IsEquipped)
         {
             FlashlightSystem.Instance.Toggle();
             AudioManager02.Instance.PlayOneShot("event:/Fxs/FlashLightFX");

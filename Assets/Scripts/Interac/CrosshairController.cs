@@ -35,20 +35,10 @@ public class CrosshairController : MonoBehaviour
 
     void Update()
     {
-        /*
-        // Debug de click
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log(
-                $"Click detectado | IsTalking = {DialogueManager.Instance.IsTalking} " +
-                $"| currentInteractable = {currentInteractable} " +
-                $"| AnyPanelOpen = {IsAnyPanelOpen()}"
-            );
-        }
-        */
         // Cooldown
         if (interactTimer > 0)
             interactTimer -= Time.deltaTime;
+
 
         // --- Bloquear raycast si hay paneles abiertos ---
         if (!IsAnyPanelOpen())
@@ -62,16 +52,16 @@ public class CrosshairController : MonoBehaviour
             currentInteractable = null;
             return;
         }
+    }
 
-        // --- Interacción ---
-        if (Input.GetMouseButtonDown(0)
-            && currentInteractable != null
-            && interactTimer <= 0f
-            && !IsAnyPanelOpen())
+    public void TryInteract()
+    {
+        if (currentInteractable != null && interactTimer <= 0f && !IsAnyPanelOpen())
         {
             // cheque extra antes de llamar
             if (!DialogueManager.Instance.IsTalking)
             {
+                Debug.Log("------ INTERACTUO CON EL OBJETO -------");
                 currentInteractable.Interact();
                 currentInteractable = null;
                 interactTimer = interactCooldown;
