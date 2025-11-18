@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6733177361254619370, guid: 291e043cb39bc5b4ca4aa505c2e4c70f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -2271502847731017999, guid: 291e043cb39bc5b4ca4aa505c2e4c70f, type: 3}
       propertyPath: m_LocalPosition.y
       value: 7.3660364
@@ -60,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PostedeLuz_PARE
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 291e043cb39bc5b4ca4aa505c2e4c70f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3316992658331686828, guid: 291e043cb39bc5b4ca4aa505c2e4c70f, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.8828541
@@ -67,6 +75,10 @@ PrefabInstance:
     - target: {fileID: 3316992658331686828, guid: 291e043cb39bc5b4ca4aa505c2e4c70f, type: 3}
       propertyPath: m_LocalPosition.z
       value: -15.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233112405309087440, guid: 291e043cb39bc5b4ca4aa505c2e4c70f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

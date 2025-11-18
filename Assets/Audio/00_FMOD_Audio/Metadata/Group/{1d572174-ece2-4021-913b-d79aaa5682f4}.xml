@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="MixerGroup" id="{1d572174-ece2-4021-913b-d79aaa5682f4}">
 		<property name="name">
-			<value>Chase</value>
+			<value>PELADA_Chase</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{73a4dbf1-f69e-48d7-8c4b-c2ebf45db47d}</destination>

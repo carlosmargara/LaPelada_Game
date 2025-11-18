@@ -28,6 +28,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 850
+--- !u!114 &-8414211205373941347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Event_Music/BlinkingLight
+  m_EditorClassIdentifier: 
+  Path: event:/Event_Music/BlinkingLight
+  Guid:
+    Data1: -814824645
+    Data2: 1076168584
+    Data3: -1803620202
+    Data4: 1359304527
+  Banks:
+  - {fileID: -5647429420038442070}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 103437
 --- !u!114 &-8320369712960767055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,10 +255,10 @@ MonoBehaviour:
   Path: Assets/Audio/00_FMOD_Audio/Build/Desktop/AllSound.bank
   Name: AllSound
   StudioPath: bank:/AllSound
-  lastModified: 638952844346429554
+  lastModified: 638979731340107393
   FileSizes:
   - Name: Desktop
-    Value: 18445696
+    Value: 18446080
   Exists: 1
 --- !u!114 &-5605672589738557866
 MonoBehaviour:
@@ -282,7 +309,8 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -2912376583991402079}
   MinDistance: 1
   MaxDistance: 20
   Length: 201428
@@ -393,7 +421,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 355
---- !u!114 &-3562485493107404899
+--- !u!114 &-2912376583991402079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -402,24 +430,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BlinkingLight
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/The Arrival/FadeOut
   m_EditorClassIdentifier: 
-  Path: event:/BlinkingLight
-  Guid:
-    Data1: -814824645
-    Data2: 1076168584
-    Data3: -1803620202
-    Data4: 1359304527
-  Banks:
-  - {fileID: -5647429420038442070}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 103437
+  Name: FadeOut
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4150922201
+    data2: 3499446792
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-2428436657177553115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,33 +472,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 99047
---- !u!114 &-2378267008602474481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PeladaSightEvent
-  m_EditorClassIdentifier: 
-  Path: event:/PeladaSightEvent
-  Guid:
-    Data1: -912218662
-    Data2: 1255469464
-    Data3: -1329314387
-    Data4: -654653155
-  Banks:
-  - {fileID: -5647429420038442070}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 8181
 --- !u!114 &-1995269288518529888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,10 +598,10 @@ MonoBehaviour:
   Path: Assets/Audio/00_FMOD_Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638952844346459522
+  lastModified: 638967177527159160
   FileSizes:
   - Name: Desktop
-    Value: 3218
+    Value: 3116
   Exists: 1
 --- !u!114 &-1073250626577700856
 MonoBehaviour:
@@ -682,7 +680,6 @@ MonoBehaviour:
   - {fileID: 5109685559902627868}
   - {fileID: -3826636233714620382}
   - {fileID: 1935492799140418980}
-  - {fileID: -3562485493107404899}
   - {fileID: -1442043959780393408}
   - {fileID: -1776004817144214984}
   - {fileID: 6059687155358865186}
@@ -690,7 +687,6 @@ MonoBehaviour:
   - {fileID: -1897620121148059264}
   - {fileID: 4781381677796826540}
   - {fileID: -6445878919049501957}
-  - {fileID: 1680321938389025679}
   - {fileID: -293873794156069510}
   - {fileID: 7331453871005626542}
   - {fileID: 2453330847226427531}
@@ -701,17 +697,19 @@ MonoBehaviour:
   - {fileID: 1625728554845012826}
   - {fileID: -4859201877176107906}
   - {fileID: -8320369712960767055}
-  - {fileID: -2378267008602474481}
   - {fileID: 7355006700476762075}
   - {fileID: 6302545294788519172}
   - {fileID: 2232857376897591987}
   - {fileID: -8116760872064242777}
+  - {fileID: -8414211205373941347}
+  - {fileID: 8880974022365334613}
+  - {fileID: 2286318689842021454}
   EditorParameters: []
   MasterBanks:
   - {fileID: 992396578415758390}
   StringsBanks:
   - {fileID: -1146607899182979890}
-  cacheTime: 638952844346459522
+  cacheTime: 638979731340107393
   cacheVersion: 131625
 --- !u!114 &128370370713338685
 MonoBehaviour:
@@ -757,10 +755,10 @@ MonoBehaviour:
   Path: Assets/Audio/00_FMOD_Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638952844346459522
+  lastModified: 638967177527139061
   FileSizes:
   - Name: Desktop
-    Value: 3084
+    Value: 2692
   Exists: 1
 --- !u!114 &1063029001710774176
 MonoBehaviour:
@@ -815,33 +813,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 151860
---- !u!114 &1680321938389025679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/she is looking at you
-  m_EditorClassIdentifier: 
-  Path: event:/she is looking at you
-  Guid:
-    Data1: 1501006216
-    Data2: 1209534488
-    Data3: 1429012153
-    Data4: 1999416290
-  Banks:
-  - {fileID: -5647429420038442070}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 22153
 --- !u!114 &1793465321293499576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,6 +891,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
+--- !u!114 &2286318689842021454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Event_Music/PeladaSightEvent
+  m_EditorClassIdentifier: 
+  Path: event:/Event_Music/PeladaSightEvent
+  Guid:
+    Data1: -912218662
+    Data2: 1255469464
+    Data3: -1329314387
+    Data4: -654653155
+  Banks:
+  - {fileID: -5647429420038442070}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8181
 --- !u!114 &2453330847226427531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,6 +1242,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 63073
+--- !u!114 &8880974022365334613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Event_Music/she is looking at you
+  m_EditorClassIdentifier: 
+  Path: event:/Event_Music/she is looking at you
+  Guid:
+    Data1: 1501006216
+    Data2: 1209534488
+    Data3: 1429012153
+    Data4: 1999416290
+  Banks:
+  - {fileID: -5647429420038442070}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 22153
 --- !u!114 &9220452504119198691
 MonoBehaviour:
   m_ObjectHideFlags: 0

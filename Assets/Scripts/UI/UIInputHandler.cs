@@ -1,8 +1,24 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIInputHandler : MonoBehaviour
 {
+    private PauseManager pauseManager;
+
+    private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        pauseManager = FindObjectOfType<PauseManager>(true);
+    }
+
+    private void Start()
+    {
+        pauseManager = FindObjectOfType<PauseManager>(true);
+    }
+
     public void OnNavigate(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
@@ -92,6 +108,23 @@ public class UIInputHandler : MonoBehaviour
         {
             InventoryUI.Instance.ToggleInventory();
         }
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        if (pauseManager == null)
+        {
+            pauseManager = FindObjectOfType<PauseManager>(true);
+            if (pauseManager == null)
+            {
+                Debug.LogWarning("No se encontró PauseManager en la escena.");
+                return;
+            }
+        }
+
+        pauseManager.TogglePause();
     }
 }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.041117735, g: 0.07249477, b: 0.12565547, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1368,7 +1368,7 @@ MonoBehaviour:
       Data2: 1076168584
       Data3: -1803620202
       Data4: 1359304527
-    Path: event:/BlinkingLight
+    Path: event:/Event_Music/BlinkingLight
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0

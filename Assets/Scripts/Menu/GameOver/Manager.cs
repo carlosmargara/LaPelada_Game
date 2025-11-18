@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Manager : MonoBehaviour
 {
@@ -13,7 +14,13 @@ public class Manager : MonoBehaviour
 
     public void RetryGame()
     {
-        SceneManager.LoadScene(0);
+        // Si existe el GameStateManager, reseteamos su estado antes de recargar
+        if (GameStateManager.Instance != null)
+        {
+            GameStateManager.Instance.ResetState();
+        }
+
+        SceneManager.LoadScene(1);
     }
 
     public void ButtonQuit()

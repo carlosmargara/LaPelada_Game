@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LaPeladaTeAcosaFuerte.unity
-    guid: 5aa9aaffd9a7b864e84f374df8ade53e
-  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 7a99d3d37cdc9114682dbfffe030173b
+  - enabled: 1
+    path: Assets/Scenes/LaPeladaTeAcosaFuerte.unity
+    guid: 5aa9aaffd9a7b864e84f374df8ade53e
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 54b63d4b9c0622148a560b96e2f3f6f6

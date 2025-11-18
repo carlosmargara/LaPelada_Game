@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &451310898510305166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 256437904315949742}
+  m_Layer: 9
+  m_Name: StepRayUpper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &256437904315949742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451310898510305166}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 535424272962382457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5712754671049756206
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +166,37 @@ MonoBehaviour:
   m_AmplitudeGain: 1
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!1 &6407165814163073840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3601352869350659439}
+  m_Layer: 9
+  m_Name: StepRayLower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3601352869350659439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6407165814163073840}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 535424272962382457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7989630610721820186
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +358,8 @@ Transform:
   m_Children:
   - {fileID: 5878784770812550470}
   - {fileID: 422704095843002339}
+  - {fileID: 256437904315949742}
+  - {fileID: 3601352869350659439}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -1798.72, z: 0}
 --- !u!136 &629128098596221271
@@ -330,7 +394,7 @@ Rigidbody:
   m_GameObject: {fileID: 8096433931507154827}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -373,14 +437,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMode: 0
-  moveSpeed: 5
-  sprintSpeed: 10
+  moveSpeed: 6
+  sprintSpeed: 12
   rotationSpeed: 0.02
   tankTurnSpeed: 90
   cameraTransform: {fileID: 5878784770812550470}
   bodyPlayer: {fileID: 1051150219508677977}
   mouseSensitivity: 1.5
   gamepadSensitivity: 40
+  stepHeight: 0.5
+  stepSmooth: 6
+  stepCheckDistance: 0.5
+  stepRayLower: {fileID: 3601352869350659439}
+  stepRayUpper: {fileID: 256437904315949742}
   footstepSystem: {fileID: 3962743556951424242}
 --- !u!114 &3962743556951424242
 MonoBehaviour:
@@ -481,6 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca36bfdf5fbb2d0479565c312cf67947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
 --- !u!114 &7927082127850360820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,6 +752,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 20827868-3214-468a-8f8a-60edd559023a
     m_ActionName: UI/Inventory[/Keyboard/tab,/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3694370383196546132}
+        m_TargetAssemblyTypeName: UIInputHandler, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d2debb4b-c288-415d-87ad-c54e41986bde
+    m_ActionName: UI/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -46,6 +46,7 @@ public class DialogueManager : Singleton<DialogueManager>
         footSteps_Player = FindObjectOfType<DiffetentTypes_footSteps_with_FmodEvent>();
         playerInteraction = FindObjectOfType<PlayerInteraction>();
         inputMapController = FindObjectOfType<InputMapController>();
+        
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
     }
 

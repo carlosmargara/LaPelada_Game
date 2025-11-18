@@ -25,6 +25,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 1f;
     [SerializeField] private float gamepadSensitivity = 40f;
 
+    [Header("Step Climb Settings")]
+    [SerializeField] private float stepHeight = 0.3f;      // Altura máxima del escalón
+    [SerializeField] private float stepSmooth = 6f;        // Velocidad de subida
+    [SerializeField] private float stepCheckDistance = 0.5f; // Distancia del raycast frontal
+    [SerializeField] private Transform stepRayLower;       // Posición del raycast inferior
+    [SerializeField] private Transform stepRayUpper;       // Posición del raycast superior
+
     [Space]
     private StaminaBar staminaBar;
     [Space]
@@ -99,8 +106,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
         animator = GetComponentInChildren<Animator>();
         currentSpeed = moveSpeed;
@@ -109,6 +116,9 @@ public class PlayerController : MonoBehaviour
             rb.freezeRotation = true;
 
         staminaBar = StaminaBar.Instance;
+
+        if (MouseSensitivityManager.Instance != null)
+            mouseSensitivity = MouseSensitivityManager.Instance.CurrentSensitivity;
     }
 
     void Update()
@@ -150,11 +160,13 @@ public class PlayerController : MonoBehaviour
         {
             HandleMovement_FirstPerson();
             HandleRotation_FirstPerson();
+            StepClimb();
         }
         else if (currentMode == ControlMode.Tank)
         {
             HandleMovement_Tank();
             HandleRotation_Tank();
+            StepClimb();
         }
     }
 
@@ -265,6 +277,28 @@ public class PlayerController : MonoBehaviour
             {
                 lookBackYawOffset = 0f;
                 bodyPlayer.SetActive(true);
+            }
+        }
+    }
+
+    public void SetMouseSensitivity(float newSensitivity)
+    {
+        mouseSensitivity = newSensitivity;
+    }
+
+    private void StepClimb()
+    {
+        // 🔸 Solo intentamos subir si el jugador se está moviendo
+        if (moveInput.magnitude < 0.1f) return;
+
+        // Rayo bajo (a la altura de los pies)
+        if (Physics.Raycast(stepRayLower.position, transform.forward, out RaycastHit lowerHit, stepCheckDistance))
+        {
+            // Rayo alto (a la altura de la rodilla)
+            if (!Physics.Raycast(stepRayUpper.position, transform.forward, stepCheckDistance))
+            {
+                // Subida suave del Rigidbody
+                rb.position += new Vector3(0f, stepSmooth * Time.fixedDeltaTime, 0f);
             }
         }
     }

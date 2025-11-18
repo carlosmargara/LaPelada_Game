@@ -25,7 +25,7 @@ public class GameStateManager : Singleton<GameStateManager>
     public bool camTriggerGarageTriggered = false;
     public bool camTriggerZoneTriggered = false;
 
-
+    private Note_Interaction note_Interaction;
     /* 
     basicamente la property( read-only computed property -porque tiene el get- ) que tengo abajo es como poner esta linea 
     - public Transform PlayerTransform => playerController != null ? playerController.transform : null; - 
@@ -47,6 +47,7 @@ public class GameStateManager : Singleton<GameStateManager>
     protected override void Awake()
     {
         base.Awake();
+        note_Interaction = FindObjectOfType<Note_Interaction>();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -57,9 +58,32 @@ public class GameStateManager : Singleton<GameStateManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Evitar el manejo normal si estamos en la pantalla de GameOver
+        if (scene.name == "GameOver")
+        {
+            Debug.Log("[GameStateManager] Escena GameOver detectada: no se instancia ni reposiciona el Player.");
+            // Si existe un player persistente de antes, lo destruimos
+            if (playerController != null)
+            {
+                Destroy(playerController.gameObject);
+                playerController = null;
+            }
+            return;
+        }
+
         if (scene.name == "ScreenLoading")
         {
             Debug.Log($"[GameStateManager] Ignorando escena intermedia: {scene.name}. lastSceneName sigue siendo '{lastSceneName}'");
+            return;
+        }
+
+        if (scene.name == "LaPeladaTeAcosaFuerte" && playerController == null)
+        {
+            Debug.Log("[GameStateManager] Escena inicial detectada, instanciando Player directamente.");
+            Transform spawnPointPlaza = GameObject.Find("PlayerSpawnPoint")?.transform;
+            HandlePlayerSpawn(spawnPointPlaza);
+            AssignPlayerToTriggers();
+            lastSceneName = scene.name;
             return;
         }
 
@@ -157,7 +181,7 @@ public class GameStateManager : Singleton<GameStateManager>
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            //Debug.Log($"LockPlayer (Priority: {priority}) - PlayerController.enabled: {playerController.enabled}");
+            Debug.Log($"LockPlayer (Priority: {priority}) - PlayerController.enabled: {playerController.enabled}");
         }
     }
 
@@ -172,7 +196,7 @@ public class GameStateManager : Singleton<GameStateManager>
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            //Debug.Log($"UnlockPlayer - PlayerController.enabled: {playerController.enabled}");
+            Debug.Log($"UnlockPlayer - PlayerController.enabled: {playerController.enabled}");
         }
     }
 
@@ -182,5 +206,29 @@ public class GameStateManager : Singleton<GameStateManager>
         return !playerController.enabled;
     }
     #endregion
+
+    public void ResetState()
+    {
+        Debug.Log("[GameStateManager] Reiniciando estado global...");
+
+        peladaTriggered = false;
+        peladaSightEventTriggered = false;
+        camTriggerGarageTriggered = false;
+        camTriggerZoneTriggered = false;
+        peladaSpawnedOnce = false;
+
+        doorStates.Clear();
+        _currentPriority = 0;
+
+        playerController = null; // por si se destruyó en GameOver
+        lastSceneName = "";
+
+        // 🩹 Resetear flag de persistencia del Player
+        typeof(Player_PersistentObject)
+            .GetField("_exists", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+            ?.SetValue(null, false);
+
+        Debug.Log("[GameStateManager] Estado reseteado con éxito (Player_PersistentObject flag reseteado).");
+    }
 }
 

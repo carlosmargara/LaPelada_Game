@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class InputMapController : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
 
     private void Awake()
     {

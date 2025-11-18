@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thoughts:
   - text: Bueno... ya estoy aca, despues de mi largo viaje de nuevo en Cordoba
-  - text: 'El paseo de las Artes... que loco lo recordaba mas feliz y con mas ruido
-      de gente y cosas. '
+  - text: "La Ca\xF1ada,  que loco lo recordaba mas feliz y con mas ruido de gente
+      y cosas. "
   - text: 'Donde esta todo el mundo? esta creepy esto. '
   - text: 'Bueno, no importa. '
   - text: Mi amigo me dijo que me esperaba en el bar que esta en Achaval Rodriguez

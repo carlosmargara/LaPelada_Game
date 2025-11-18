@@ -252,7 +252,6 @@ public class NoteManager : Singleton<NoteManager>
         // Auto-selecciona el primer botón según prioridad
         if (nextButton.gameObject.activeSelf)
             EventSystem.current.SetSelectedGameObject(nextButton.gameObject);
-
         else if (backButton.gameObject.activeSelf)
             EventSystem.current.SetSelectedGameObject(backButton.gameObject);
         else if (exitButton != null && exitButton.gameObject.activeSelf)
@@ -262,7 +261,6 @@ public class NoteManager : Singleton<NoteManager>
 
     public void Button_ExitPanelNote()
     {
-        Debug.Log("Se llamo Button_ExitPanelNote");
         panelNote.SetActive(false);
         AudioManager02.Instance.PlayOneShot("event:/UI/Note_Close");
 
@@ -326,7 +324,6 @@ public class NoteManager : Singleton<NoteManager>
                 if (newSelected != null)
                     EventSystem.current.SetSelectedGameObject(newSelected);
             }
-
         }
     }
     #endregion

@@ -13,7 +13,7 @@ public class GameOver : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void Reset()
     {
-        // Esto se ejecuta automáticamente cuando agregás el script en el editor
+        // Esto se ejecuta automï¿½ticamente cuando agregï¿½s el script en el editor
         text = GetComponentInChildren<TextMeshProUGUI>();
     }
 
@@ -21,6 +21,7 @@ public class GameOver : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (text != null)
             text.color = hoverColor;
+        AudioManager02.Instance.PlayOneShot("event:/UI/Selection_Sound (Inventary)");
     }
 
     public void OnPointerExit(PointerEventData eventData)
