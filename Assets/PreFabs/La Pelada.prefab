@@ -214,9 +214,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
-  rotationSpeed: 100
-  minLifeTime: 5
-  maxLifeTime: 8
+  rotationSpeed: 85
+  minLifeTime: 2
+  maxLifeTime: 6
 --- !u!136 &5353410747561229553
 CapsuleCollider:
   m_ObjectHideFlags: 0

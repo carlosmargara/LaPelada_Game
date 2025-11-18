@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: "wall_Ca\xF1ada"
-  m_Shader: {fileID: -6465566751694194690, guid: 2b3b7d0b179748b449e12721ea4fcfa6, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2b760a0ff19ebca43a71fa81f719c0e9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -100,6 +100,7 @@ Material:
     - Vector1_E8746023: 16
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _BakedIntensity: 4
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1

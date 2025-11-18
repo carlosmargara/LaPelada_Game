@@ -52,9 +52,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cesto de Basura_Cilindrico_NOTA CONAN
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 75822a87d6f5c2c45879ce1015ae9bb8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133301854480735497, guid: 75822a87d6f5c2c45879ce1015ae9bb8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6150072750841597834, guid: 75822a87d6f5c2c45879ce1015ae9bb8, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150072750841597834, guid: 75822a87d6f5c2c45879ce1015ae9bb8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public enum ControlMode { FirstPerson, Tank }
 
@@ -20,8 +21,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private GameObject bodyPlayer;
 
+    [Header("Sensibilidad")]
+    [SerializeField] private float mouseSensitivity = 1f;
+    [SerializeField] private float gamepadSensitivity = 40f;
+
+    [Header("Step Climb Settings")]
+    [SerializeField] private float stepHeight = 0.3f;      // Altura máxima del escalón
+    [SerializeField] private float stepSmooth = 6f;        // Velocidad de subida
+    [SerializeField] private float stepCheckDistance = 0.5f; // Distancia del raycast frontal
+    [SerializeField] private Transform stepRayLower;       // Posición del raycast inferior
+    [SerializeField] private Transform stepRayUpper;       // Posición del raycast superior
+
     [Space]
     private StaminaBar staminaBar;
+    [Space]
     [SerializeField] private DiffetentTypes_footSteps_with_FmodEvent footstepSystem; // sistema con Fmod
 
     private Rigidbody rb;
@@ -35,18 +48,66 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection;
     public Vector3 Move => moveDirection;
 
-    [HideInInspector] public bool isRunning = false;
+    [HideInInspector] public bool IsRunning { get; private set; }
+
+    // ---------- NEW INPUT SYSTEM (PlayerInput) ----------
+    private PlayerInput playerInput;           // componente PlayerInput
+    private InputAction moveAction;            // action "Move"
+    private InputAction lookAction;            // action "Look"
+    private InputAction runAction;             // action "Run"
+    private InputAction lookBackAction;       // action "MirrarAtras"
+    private Vector2 moveInput = Vector2.zero; // valor leído
+    private Vector2 lookInput = Vector2.zero; // valor leído
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         camScript = GetComponent<Cinemachine_Headbob_And_Noise>();
+
+        // Obtener el componente PlayerInput (asegurate de tenerlo agregado al GameObject)
+        playerInput = GetComponent<PlayerInput>();
+        if (playerInput == null)
+        {
+            Debug.LogWarning("PlayerInput component no encontrado en el GameObject. Agregalo o usá la clase generada.");
+        }
+        else if (playerInput.actions != null)
+        {
+            // Buscar las actions por nombre dentro del asset (suponiendo que se llaman "Move" y "Look")
+            moveAction = playerInput.actions.FindAction("Move", true);
+            lookAction = playerInput.actions.FindAction("Look", true);
+            runAction = playerInput.actions.FindAction("Run", true);
+            lookBackAction = playerInput.actions.FindAction("LookBack", true);
+
+            if (moveAction == null) Debug.LogWarning("No se encontró la action 'Move' en el Input Action Asset.");
+            if (lookAction == null) Debug.LogWarning("No se encontró la action 'Look' en el Input Action Asset.");
+            if (runAction == null) Debug.LogWarning("No se encontró la action 'Run'.");
+            if (lookBackAction == null) Debug.LogWarning("No se encontró la action 'LookBack'.");
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        // Habilitamos acciones por si hace falta (PlayerInput normalmente habilita el default map)
+        moveAction?.Enable();
+        lookAction?.Enable();
+    }
+
+    private void OnDisable()
+    {
+        moveAction?.Disable();
+        lookAction?.Disable();
+    }
+
+    public void OnRun(InputValue value)
+    {
+        IsRunning = value.isPressed;
     }
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
         animator = GetComponentInChildren<Animator>();
         currentSpeed = moveSpeed;
@@ -55,13 +116,20 @@ public class PlayerController : MonoBehaviour
             rb.freezeRotation = true;
 
         staminaBar = StaminaBar.Instance;
+
+        if (MouseSensitivityManager.Instance != null)
+            mouseSensitivity = MouseSensitivityManager.Instance.CurrentSensitivity;
     }
 
     void Update()
     {
+        // --- Leer inputs desde las actions (si existen) ---
+        moveInput = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
+        lookInput = lookAction != null ? lookAction.ReadValue<Vector2>() : Vector2.zero;
+        IsRunning = runAction != null && runAction.IsPressed();
+
         camScript.isMoving = moveDirection.magnitude > 0.1f;
-        camScript.isRunning = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) &&
-                              staminaBar.CurrentStamina >= 0.1f;
+        camScript.isRunning = IsRunning && staminaBar.CurrentStamina >= 0.1f;
 
         // Detección de modo
         if (currentMode == ControlMode.FirstPerson)
@@ -74,17 +142,16 @@ public class PlayerController : MonoBehaviour
             HandleRotationInput_Tank();
         }
 
-        // Inputs crudos al Animator
+        // Inputs al Animator
         animator.SetFloat("InputX", moveDirection.x, 0.15f, Time.deltaTime);
         animator.SetFloat("InputY", moveDirection.z, 0.15f, Time.deltaTime);
+        animator.SetBool("IsRunning", IsRunning && moveDirection.magnitude > 0.1f);
 
-        bool runningCheck = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && moveDirection.magnitude > 0.1f;
-        animator.SetBool("IsRunning", runningCheck);
+        // --- LLAMADA AL SISTEMA DE PASOS ---
+        bool runningCheck = IsRunning && moveDirection.magnitude > 0.1f;
+        footstepSystem.HandleFootsteps(Move, runningCheck);
 
-        if (moveDirection.magnitude > 0.1f)
-        {
-            footstepSystem.HandleFootsteps(Move, runningCheck);
-        }
+        _MechanicsLookBack();
     }
 
     void FixedUpdate()
@@ -93,11 +160,13 @@ public class PlayerController : MonoBehaviour
         {
             HandleMovement_FirstPerson();
             HandleRotation_FirstPerson();
+            StepClimb();
         }
         else if (currentMode == ControlMode.Tank)
         {
             HandleMovement_Tank();
             HandleRotation_Tank();
+            StepClimb();
         }
     }
 
@@ -106,21 +175,18 @@ public class PlayerController : MonoBehaviour
     // -------------------------
     private void HandleMovement_FirstPerson()
     {
-        bool shiftPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-
-        if (shiftPressed && staminaBar.CurrentStamina > 0)
+        if (IsRunning && staminaBar.CurrentStamina > 0)
         {
-            isRunning = true;
             currentSpeed = sprintSpeed;
         }
         else
         {
-            isRunning = false;
+            IsRunning = false;
             currentSpeed = moveSpeed;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = moveInput.x;
+        float z = moveInput.y;
 
         moveDirection = (transform.forward * z + transform.right * x).normalized;
         Vector3 moveVelocity = moveDirection * currentSpeed;
@@ -131,8 +197,23 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotationInput_FirstPerson()
     {
-        float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
-        float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
+        Vector2 look = lookInput;
+
+        // Detectar si el dispositivo actual es un gamepad o un mouse
+        bool isGamepad = Gamepad.current != null && Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.01f;
+        bool isMouse = Mouse.current != null && Mouse.current.delta.ReadValue().sqrMagnitude > 0.01f;
+
+        float sensitivity = mouseSensitivity;
+
+        if (isGamepad)
+            sensitivity = gamepadSensitivity;
+        else if (isMouse)
+            sensitivity = mouseSensitivity;
+
+        // ❌ NO usamos Time.deltaTime acá
+        float mouseX = look.x * rotationSpeed * sensitivity;
+        float mouseY = look.y * rotationSpeed * sensitivity;
+
         rotationInput = new Vector2(mouseX, mouseY);
     }
 
@@ -152,20 +233,17 @@ public class PlayerController : MonoBehaviour
     // -------------------------
     private void HandleMovement_Tank()
     {
-        bool shiftPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-
-        if (shiftPressed && staminaBar.CurrentStamina > 0)
+        if (IsRunning && staminaBar.CurrentStamina > 0)
         {
-            isRunning = true;
             currentSpeed = sprintSpeed;
         }
         else
         {
-            isRunning = false;
+            IsRunning = false;
             currentSpeed = moveSpeed;
         }
 
-        float z = Input.GetAxis("Vertical"); // Adelante/atrás
+        float z = moveInput.y; // Adelante/atrás
         moveDirection = transform.forward * z;
         Vector3 moveVelocity = moveDirection * currentSpeed;
         moveVelocity.y = rb.velocity.y;
@@ -175,7 +253,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotationInput_Tank()
     {
-        rotationInput.x = Input.GetAxis("Horizontal"); // Izquierda/Derecha con A/D o stick
+        rotationInput.x = moveInput.x; // Izquierda/Derecha con A/D o stick
     }
 
     private void HandleRotation_Tank()
@@ -188,15 +266,40 @@ public class PlayerController : MonoBehaviour
     // -------------------------
     private void _MechanicsLookBack()
     {
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(1))
+        if (lookBackAction != null)
         {
-            lookBackYawOffset = 180f;
-            bodyPlayer.SetActive(false);
+            if (lookBackAction.WasPressedThisFrame())
+            {
+                lookBackYawOffset = 180f;
+                bodyPlayer.SetActive(false);
+            }
+            else if (lookBackAction.WasReleasedThisFrame())
+            {
+                lookBackYawOffset = 0f;
+                bodyPlayer.SetActive(true);
+            }
         }
-        if (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(1))
+    }
+
+    public void SetMouseSensitivity(float newSensitivity)
+    {
+        mouseSensitivity = newSensitivity;
+    }
+
+    private void StepClimb()
+    {
+        // 🔸 Solo intentamos subir si el jugador se está moviendo
+        if (moveInput.magnitude < 0.1f) return;
+
+        // Rayo bajo (a la altura de los pies)
+        if (Physics.Raycast(stepRayLower.position, transform.forward, out RaycastHit lowerHit, stepCheckDistance))
         {
-            lookBackYawOffset = 0f;
-            bodyPlayer.SetActive(true);
+            // Rayo alto (a la altura de la rodilla)
+            if (!Physics.Raycast(stepRayUpper.position, transform.forward, stepCheckDistance))
+            {
+                // Subida suave del Rigidbody
+                rb.position += new Vector3(0f, stepSmooth * Time.fixedDeltaTime, 0f);
+            }
         }
     }
 }

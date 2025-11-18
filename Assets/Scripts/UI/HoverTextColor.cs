@@ -2,18 +2,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-
-public class HoverTextColor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class HoverTextColor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
-    public enum ButtonType { Si, No }
-
-    [SerializeField] private ButtonType tipoBoton;
     [SerializeField] private TextMeshProUGUI buttonText;
-    [SerializeField] private GameObject flecha_uiSi;
-    [SerializeField] private GameObject flecha_uiNo;
 
-    private Color32 normalColor = new Color32(255, 255, 255, 132); // blanco con alfa a la mitad
-    private Color32 hoverColor = new Color32(85, 86, 86, 132);     // gris oscuro con alfa a la mitad
+    private Color32 normalColor = new Color32(255, 255, 255, 132);
+    private Color32 hoverColor = new Color32(85, 86, 86, 132);
 
     private void Awake()
     {
@@ -21,31 +15,24 @@ public class HoverTextColor : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             buttonText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    private void Start()
+    // 🖱️ Mouse
+    public void OnPointerEnter(PointerEventData eventData) => SetHover(true);
+    public void OnPointerExit(PointerEventData eventData) => SetHover(false);
+
+    // 🎮 Teclado / Gamepad
+    public void OnSelect(BaseEventData eventData) => SetHover(true);
+    public void OnDeselect(BaseEventData eventData) => SetHover(false);
+
+    private void SetHover(bool hovering)
     {
-        if (flecha_uiSi != null) flecha_uiSi.SetActive(false);
-        if (flecha_uiNo != null) flecha_uiNo.SetActive(false);
-    }
+        if (buttonText == null) return;
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        AudioManager02.Instance.PlayOneShot("event:/UI/Selection_Sound (Inventary)");
-        buttonText.color = hoverColor;
+        buttonText.color = hovering ? hoverColor : normalColor;
 
-        if (tipoBoton == ButtonType.Si && flecha_uiSi != null)
-            flecha_uiSi.SetActive(true);
-        else if (tipoBoton == ButtonType.No && flecha_uiNo != null)
-            flecha_uiNo.SetActive(true);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        buttonText.color = normalColor;
-
-        if (tipoBoton == ButtonType.Si && flecha_uiSi != null)
-            flecha_uiSi.SetActive(false);
-        else if (tipoBoton == ButtonType.No && flecha_uiNo != null)
-            flecha_uiNo.SetActive(false);
+        if (hovering)
+            AudioManager02.Instance.PlayOneShot("event:/UI/Selection_Sound (Inventary)");
     }
 }
+
+
 

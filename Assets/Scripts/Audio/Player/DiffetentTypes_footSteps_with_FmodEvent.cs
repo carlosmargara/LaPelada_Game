@@ -23,17 +23,17 @@ public class DiffetentTypes_footSteps_with_FmodEvent : MonoBehaviour
 
     public void HandleFootsteps(Vector3 moveDirection, bool isRunning)
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        // --- Umbral mínimo para considerar movimiento ---
+        float moveThreshold = 0.03f;
 
-        if (Mathf.Abs(x) > 0.1f || Mathf.Abs(z) > 0.1f)
+        if (moveDirection.sqrMagnitude > moveThreshold)
         {
-            //Debug.Log("_Se esta moviendo");
             SurfaceType surface = DetectSurfaceType();
 
             if (isRunning)
             {
                 runInstance.setParameterByNameWithLabel("Surface", surface.ToString());
+
                 if (!isFootstepPlaying || !wasRunningLastFrame)
                 {
                     StopAllFootsteps();
@@ -45,6 +45,7 @@ public class DiffetentTypes_footSteps_with_FmodEvent : MonoBehaviour
             else
             {
                 walkInstance.setParameterByNameWithLabel("Surface", surface.ToString());
+
                 if (!isFootstepPlaying || wasRunningLastFrame)
                 {
                     StopAllFootsteps();
@@ -56,14 +57,16 @@ public class DiffetentTypes_footSteps_with_FmodEvent : MonoBehaviour
         }
         else
         {
-            //Debug.Log("_No se esta moviendo ");
+            // Jugador quieto → detener pasos
             if (isFootstepPlaying)
             {
                 StopAllFootsteps();
                 isFootstepPlaying = false;
+                wasRunningLastFrame = false;
             }
         }
     }
+
 
     public void StopAllFootsteps()
     {

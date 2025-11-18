@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
+using UnityEngine.InputSystem;
 
 public class PickupUIManager : Singleton<PickupUIManager>
 {
@@ -24,6 +25,15 @@ public class PickupUIManager : Singleton<PickupUIManager>
     [SerializeField] private RenderTexture renderTexture;
     [SerializeField] private Camera previewCamera;
 
+    [Header("Navegación UI")]
+    [SerializeField] private float mouseInactiveTime = 1.2f;
+    [SerializeField] private float mouseMoveThreshold = 2f;
+    private Vector2 lastMousePosition;
+    private float lastMouseMoveTime;
+    private GameObject firstSelectedButton;
+    private bool navigationActive;
+
+
     private GameObject currentPreviewObject;
 
     private float inputCooldown = 0f;
@@ -34,9 +44,23 @@ public class PickupUIManager : Singleton<PickupUIManager>
     private bool descriptionItemAmin;
     private PickupItem_interac currentItem;
 
+    private bool mouseActive;
+    public bool IsMouseActive => mouseActive;
+    public bool IsActive => panel.activeSelf;
+
+    private PlayerInteraction playerInteraction;
+
+    private bool justOpenedPanel = false;
+    private float lastSubmitTime = -1f;
+
+
+
     private void Start()
     {
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
+
         panel.SetActive(false);
+
         if (previewCamera != null)
         {
             previewCamera.targetTexture = renderTexture;
@@ -54,50 +78,132 @@ public class PickupUIManager : Singleton<PickupUIManager>
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // Sonido opcional
-            // AudioManager02.Instance.PlayOneShot("event:/UI/ClosePanel");
-            ClosePanel();
-            return;
-        }
-        /*
-        if (panel.activeSelf)
-        {
-            GameStateManager.Instance.LockPlayer();
-        }
-        else
-        {
-            GameStateManager.Instance.UnlockPlayer();
-        }
-        */
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!descriptionItemAmin)
-            {
-                SkipTextAnimation();
-                return; // Evita que pase al siguiente texto en el mismo click
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0) && firtTextWasShown && descriptionItemAmin)
-        {
-            ShowSecondTextPickup(currentItem);
-        }
-
-        if (Input.GetMouseButtonDown(0) && secondTextWasShown)
-        {
-            PastNextAction();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ClosePanel();
-        }
-
         if (currentPreviewObject != null)
         {
             currentPreviewObject.transform.Rotate(Vector3.up, 45 * Time.deltaTime);
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (!panel.activeSelf) return;
+
+        if (Mouse.current != null)
+        {
+            Vector2 currentMousePos = Mouse.current.position.ReadValue();
+
+            if (Vector2.Distance(currentMousePos, lastMousePosition) > mouseMoveThreshold)
+            {
+                lastMouseMoveTime = Time.time;
+                mouseActive = true; // mouse activo
+
+                // Solo borramos selección si antes estaba seleccionada por teclado
+                if (EventSystem.current.currentSelectedGameObject != null)
+                    EventSystem.current.SetSelectedGameObject(null);
+            }
+
+            lastMousePosition = currentMousePos;
+
+            // Si el mouse no se movió por un tiempo → volver a teclado
+            if (Time.time - lastMouseMoveTime > mouseInactiveTime)
+                mouseActive = false;
+        }
+    }
+
+    public void OnSubmit(InputAction.CallbackContext ctx)
+    {
+        if (!panel.activeSelf || !ctx.performed) return;
+
+        // Prevenir doble submit
+        if (Time.time - lastSubmitTime < 0.25f) return;
+        lastSubmitTime = Time.time;
+
+        // Si el texto todavía se está animando → saltarlo
+        if (!descriptionItemAmin)
+        {
+            SkipTextAnimation();
+            return;
+        }
+
+        // Si estamos en el primer texto → mostrar el segundo texto con botones
+        if (firtTextWasShown && !secondTextWasShown)
+        {
+            ShowSecondTextPickup(currentItem);
+            return;
+        }
+
+        // Después de mostrar todo y los botones ya fueron usados → cerrar panel / recoger ítem
+        if (secondTextWasShown && !(_yesButton.activeSelf || _noButton.activeSelf))
+        {
+            PastNextAction();
+        }
+    }
+
+
+    public void OnClick(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        OnSubmit(ctx); // 🔁 Click izquierdo actúa igual que barra espaciadora
+    }
+
+
+    public void OnCancel(InputAction.CallbackContext ctx)
+    {
+        if (!panel.activeSelf) return;
+
+        // Cerrar panel directamente
+        ClosePanel();
+    }
+
+    public void OnNavigate(InputAction.CallbackContext ctx)
+    {
+        if (!panel.activeSelf || !ctx.performed || mouseActive) return;
+
+        Vector2 move = ctx.ReadValue<Vector2>();
+        if (move == Vector2.zero) return;
+
+        GameObject current = EventSystem.current.currentSelectedGameObject;
+
+        // Si no hay selección, elegimos el primer botón visible
+        if (current == null)
+        {
+            GameObject first = _yesButton.activeSelf ? _yesButton : _noButton;
+            EventSystem.current.SetSelectedGameObject(first);
+            return;
+        }
+
+        Selectable sel = current.GetComponent<Selectable>();
+        if (sel == null) return;
+
+        Selectable next = null;
+        if (Mathf.Abs(move.y) > Mathf.Abs(move.x))
+            next = move.y > 0 ? sel.FindSelectableOnUp() : sel.FindSelectableOnDown();
+        else
+            next = move.x > 0 ? sel.FindSelectableOnRight() : sel.FindSelectableOnLeft();
+
+        if (next != null)
+            EventSystem.current.SetSelectedGameObject(next.gameObject);
+    }
+
+    // Llamado desde PlayerInteraction -> OnPoint
+    public void OnPoint(InputAction.CallbackContext ctx)
+    {
+        if (!panel.activeSelf || !ctx.performed) return;
+
+        if (Mouse.current != null)
+        {
+            Vector2 currentMousePos = Mouse.current.position.ReadValue();
+
+            if (Vector2.Distance(currentMousePos, lastMousePosition) > mouseMoveThreshold)
+            {
+                lastMouseMoveTime = Time.time;
+                mouseActive = true;
+
+                if (EventSystem.current.currentSelectedGameObject != null)
+                    EventSystem.current.SetSelectedGameObject(null);
+            }
+
+            lastMousePosition = currentMousePos;
         }
     }
 
@@ -105,26 +211,67 @@ public class PickupUIManager : Singleton<PickupUIManager>
     {
         currentItem = item;
         panel.SetActive(true);
-        GameStateManager.Instance.LockPlayer(priority: 3); // bloqueamos solo al abrir
+        GameStateManager.Instance.LockPlayer(priority: 3);
+
+        InputMapController inputMapController = FindObjectOfType<InputMapController>();
+        inputMapController?.SwitchToUI();
+
+        // 🔹 Resetear cualquier input residual de Submit
+        if (inputMapController != null)
+        {
+            InputAction submitAction = inputMapController.GetComponent<PlayerInput>()
+                .currentActionMap.FindAction("Submit");
+            submitAction?.Reset();
+        }
+
+        justOpenedPanel = true;
+        StartCoroutine(ResetJustOpenedFlag());
+
         ShowTextAmin(item.Ref_ScriptableObject.pickupText);
         _yesButton.SetActive(false);
         _noButton.SetActive(false);
 
         firtTextWasShown = true;
-        inputCooldown = 0.1f;
+        inputCooldown = 0.5f;
+        lastSubmitTime = Time.time; // 🛡️ Previene doble submit accidental
 
-        HideItemPreview(); // Por si qued� algo anterior
+        HideItemPreview();
+
+        if (Mouse.current != null)
+        {
+            lastMousePosition = Mouse.current.position.ReadValue();
+            lastMouseMoveTime = Time.time;
+        }
+
+        firstSelectedButton = _yesButton;
+    }
+
+
+    private IEnumerator ResetJustOpenedFlag()
+    {
+
+        yield return new WaitForSeconds(0.4f); // 🔄 esperar un poco más
+        justOpenedPanel = false;
     }
 
     private void ShowSecondTextPickup(PickupItem_interac item)
     {
         currentItem = item;
         ShowTextAmin(item.Ref_ScriptableObject.pickupText02);
+
         _yesButton.SetActive(true);
         _noButton.SetActive(true);
 
-        HideItemPreview();
+        // Si el mouse no se movió → seleccionar botón por teclado
+        if (!mouseActive)
+            EventSystem.current.SetSelectedGameObject(_yesButton);
+        else
+            EventSystem.current.SetSelectedGameObject(null);
+
+        secondTextWasShown = true;
+        firtTextWasShown = false;
     }
+
 
     public void ConfirmPickup()
     {
@@ -155,8 +302,13 @@ public class PickupUIManager : Singleton<PickupUIManager>
 
         HideItemPreview();
 
+        playerInteraction.BlockInteractFor(0.2f);
         GameStateManager.Instance.UnlockPlayer(priority: 3); // desbloqueamos solo al cerrar
-        // AudioManager02.Instance.PlayOneShot("event:/UI/ClosePanel");
+                                                             // AudioManager02.Instance.PlayOneShot("event:/UI/ClosePanel");
+
+        InputMapController inputMapController = FindObjectOfType<InputMapController>();
+        inputMapController?.SwitchToPlayer();
+
     }
 
     private void PastNextAction()

@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7289711760333183682
 Transform:
@@ -44,7 +44,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.645283, g: 0.56217813, b: 0.11079386, a: 1}
+  m_Color: {r: 1, g: 0.9607843, b: 0.7607843, a: 1}
   m_Intensity: 0.1
   m_Range: 1
   m_SpotAngle: 30
@@ -84,7 +84,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -181,6 +181,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: adbaa70bbc843c644965ac8e56899e8d, type: 3}
       propertyPath: m_Name
       value: farolLuz_moderno_withEmission
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: adbaa70bbc843c644965ac8e56899e8d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

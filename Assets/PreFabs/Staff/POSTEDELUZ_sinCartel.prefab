@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: POSTEDELUZ_sinCartel
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e03d7626577e3c0438ac594c0c4db265, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

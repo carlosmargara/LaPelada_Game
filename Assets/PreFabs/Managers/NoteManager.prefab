@@ -51,9 +51,10 @@ MonoBehaviour:
   pageCounterText: {fileID: 0}
   nextButton: {fileID: 0}
   backButton: {fileID: 0}
+  exitButton: {fileID: 0}
   panelTextInterac: {fileID: 0}
   messageText: {fileID: 0}
   yesButton: {fileID: 0}
   noButton: {fileID: 0}
-  pelada: {fileID: 0}
-  spawnerPelada: {fileID: 0}
+  mouseInactiveTime: 1.2
+  mouseMoveThreshold: 2

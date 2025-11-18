@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: farolLuz_moderno_otraTextura
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9917c1a3d060ae84596470d954633900, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
