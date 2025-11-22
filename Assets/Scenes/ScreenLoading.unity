@@ -424,7 +424,7 @@ MonoBehaviour:
   - "No est\xE1s solo."
   - "Ya est\xE1 ac\xE1."
   - "Escuch\xE1 bien... a veces avisa."
-  creepyChance: 0.3
+  creepyChance: 0.481
 --- !u!1 &426530601
 GameObject:
   m_ObjectHideFlags: 0
