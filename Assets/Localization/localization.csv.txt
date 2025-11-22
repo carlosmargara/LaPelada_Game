@@ -1,0 +1,2 @@
+key,es,en
+menu_play,Jugar,PLAY

@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 507d9e9d91faef5439c1096b5abf106f
-=======
-guid: f5cfba5d03d0c0a408ab6b5718040162
->>>>>>> probando_cambios
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -25,13 +21,13 @@ PluginImporter:
     second:
       enabled: 1
       settings:
-        CPU: AnyCPU
-        OS: OSX
+        DefaultValueInitialized: true
   - first:
       Standalone: OSXUniversal
     second:
       enabled: 1
-      settings: {}
+      settings:
+        CPU: AnyCPU
   userData: 
   assetBundleName: 
   assetBundleVariant: 

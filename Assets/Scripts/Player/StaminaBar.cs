@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StaminaBar : Singleton<StaminaBar>
 {
@@ -44,6 +45,16 @@ public class StaminaBar : Singleton<StaminaBar>
 
     void Update()
     {
+        // 🔥 Si perdió la referencia al Player, la recupera acá
+        if (playerController == null)
+        {
+            playerController = FindObjectOfType<PlayerController>();
+            if (playerController != null)
+                Debug.Log("[StaminaBar] PlayerController reasignado en Update()");
+            else
+                return; // Sale del Update hasta que encuentre un Player
+        }
+
         //Chequear si algún otro panel está activo
         if (IsAnyOtherPanelActive())
         {
@@ -57,6 +68,23 @@ public class StaminaBar : Singleton<StaminaBar>
 
         HandleStamina();
         UpdateStaminaBar();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("[StaminaBar] Re-asignando PlayerController después de cargar escena");
+        playerController = FindObjectOfType<PlayerController>();
+        CurrentStamina = maxStamina; // opcional
     }
 
     private bool IsAnyOtherPanelActive()

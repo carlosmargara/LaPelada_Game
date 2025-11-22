@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae545224c6ad064b92874c76ce9d67d, type: 3}
   m_Name: Milei Culiadazo!
   m_EditorClassIdentifier: 
-  ID: milei culiadazp
+  ID: milei culiadazo
+  requiredKeyID: 
+  lockedText: 
+  unlockedText: 
   descriptonInterac:
   - text: jajaja.. De una.

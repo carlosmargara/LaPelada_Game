@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Polica
   m_EditorClassIdentifier: 
   Name: Policia
-  greeting: No podes pasar por aca, hubo un accidente mas adelante y esta cortado-
+  greeting: No podes pasar por aca, hubo un accidente mas adelante y esta cortado.
   covertation: []
   farewell: 

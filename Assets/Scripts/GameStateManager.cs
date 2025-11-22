@@ -26,6 +26,9 @@ public class GameStateManager : Singleton<GameStateManager>
     public bool camTriggerZoneTriggered = false;
 
     private Note_Interaction note_Interaction;
+
+    // Guarda todos los IDs de ítems que ya fueron recogidos
+    private HashSet<string> pickedItems = new HashSet<string>();
     /* 
     basicamente la property( read-only computed property -porque tiene el get- ) que tengo abajo es como poner esta linea 
     - public Transform PlayerTransform => playerController != null ? playerController.transform : null; - 
@@ -230,5 +233,19 @@ public class GameStateManager : Singleton<GameStateManager>
 
         Debug.Log("[GameStateManager] Estado reseteado con éxito (Player_PersistentObject flag reseteado).");
     }
+
+    #region Metodos que uso para saber si el Item ya fue recolectado
+    //fuciona con el  HashSet<string> pickedItems que esta arriba
+    public bool IsItemPicked(string itemID)
+    {
+        return pickedItems.Contains(itemID);
+    }
+
+    public void MarkItemPicked(string itemID)
+    {
+        if (!pickedItems.Contains(itemID))
+            pickedItems.Add(itemID);
+    }
+    #endregion
 }
 

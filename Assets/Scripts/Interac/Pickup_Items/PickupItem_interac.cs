@@ -11,6 +11,13 @@ public class PickupItem_interac : Interactable
     void Start()
     {
         footSteps_Player = FindObjectOfType<DiffetentTypes_footSteps_with_FmodEvent>();
+
+        // 🔥 Si este ítem ya fue recogido en esta partida → desaparecer del mundo
+        if (GameStateManager.Instance.IsItemPicked(Ref_ScriptableObject.ID))
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     public override void Interact()

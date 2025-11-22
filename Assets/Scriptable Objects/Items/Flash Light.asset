@@ -18,7 +18,7 @@ MonoBehaviour:
   Icono_equipped: {fileID: 21300000, guid: 729be56344173c64d84a1e6b8245f2eb, type: 3}
   prefabModel: {fileID: 7214661714509281002, guid: db1ee50b5b9d765488256c2502a1a749, type: 3}
   Description: Puedes usarla para alumbrar lugares oscuros
-  pickupText: 'Es una linterna, puede servirme para cuando sea de noche.
+  pickupText: 'Es una linterna
 
 '
   pickupText02: Quieres agarrar la linterna?

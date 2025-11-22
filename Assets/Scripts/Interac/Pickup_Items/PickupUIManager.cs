@@ -287,6 +287,10 @@ public class PickupUIManager : Singleton<PickupUIManager>
 
         ShowItemPreview(currentItem.Ref_ScriptableObject);
 
+
+        // 🔥 MARCAR COMO RECOGIDO EN EL GAME STATE
+        GameStateManager.Instance.MarkItemPicked(currentItem.Ref_ScriptableObject.ID);
+
         Destroy(currentItem.gameObject);
     }
 
