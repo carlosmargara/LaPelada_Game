@@ -227,7 +227,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
         justOpenedPanel = true;
         StartCoroutine(ResetJustOpenedFlag());
 
-        ShowTextAmin(item.Ref_ScriptableObject.pickupText);
+        ShowTextAmin(item.Ref_ScriptableObject.GetPickupText());
         _yesButton.SetActive(false);
         _noButton.SetActive(false);
 
@@ -257,7 +257,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
     private void ShowSecondTextPickup(PickupItem_interac item)
     {
         currentItem = item;
-        ShowTextAmin(item.Ref_ScriptableObject.pickupText02);
+        ShowTextAmin(item.Ref_ScriptableObject.GetPickupText02());
 
         _yesButton.SetActive(true);
         _noButton.SetActive(true);
@@ -278,7 +278,7 @@ public class PickupUIManager : Singleton<PickupUIManager>
         AudioManager02.Instance.PlayOneShot("event:/Fxs/PickUp Item");
 
         StopAllCoroutines();
-        ShowTextAmin(currentItem.Ref_ScriptableObject.confirmationText);
+        ShowTextAmin(currentItem.Ref_ScriptableObject.GetConfirmationText());
         itemView_rawImage.SetActive(true);
         _yesButton.SetActive(false);
         _noButton.SetActive(false);

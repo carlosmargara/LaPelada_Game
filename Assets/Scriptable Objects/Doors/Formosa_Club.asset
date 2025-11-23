@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Formosa_Club
   m_EditorClassIdentifier: 
   ID: formosa
-  descriptonInterac:
-  - text: mmm.. La sala de conciertos Formosa
-  - text: Me dijeron que se llena de dawns
+  requiredKeyID: 
+  lockedText: {fileID: 0}
+  unlockedText: {fileID: 0}
+  descriptionInterac:
+  - {fileID: 11400000, guid: ff32a4d1e494e7a48b5bcaf143b7b79f, type: 2}
+  - {fileID: 11400000, guid: a2a83de01f6a8824bbf0a4d308c8b410, type: 2}

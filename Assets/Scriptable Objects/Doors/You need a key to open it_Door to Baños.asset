@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: "rejas_Ba\xF1os"
   requiredKeyID: "Ba\xF1os"
-  lockedText: 'Esta cerrada pero si encontrara la llave o algo talvez pueda pasar '
-  unlockedText: "Usaste la llave de los ba\xF1os y la puerta se abri\xF3."
-  descriptonInterac:
-  - text: 'Esta cerrada pero si encontrara la llave o algo talvez pueda pasar '
+  lockedText: {fileID: 11400000, guid: 41632a3a6cc72814e9d60898ed183c63, type: 2}
+  unlockedText: {fileID: 11400000, guid: 2170768755e89814292dde49280bbbcb, type: 2}
+  descriptionInterac:
+  - {fileID: 11400000, guid: 94698f7e20e838f49834f5b0cbf4685b, type: 2}

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Centro de Dia_PaseoArtes
   m_EditorClassIdentifier: 
   ID: CentrodeDia
-  descriptonInterac:
-  - text: Es el centro de dia de la muni, creo que es un centro cultural municipal
-  - text: 'Esta cerrado, no puedo pasar '
+  requiredKeyID: 
+  lockedText: {fileID: 0}
+  unlockedText: {fileID: 0}
+  descriptionInterac:
+  - {fileID: 11400000, guid: 13d6125fe918d3d4e9d48bde5bb986d6, type: 2}
+  - {fileID: 11400000, guid: 62759cc5e4144c94781307bcde0fdb0e, type: 2}

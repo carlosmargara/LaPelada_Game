@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4fa8c0ebd44ad340a99266f0dd1c3b0, type: 3}
-  m_Name: Key 02
+  m_Name: "Key_Ba\xF1osPlaza"
   m_EditorClassIdentifier: 
   ID: "Ba\xF1os"
   Name: "Ba\xF1os de la Plaza"
   Icono_default: {fileID: 21300000, guid: 6678d6d0ee4d7c346a547c5611210c82, type: 3}
   Icono_equipped: {fileID: 21300000, guid: c338e10177fcc604faa88ad79cf66f20, type: 3}
   prefabModel: {fileID: 7052917966355167103, guid: 6055f066bc3def94ba12220f701cbc43, type: 3}
-  Description: "Llave candado, tieneu una incripcion.\n\"Llave del candado de los
-    ba\xF1os\""
-  pickupText: Es la llave de un candado, de que podra ser?
-  pickupText02: Quieres agarrar la llave candado?
-  confirmationText: Has agarrado la llave candado
+  Description: {fileID: 11400000, guid: b007096569fc29840b73b8f6b1984208, type: 2}
+  pickupText: {fileID: 11400000, guid: 121aac614ab60654ab2d9e1706747578, type: 2}
+  pickupText02: {fileID: 11400000, guid: bb45d8d0ae57b8942ac8d101ca31f131, type: 2}
+  confirmationText: {fileID: 11400000, guid: a6c2bc15f2d3ae7418c3471c0353fd54, type: 2}
   TypeItem: 0
   isConsumable: 0
   isCumulative: 0

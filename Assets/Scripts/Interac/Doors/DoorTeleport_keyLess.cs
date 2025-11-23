@@ -19,13 +19,13 @@ public class DoorTeleport_keyLess : Interactable
             // Requiere llave
             if (Inventory.Instance.HasItem(descripcion.requiredKeyID))
             {
-                DialogueManager.Instance.ShowWorldMessage(descripcion.unlockedText);
+                DialogueManager.Instance.ShowWorldMessage(descripcion.GetUnlockedText());
                 AudioManager02.Instance.PlayOneShot("event:/Fxs/the key slides into the lock_Sound");
                 StartCoroutine(TeleportAfterDialogue());
             }
             else
             {
-                DialogueManager.Instance.ShowWorldMessage(descripcion.lockedText);
+                DialogueManager.Instance.ShowWorldMessage(descripcion.GetLockedText());
                 AudioManager02.Instance.PlayOneShot("event:/Fxs/Closed_Door");
             }
         }

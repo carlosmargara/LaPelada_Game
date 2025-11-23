@@ -19,13 +19,13 @@ public class DoorChangeScene_withKey : Interactable
             if (Inventory.Instance.HasItem(descripcion.requiredKeyID))
             {
 
-                DialogueManager.Instance.ShowWorldMessage(descripcion.unlockedText); // Mostrar mensaje "Usaste la llave..."
+                DialogueManager.Instance.ShowWorldMessage(descripcion.GetUnlockedText()); // Mostrar mensaje "Usaste la llave..."
                 AudioManager02.Instance.PlayOneShot("event:/Fxs/the key slides into the lock_Sound"); //lanza sonido de desbloquiaste la puerta 
                 StartCoroutine(ChangeSceneAfterDialogue()); // Después del cartel, ir a la otra escena
             }
             else
             {
-                DialogueManager.Instance.ShowWorldMessage(descripcion.lockedText);// Mostrar mensaje "Está cerrada..."
+                DialogueManager.Instance.ShowWorldMessage(descripcion.GetLockedText());// Mostrar mensaje "Está cerrada..."
                 AudioManager02.Instance.PlayOneShot("event:/Fxs/Closed_Door");// lanza sonido de puerta cerrada
             }
         }

@@ -73,9 +73,17 @@ public class LocalizationManager : MonoBehaviour
     {
         currentLanguage = lang;
 
+        // Refrescar textos de UI
         LocalizedText[] all = FindObjectsOfType<LocalizedText>(true);
         foreach (var t in all)
             t.RefreshText();
+
+        // Refrescar ScriptableObjects
+        var localizedStrings = Resources.FindObjectsOfTypeAll<LocalizedString>();
+        foreach (var ls in localizedStrings)
+            ls.OnLanguageChanged();
+
+        Debug.Log("Idioma cambiado a: " + lang);
     }
 }
 

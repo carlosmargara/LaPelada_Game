@@ -202,7 +202,7 @@ public class InventoryUI : Singleton<InventoryUI>
 
         string description = "Vacio";
         if (Inventory.Instance.Items[index] != null)
-            description = Inventory.Instance.Items[index].Description;
+            description = Inventory.Instance.Items[index].GetDescription();
 
         panelDescription.SetActive(true);
         textDescription.text = "";

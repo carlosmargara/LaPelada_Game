@@ -9,5 +9,12 @@ public class LocalizedString : ScriptableObject
     {
         return LocalizationManager.Instance.GetText(key);
     }
+
+    // Para avisar cuando el idioma cambie
+    public void OnLanguageChanged()
+    {
+        // Si quisieras cachear, acá lo haces.  
+        // Por ahora lo dejamos vacío.
+    }
 }
 

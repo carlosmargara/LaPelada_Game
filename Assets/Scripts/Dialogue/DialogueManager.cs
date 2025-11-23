@@ -46,7 +46,7 @@ public class DialogueManager : Singleton<DialogueManager>
         footSteps_Player = FindObjectOfType<DiffetentTypes_footSteps_with_FmodEvent>();
         playerInteraction = FindObjectOfType<PlayerInteraction>();
         inputMapController = FindObjectOfType<InputMapController>();
-        
+
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
     }
 
@@ -209,8 +209,15 @@ public class DialogueManager : Singleton<DialogueManager>
         currentKind = DialogueKind.Door;
         doorQueue.Clear();
 
-        foreach (var d in door.Descripcion.descriptonInterac)
-            if (d != null) doorQueue.Enqueue(d.text);
+        var doorSO = door.Descripcion;
+
+        int count = doorSO.GetDescriptionCount();
+        for (int i = 0; i < count; i++)
+        {
+            string line = doorSO.GetDescriptionInterac(i);
+            if (!string.IsNullOrEmpty(line))
+                doorQueue.Enqueue(line);
+        }
 
         npcNameTMP.text = "";
         farewellShown = false;

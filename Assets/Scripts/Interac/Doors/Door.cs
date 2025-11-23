@@ -1,27 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.Rendering;
 using System;
+using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Game/Door")]
 public class Door : ScriptableObject
 {
     [Header("Info")]
-    public string ID; // ID único de la puerta
-    public string requiredKeyID; // ID de la llave necesaria (si está vacío, no necesita llave)
+    public string ID;
+    public string requiredKeyID;
 
     [Space]
 
-    [Header("Descripton")]
-    [TextArea] public string lockedText;
-    [TextArea] public string unlockedText;
-    public DoorText[] descriptonInterac;
+    [Header("Localization")]
+    public LocalizedString lockedText;
+    public LocalizedString unlockedText;
+    public LocalizedString[] descriptionInterac;
 
     [Serializable]
-    public class DoorText
+    public class LocalizedStringArrayElement
     {
-        [TextArea] public string text;
+        public LocalizedString text;
+    }
+
+    // Métodos (igual que en Item)
+    public string GetLockedText() => lockedText.GetValue();
+    public string GetUnlockedText() => unlockedText.GetValue();
+    public int GetDescriptionCount() => descriptionInterac.Length;
+
+    public string GetDescriptionInterac(int index)
+    {
+        if (index < 0 || index >= descriptionInterac.Length)
+            return "";
+
+        return descriptionInterac[index].GetValue();
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: bathroom door
   requiredKeyID: 
-  lockedText: 
-  unlockedText: 
-  descriptonInterac:
-  - text: Esta cerrada, parece trabada desde adentro
+  lockedText: {fileID: 0}
+  unlockedText: {fileID: 0}
+  descriptionInterac:
+  - {fileID: 11400000, guid: c118e2dbe3c576e4e801d2d422e708b4, type: 2}

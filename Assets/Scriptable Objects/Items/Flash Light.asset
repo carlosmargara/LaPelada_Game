@@ -17,12 +17,10 @@ MonoBehaviour:
   Icono_default: {fileID: 21300000, guid: 34d72210cb565e6479dafe0bd1bad49d, type: 3}
   Icono_equipped: {fileID: 21300000, guid: 729be56344173c64d84a1e6b8245f2eb, type: 3}
   prefabModel: {fileID: 7214661714509281002, guid: db1ee50b5b9d765488256c2502a1a749, type: 3}
-  Description: Puedes usarla para alumbrar lugares oscuros
-  pickupText: 'Es una linterna
-
-'
-  pickupText02: Quieres agarrar la linterna?
-  confirmationText: Has agarrado la linterna
+  Description: {fileID: 11400000, guid: a3181bbbe10118c4da524cf16816e71f, type: 2}
+  pickupText: {fileID: 11400000, guid: f807333dc56b3604bae3f2bad8835d58, type: 2}
+  pickupText02: {fileID: 11400000, guid: dca9a107e3d568d4aa86b970e6586fa0, type: 2}
+  confirmationText: {fileID: 11400000, guid: d646f629680d5964ea02571b6ded1ac1, type: 2}
   TypeItem: 1
   isConsumable: 0
   isCumulative: 0

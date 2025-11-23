@@ -14,11 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: You need a key to open it_Door to patioInterno
   requiredKeyID: PatioInterno_Oficinas
-  lockedText: 'Esta Cerrada pero si encuentro la llave, tal vez
-
-    pueda abrila '
-  unlockedText: "Usaste la llave de la oficinas municipal y la puerta se abri\xF3."
-  descriptonInterac:
-  - text: 'Esta Cerrada pero si encuentro la llave, tal vez
-
-      pueda abrila '
+  lockedText: {fileID: 11400000, guid: d7c3a2c5c18cc2247a4f0ccbd0957967, type: 2}
+  unlockedText: {fileID: 11400000, guid: e33ee6d4ccf2801478d1ccb7d9a496b1, type: 2}
+  descriptionInterac:
+  - {fileID: 11400000, guid: 13608efabeacdc04fb3cc1b9a16f7c0d, type: 2}

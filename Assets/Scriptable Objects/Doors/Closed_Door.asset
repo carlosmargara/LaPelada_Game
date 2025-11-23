@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Closed_Door
   m_EditorClassIdentifier: 
   ID: closed_door
-  effectDoorSound: {fileID: 8300000, guid: 36258649477712241a4f09e1e0400933, type: 3}
-  descriptonInterac:
-  - text: Esta cerrada, no puedo abrirla
+  requiredKeyID: 
+  lockedText: {fileID: 0}
+  unlockedText: {fileID: 0}
+  descriptionInterac:
+  - {fileID: 11400000, guid: 078e655f4ee226845bd5466893ba8209, type: 2}
