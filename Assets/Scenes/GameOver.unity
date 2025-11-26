@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 404190275}
   - component: {fileID: 404190277}
   - component: {fileID: 404190276}
+  - component: {fileID: 404190278}
   m_Layer: 5
   m_Name: retryText (TMP)
   m_TagString: Untagged
@@ -484,6 +485,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404190274}
   m_CullTransparentMesh: 1
+--- !u!114 &404190278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404190274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: gameover_btn_retry
 --- !u!1 &435027387
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +669,7 @@ GameObject:
   - component: {fileID: 678818218}
   - component: {fileID: 678818220}
   - component: {fileID: 678818219}
+  - component: {fileID: 678818221}
   m_Layer: 5
   m_Name: title_GameOver (TMP)
   m_TagString: Untagged
@@ -778,6 +793,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678818217}
   m_CullTransparentMesh: 1
+--- !u!114 &678818221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678818217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: gameover_text_title
 --- !u!1 &727711223
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,6 +963,7 @@ GameObject:
   - component: {fileID: 1056099474}
   - component: {fileID: 1056099476}
   - component: {fileID: 1056099475}
+  - component: {fileID: 1056099477}
   m_Layer: 5
   m_Name: quitText (TMP)
   m_TagString: Untagged
@@ -1058,6 +1087,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056099473}
   m_CullTransparentMesh: 1
+--- !u!114 &1056099477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056099473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: gameover_btn_quit
 --- !u!1 &1250411985
 GameObject:
   m_ObjectHideFlags: 0

@@ -237,7 +237,7 @@ public class NoteManager : Singleton<NoteManager>
 
         panelNote.SetActive(true);
 
-        title.text = note.noteTitle;
+        title.text = note.GetTitle();
         foregroundImage.sprite = note.foregroundImage;
         UpdatePageText();
 
@@ -284,7 +284,8 @@ public class NoteManager : Singleton<NoteManager>
 
     public void Button_NextPanelNote()
     {
-        if (currentNote == null || currentPageIndex >= currentNote.pages.Count - 1) return;
+        if (currentNote == null || currentPageIndex >= currentNote.GetPageCount() - 1) return;
+
 
         currentPageIndex++;
         UpdatePageText();
@@ -304,10 +305,11 @@ public class NoteManager : Singleton<NoteManager>
     {
         if (currentNote != null)
         {
-            pageText.text = currentNote.pages[currentPageIndex];
-            pageCounterText.text = $"Página {currentPageIndex + 1}/{currentNote.pages.Count}";
+            pageText.text = currentNote.GetPage(currentPageIndex);
+            pageCounterText.text = $"Página {currentPageIndex + 1}/{currentNote.GetPageCount()}";
+
             backButton.gameObject.SetActive(currentPageIndex > 0);
-            nextButton.gameObject.SetActive(currentPageIndex < currentNote.pages.Count - 1);
+            nextButton.gameObject.SetActive(currentPageIndex < currentNote.GetPageCount() - 1);
 
             // 🔹 NUEVO: reestablecer selección si estás usando teclado/gamepad
             if (!mouseActive)
@@ -364,7 +366,7 @@ public class NoteManager : Singleton<NoteManager>
             inputMapController.SwitchToUI();
         }
 
-        ShowTextAmin(note.interacText01);
+        ShowTextAmin(note.GetInteracText01());
         firtTextWasShown = true;
 
         yesButton.gameObject.SetActive(false);
@@ -385,7 +387,7 @@ public class NoteManager : Singleton<NoteManager>
     {
         if (firtTextWasShown && noteInteraction != null)
         {
-            string secondtext = noteInteraction.Data.interacText02;
+            string secondtext = noteInteraction.Data.GetInteracText02();
             ShowTextAmin(secondtext);
             firtTextWasShown = false;
             yesButton.gameObject.SetActive(true);

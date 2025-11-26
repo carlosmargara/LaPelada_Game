@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Contenedor_Basura
   m_EditorClassIdentifier: 
   ID: ContenedorBasura
-  descriptonInterac:
-  - text: Un contenedor de basura.
+  requiredKeyID: 
+  lockedText: {fileID: 0}
+  unlockedText: {fileID: 0}
+  descriptionInterac:
+  - {fileID: 11400000, guid: be949929365fb73439f7d39ca00441b5, type: 2}

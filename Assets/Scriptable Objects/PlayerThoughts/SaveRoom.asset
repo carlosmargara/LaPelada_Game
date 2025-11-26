@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SaveRoom
   m_EditorClassIdentifier: 
   thoughts:
-  - text: "Por alguna extra\xF1a razon... aqui adentro, me siento \na salvo."
+  - text: {fileID: 11400000, guid: 239d9a750dd45b544b94ba10a1670ca3, type: 2}

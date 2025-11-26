@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dfa98dde68c1114d87a922a3ad97954, type: 3}
   m_Name: Polica
   m_EditorClassIdentifier: 
-  Name: Policia
-  greeting: No podes pasar por aca, hubo un accidente mas adelante y esta cortado.
-  covertation: []
-  farewell: 
+  Name: {fileID: 11400000, guid: b10380e40e78a98458f5340c9ba8ba95, type: 2}
+  greeting: {fileID: 11400000, guid: dd96266fd286c654abdb9f2f84fddb48, type: 2}
+  conversation: []
+  farewell: {fileID: 11400000, guid: 747f33e59e7b7ea41afa159389b2539d, type: 2}

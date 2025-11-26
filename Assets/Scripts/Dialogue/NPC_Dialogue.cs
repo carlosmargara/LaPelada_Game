@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,20 +6,38 @@ using UnityEngine;
 public class NPC_Dialogue : ScriptableObject
 {
     [Header("Info")]
-    public string Name;
+    public LocalizedString Name;
 
     [Header("Greeting")]
-    [TextArea] public string greeting; //Saludo
+    public LocalizedString greeting;
 
     [Header("Chat")]
-    public DialogueText[] covertation; //Conversacion
+    public DialogueText[] conversation;
 
     [Header("Farewell/Goodbye")]
-    [TextArea] public string farewell; //Despedida
+    public LocalizedString farewell;
 
     [Serializable]
     public class DialogueText
     {
-        [TextArea] public string text;
+        public LocalizedString text;
+
+        // Helper muy útil:
+        public string GetText() => text != null ? text.GetValue() : "";
+    }
+
+    // --- Helpers para el juego ---
+    public string GetName() => Name != null ? Name.GetValue() : "";
+    public string GetGreeting() => greeting != null ? greeting.GetValue() : "";
+    public string GetFarewell() => farewell != null ? farewell.GetValue() : "";
+
+    public int GetDialogueCount() => conversation == null ? 0 : conversation.Length;
+
+    public string GetDialogueLine(int index)
+    {
+        if (conversation == null || index < 0 || index >= conversation.Length)
+            return "";
+        return conversation[index]?.GetText() ?? "";
     }
 }
+

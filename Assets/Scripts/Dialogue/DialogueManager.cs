@@ -17,6 +17,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public NPC_Intetaction NPC_Interaction { get; private set; }
     public Door_Interaction CurrentDoor { get; private set; }
+    public PlayerThoughts currentThoughtAsset { get; private set; }
 
     private enum DialogueKind { None, NPC, Door, Thought, WorldMessage }
     private DialogueKind currentKind = DialogueKind.None;
@@ -110,9 +111,9 @@ public class DialogueManager : Singleton<DialogueManager>
                 if (dialogueQueue.Count > 0) next = dialogueQueue.Dequeue();
                 else
                 {
-                    if (NPC_Interaction != null && NPC_Interaction.Dialogue != null && !string.IsNullOrEmpty(NPC_Interaction.Dialogue.farewell))
+                    if (NPC_Interaction != null && NPC_Interaction.Dialogue != null && !string.IsNullOrEmpty(NPC_Interaction.Dialogue.GetFarewell()))
                     {
-                        next = NPC_Interaction.Dialogue.farewell;
+                        next = NPC_Interaction.Dialogue.GetFarewell();
                         farewellShown = true;
                     }
                     else { EndDialogue(); return; }
@@ -185,21 +186,34 @@ public class DialogueManager : Singleton<DialogueManager>
         currentKind = DialogueKind.NPC;
         dialogueQueue.Clear();
 
-        foreach (var c in npcInteraction.Dialogue.covertation)
-            if (c != null) dialogueQueue.Enqueue(c.text);
+        var dialogueSO = npcInteraction.Dialogue;
 
-        npcNameTMP.text = npcInteraction.Dialogue.Name;
+        // --- Encolar conversación ---
+        foreach (var line in dialogueSO.conversation)
+        {
+            if (line != null)
+            {
+                string localizedLine = line.GetText(); // ← YA TRADUCIDO
+                if (!string.IsNullOrEmpty(localizedLine))
+                    dialogueQueue.Enqueue(localizedLine);
+            }
+        }
+
+        npcNameTMP.text = dialogueSO.GetName();
         farewellShown = false;
 
         OpenCloseDialoguePanel(true);
         GameStateManager.Instance.LockPlayer(priority: dialoguePriority);
         inputCooldown = inputCooldownDuration;
 
-        if (!string.IsNullOrEmpty(npcInteraction.Dialogue.greeting))
-            ShowTextAnim(npcInteraction.Dialogue.greeting);
+        // ¿Tiene greeting?
+        string greeting = dialogueSO.GetGreeting();
+        if (!string.IsNullOrEmpty(greeting))
+            ShowTextAnim(greeting);
         else
             ShowNext();
     }
+
 
     public void ShowDoorDescription(Door_Interaction door)
     {
@@ -248,11 +262,21 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         if (thoughtAsset == null || thoughtAsset.thoughts == null) return;
 
+        currentThoughtAsset = thoughtAsset;
+
         footSteps_Player?.StopAllFootsteps();
 
         thoughtQueue.Clear();
+
         foreach (var t in thoughtAsset.thoughts)
-            if (t != null) thoughtQueue.Enqueue(t.text);
+        {
+            if (t != null)
+            {
+                string line = t.GetText(); // ⬅️ ESTE ES EL CAMBIO CLAVE
+                if (!string.IsNullOrEmpty(line))
+                    thoughtQueue.Enqueue(line);
+            }
+        }
 
         if (thoughtQueue.Count == 0) return;
 
@@ -266,6 +290,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
         ShowNext();
     }
+
+
 
     #endregion
 
@@ -318,5 +344,36 @@ public class DialogueManager : Singleton<DialogueManager>
     }
 
     #endregion
+
+    private void OnEnable()
+    {
+        LocalizationManager.OnLanguageChanged += RefreshDialogueIfActive;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationManager.OnLanguageChanged -= RefreshDialogueIfActive;
+    }
+
+    void RefreshDialogueIfActive()
+    {
+        if (!IsTalking) return;
+
+        // volver a cargar las líneas traducidas
+        switch (currentKind)
+        {
+            case DialogueKind.NPC:
+                StartDialogue(NPC_Interaction);
+                break;
+
+            case DialogueKind.Door:
+                ShowDoorDescription(CurrentDoor);
+                break;
+
+            case DialogueKind.Thought:
+                ShowThoughts(currentThoughtAsset);
+                break;
+        }
+    }
 }
 

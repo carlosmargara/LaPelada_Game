@@ -1,14 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class LoadingDots : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI loadingText; // Asignalo en el Inspector
-    [SerializeField] private float dotInterval = 0.5f; // Tiempo entre cada cambio
+    [SerializeField] private TextMeshProUGUI loadingText;
+    [SerializeField] private float dotInterval = 0.5f;
 
-    [SerializeField] private string baseText = "Cargando";
+    [SerializeField] private LocalizedString baseText; // 🔥 ahora es una key
+
     private int dotCount = 0;
 
     void Start()
@@ -20,10 +20,13 @@ public class LoadingDots : MonoBehaviour
     {
         while (true)
         {
-            dotCount = (dotCount + 1) % 4; // 0, 1, 2, 3
+            dotCount = (dotCount + 1) % 4;
             string dots = new string('.', dotCount);
-            loadingText.text = baseText + dots;
+
+            loadingText.text = baseText.GetValue() + dots; // 🔥 texto localizado
+
             yield return new WaitForSeconds(dotInterval);
         }
     }
 }
+

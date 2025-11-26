@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: First sight_PELADA
   m_EditorClassIdentifier: 
   thoughts:
-  - text: WTF!!!... que fue eso?..
-  - text: parecia una persona pero como de otro siglo y pelada, muy raro mmm..
-  - text: 'no importa capaz estoy flayando '
-  - text: 'tengo que encontrar el bar donde esta mi amigo '
+  - text: {fileID: 11400000, guid: b7f00cf56b7b4e042a3531ed2a5fb445, type: 2}
+  - text: {fileID: 11400000, guid: b580287f20300b64eb9666fdbae2f52b, type: 2}
+  - text: {fileID: 11400000, guid: 598919fba9663bc4f99d39363f7085bb, type: 2}
+  - text: {fileID: 11400000, guid: 69bfa6df369deb64bb82dc526efe207a, type: 2}

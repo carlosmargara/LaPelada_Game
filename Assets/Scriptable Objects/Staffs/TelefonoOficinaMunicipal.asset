@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Telefono_Oficina
   requiredKeyID: 
-  lockedText: 
-  unlockedText: 
-  descriptonInterac:
-  - text: 'Es solo un telefono, no me sirve de nada ahora '
+  lockedText: {fileID: 0}
+  unlockedText: {fileID: 0}
+  descriptionInterac:
+  - {fileID: 11400000, guid: 5dbe508958da35e4b80ada048f766f5c, type: 2}

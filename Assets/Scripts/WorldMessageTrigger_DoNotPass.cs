@@ -5,8 +5,8 @@ using UnityEngine;
 public class WorldMessageTrigger_DoNotPass : MonoBehaviour
 {
     private DiffetentTypes_footSteps_with_FmodEvent footSteps_Player;
-    [TextArea]
-    [SerializeField] private string message;
+
+    [SerializeField] private LocalizedString message; // 🔥 Ahora es un ScriptableObject con key
     [SerializeField] private float cooldownTime = 3f;
 
     private bool canShowMessage = true;
@@ -22,13 +22,15 @@ public class WorldMessageTrigger_DoNotPass : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            DialogueManager.Instance.ShowWorldMessage(message);
+            // 🔥 Ahora obtiene el texto localizado desde la key del SO
+            DialogueManager.Instance.ShowWorldMessage(message.GetValue());
+
             StartCoroutine(CooldownCoroutine());
             footSteps_Player.StopAllFootsteps();
         }
     }
 
-    private System.Collections.IEnumerator CooldownCoroutine()
+    private IEnumerator CooldownCoroutine()
     {
         canShowMessage = false;
         yield return new WaitForSeconds(cooldownTime);
@@ -41,11 +43,7 @@ public class WorldMessageTrigger_DoNotPass : MonoBehaviour
         if (box == null) return;
 
         Gizmos.color = Color.red;
-
-        // Aplicar la matriz del transform actual
         Gizmos.matrix = transform.localToWorldMatrix;
-
-        // Dibujar el cubo en el espacio local del objeto
         Gizmos.DrawWireCube(box.center, box.size);
     }
 }

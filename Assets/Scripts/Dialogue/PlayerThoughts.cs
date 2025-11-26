@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
-
 
 [CreateAssetMenu(menuName = "Dialogue/PlayerThoughts")]
 public class PlayerThoughts : ScriptableObject
@@ -13,6 +10,29 @@ public class PlayerThoughts : ScriptableObject
     [Serializable]
     public class ThoughtText
     {
-        [TextArea] public string text;
+        public LocalizedString text;
+
+        public string GetText()
+        {
+            return text != null ? text.GetValue() : "";
+        }
+    }
+
+    // -----------------------
+    //       HELPERS
+    // -----------------------
+
+    public string GetThought(int index)
+    {
+        if (thoughts == null || index < 0 || index >= thoughts.Length)
+            return "";
+
+        return thoughts[index].GetText();
+    }
+
+    public int GetThoughtCount()
+    {
+        return thoughts != null ? thoughts.Length : 0;
     }
 }
+

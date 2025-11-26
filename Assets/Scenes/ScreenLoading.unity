@@ -396,7 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingText: {fileID: 1761841615}
   dotInterval: 0.45
-  baseText: Cargando
+  baseText: {fileID: 11400000, guid: 1cc22a4d23a59ab40af8af27ec669de9, type: 2}
 --- !u!114 &59896281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,20 +411,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageText: {fileID: 44393045}
   tips:
-  - 'Recuerda:
-
-    El crosshair cambia de color cuando puedes interactuar con un
-    objeto.'
-  - "Pod\xE9s correr, pero no todo el tiempo vas a querer hacerlo."
-  - "Revis\xE1 bien los rincones. A veces hay cosas importantes escondidas."
-  - "La linterna consume tu atenci\xF3n. Usala con cuidado."
+  - {fileID: 11400000, guid: 5c6ca16c96200884b9b9db2f55561a79, type: 2}
+  - {fileID: 11400000, guid: fd21c462cf6f4834eb9dc5f83e767663, type: 2}
+  - {fileID: 11400000, guid: a4498b8eb0071c4489a04ea41ba70336, type: 2}
+  - {fileID: 11400000, guid: e623fad1a5c6e2248ad3d1d8b308f03e, type: 2}
   creepyMessages:
-  - "\xBFYa la viste?.."
-  - "No mires atr\xE1s."
-  - "No est\xE1s solo."
-  - "Ya est\xE1 ac\xE1."
-  - "Escuch\xE1 bien... a veces avisa."
-  creepyChance: 0.481
+  - {fileID: 11400000, guid: 88b9658d7422b7142a773da0f8c8a69e, type: 2}
+  - {fileID: 11400000, guid: df1763c4771006947b9b14569d93543e, type: 2}
+  - {fileID: 11400000, guid: 3624875f21bc4a641aa5d69227d22ded, type: 2}
+  - {fileID: 11400000, guid: f2c204e6e736e4e49b18fd2fe84c21d5, type: 2}
+  - {fileID: 11400000, guid: 2ba14916f80a3e545886188a6968c3d1, type: 2}
+  creepyChance: 0.38
 --- !u!1 &426530601
 GameObject:
   m_ObjectHideFlags: 0

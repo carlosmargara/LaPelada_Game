@@ -1,27 +1,34 @@
 key,es,en
 
 #MainMenu
-mainmenu_text_pressstart,PRESIONE INICIO,
+mainmenu_text_pressstart,PRESIONE ENTER,
 mainmenu_btn_play,JUGAR,
 mainmenu_btn_options,OPCIONES,
 mainmenu_btn_exit,SALIR,
 mainmenu_text_warning,No estás solo...\nNo en la Cañada,
-mainmenu_text_controls,WASD - moverse\nE o Boton der mouse - mira atras\nShift izq - correr\nTab o Z - inventario\nClick izq - interactuar / boton accion,
+mainmenu_text_controls,WASD - moverse\nE o Click der - mira atras\nShift izq - correr\nTab o Z - inventario\nClick izq - interactuar / boton accion,
 mainmenu_text_back,Para volver apriete la tecla escape,
+
+#MenuPause
+pausemenu_btn_brightness,Brillo,
+pausemenu_btn_sensitivity,Sensibilidad,
+pausemenu_btn_mastervol,Volumen\nMaster,
+pausemenu_btn_exitgame,Salir del juego,
+pausemenu_text_controls,WASD - moverse\nE o Click der - mirar atrás\nShift izq - correr\nTab o Z - inventario\nClick izq - interactuar / botón acción
 
 ...
 
 # Loading Screen
 screenloading_text_loading,Cargando,
 screenloading_text_helpmessage01,Recuerda:\nEl crosshair cambia de color cuando puedes\ninteractuar con un objeto.,
-screenloading_text_helpmessage02,Podés correr, pero no todo el tiempo vas a querer\nhacerlo.,
+screenloading_text_helpmessage02,"Podés correr, pero no todo el tiempo vas a querer\nhacerlo.",
 screenloading_text_helpmessage03,Revisá bien los rincones. A veces hay cosas \nimportantes escondidas.,
 screenloading_text_helpmessage04,La linterna consume tu atención. Usala con cuidado.,
 screenloading_text_creepymessages01,¿Ya la viste?..,
 screenloading_text_creepymessages02,No mires atrás,
 screenloading_text_creepymessages03,No estás solo.,
 screenloading_text_creepymessages04,Ya está acá.,
-screenloading_text_creepymessages0,Escuchá bien... a veces avisa.,
+screenloading_text_creepymessages05,Escuchá bien... a veces avisa.,
 
 ...
 
@@ -32,49 +39,59 @@ gameover_btn_quit,Salir,
 
 ...
 
+#CanvasInterac
+pickup_btn_yes,Si,
+pickup_btn_no,No,
+uiplayer_text_stamina,Resistencia,
+note_btn_yes,Si,
+note_btn_no,No,
+note_btn_exit,Salir,
+note_btn_next,Siguiente,
+note_btn_back,Atras,
+
+...
+
 #WorldMessage_DoNotPass
-worlmessage_text_donotpass,"mmm.. Mejor no ir para ese lado, tengo un mal prensentimiento",
+worlmessage_text_donotpass,""mmm.. Mejor no ir para ese lado, tengo un mal prensentimiento"",
 
 ...
 
 # Doors
-door_closed_door_desc01,Esta cerrada, no puedo abrirla,
+door_closed_door_desc01,"Esta cerrada, no puedo abrirla",
 
 door_rejas_banos_locked,Esta cerrada pero si encontrara la llave o algo talvez pueda pasar,
 door_rejas_banos_unlocked,Usaste la llave de los baños y la puerta se abrió.,
 door_rejas_banos_desc01,Esta cerrada pero si encontrara la llave o algo talvez pueda pasar,
 
-door_bathroom_description,Esta cerrada, parece trabada desde adentro,
+door_bathroom_description,"Esta cerrada, parece trabada desde adentro",
 
-door_patiointerno_locked,Esta cerrada pero si encuentro la llave, tal vez pueda abrirla.,
+door_patiointerno_locked,"Esta cerrada pero si encuentro la llave, tal vez pueda abrirla.",
 door_patiointerno_unlocked,Usaste la llave de las oficinas municipales y la puerta se abrió.,
-door_patiointerno_desc01,Esta cerrada pero si encuentro la llave, tal vez pueda abrirla.,
+door_patiointerno_desc01,"Esta cerrada pero si encuentro la llave, tal vez pueda abrirla.",
 
 ...
 
 #Locations
-location_centrodeDia_desc01,Es el centro de dia de la muni, creo que es un centro cultural municipal,
+location_centrodeDia_desc01,"Es el centro de dia de la muni, creo que es un centro cultural municipal.",
 location_centrodeDia_desc02,Esta cerrado, no puedo pasar,
-location_formosa_desc01,mmm.. La sala de conciertos Formosa,
-location_formosa_desc02,Me dijeron que se llena de downs,
 
 ...
 
 #Items
 item_flashlight_description,Puedes usarla para alumbrar lugares oscuros.,
-item_flashlight_pickup01,Es una linterna.,
+item_flashlight_pickup01,"Es una linterna, esta media chota pero puede que me sirva de algo.",
 item_flashlight_pickup02,¿Quieres agarrar la linterna?, 
-item_flashlight_confirmation,Has agarrado la linterna.,
+item_flashlight_confirmation,Agarraste la linterna.,
 
-item_key_patios_oficinas_description,Tiene una inscripción que dice "Oficina Municipal".,
+item_key_patios_oficinas_description,Tiene una inscripción que dice ""Oficina Municipal"".,
 item_key_patios_oficinas_pickup01,Parece la llave vieja de algún lugar de la plaza.,
 item_key_patios_oficinas_pickup02,¿Quieres agarrar la llave?,
-item_key_patios_oficinas_confirmation,Has agarrado la llave.,
+item_key_patios_oficinas_confirmation,Agarraste la llave.,
 
-item_key_banos_description,Llave candado, tiene una inscripción. "Llave del candado de los baños",
-item_key_banos_pickup01,Es la llave de un candado, ¿de qué podrá ser?,
+item_key_banos_description,"Llave candado, tiene una inscripción. ""Llave del candado de los baños""",
+item_key_banos_pickup01,"Es la llave de un candado, ¿de qué podrá ser?",
 item_key_banos_pickup02,¿Quieres agarrar la llave candado?,
-item_key_banos_confirmation,Has agarrado la llave candado.,
+item_key_banos_confirmation,Agarraste llave candado.,
 
 ...
 
@@ -83,55 +100,56 @@ note_conan_interac01,Es solo un papel en la basura pero parece que tiene algo es
 note_conan_interac02,¿Quieres leerlo?,
 note_conan_page01,CONAN ESTA MUERTO!!!!!,
 
+note_diario_voz_title,Diario "La Voz del Interior",
 note_diario_voz_interac01,Es un pedazo de Diario de La Voz Del Interior,
 note_diario_voz_interac02,¿Quieres leerlo?,
-note_diario_voz_page01,En Córdoba, Argentina, circula una leyenda urbana conocida como "La Pelada de la Cañada". Se trata del fantasma de una mujer joven, alta, delgada y completamente calva, que aparece por las noches en la zona de La Cañada, un emblemático arroyo que atraviesa la ciudad.,
-note_diario_voz_page02,Según el relato, la Pelada se aparece a los transeúntes solitarios, especialmente cerca del puente o en calles aledañas. Algunas versiones dicen que persigue a los hombres infieles, mientras que otras afirman que simplemente asusta con su presencia fantasmal.,
-note_diario_voz_page03,Testigos describen una figura espectral que camina lentamente, con un vestido blanco o harapiento, y una mirada penetrante.,
-note_diario_voz_page04,El origen del mito es incierto: algunos lo vinculan a la tragedia de una mujer que perdió el cabello por una enfermedad y murió de pena, mientras que otros creen que es un alma en pena vinculada a crímenes pasados en la zona.,
+note_diario_voz_page01,"En Córdoba, Argentina, circula una leyenda urbana conocida como ""La Pelada de la Cañada"". Se trata del fantasma de una mujer joven, alta, delgada y completamente calva, que aparece por las noches en la zona de La Cañada, un emblemático arroyo que atraviesa la ciudad.",
+note_diario_voz_page02,"Según el relato, la Pelada se aparece a los transeúntes solitarios, especialmente cerca del puente o en calles aledañas. Algunas versiones dicen que persigue a los hombres infieles, mientras que otras afirman que simplemente asusta con su presencia fantasmal.",
+note_diario_voz_page03,"Testigos describen una figura espectral que camina lentamente, con un vestido blanco o harapiento, y una mirada penetrante.",
+note_diario_voz_page04,"El origen del mito es incierto: algunos lo vinculan a la tragedia de una mujer que perdió el cabello por una enfermedad y murió de pena, mientras que otros creen que es un alma en pena vinculada a crímenes pasados en la zona.",
 
 ...
 
 
 #NPCs
 npc_bartender_name,Bartender,
-npc_bartender_greeting,Hola amigo, ¿en qué puedo ayudarte? ¿Quieres tomar algo?,
-npc_bartender_chat01,Conque estás buscando a tu amigo eh?,
+npc_bartender_greeting,"Hola amigo, ¿en qué puedo ayudarte? ¿Quieres tomar algo?",
+npc_bartender_chat01,Con que estás buscando a tu amigo eh?,
 npc_bartender_chat02,¿No sé?.. imaginate que pasa un montón de gente por acá por noche,
 npc_bartender_chat03,No puedo recordarlas todas,
-npc_bartender_farewell,De todos modos, si necesitas algo o quieres un trago, voy a estar acá. Nos vemos!,
+npc_bartender_farewell,"De todos modos, si necesitas algo o quieres un trago, voy a estar acá. Nos vemos!",
 
 npc_policia_name,Policia,
-npc_policia_greeting,No podes pasar por aca, hubo un accidente más adelante y está cortado.,
-npc_policia_farewell," ",
+npc_policia_greeting,"No podes pasar por aca, hubo un accidente más adelante y está cortado.",
+npc_policia_farewell,Fijate por otro lado,
 
 ...
 
 # Thought Player
-thought_intro_01,Bueno... ya estoy aca, despues de mi largo viaje de nuevo en Cordoba,
-thought_intro_02,La Canada, que locura la recordaba mas feliz y con mas ruido de gente y cosas.,
+thought_intro_01,"Bueno... ya estoy aca, despues de mi largo viaje de nuevo en Cordoba",
+thought_intro_02,"La Cañada, que locura la recordaba mas feliz y con mas ruido de gente y cosas.",
 thought_intro_03,Donde esta todo el mundo? esta creepy esto.,
-thought_intro_04,Bueno, no importa.,
+thought_intro_04,"Bueno, no importa.",
 thought_intro_05,Mi amigo me dijo que me esperaba en el bar que esta en Achaval Rodriguez 357,
-thought_intro_06,Pasando la casa Verde, casi esquina con Canada(Marcelo T. Alvear),
+thought_intro_06,"Pasando la casa Verde, casi esquina con Cañada(Marcelo T. Alvear)",
 
 thought_first_sight_01,WTF!!!... que fue eso?..,
-thought_first_sight_02,Parecia una persona pero como de otro siglo y pelada, muy raro mmm..,
+thought_first_sight_02,"Parecia una persona pero como de otro siglo y pelada, muy raro mmm..",
 thought_first_sight_03,No importa capaz estoy flayando.,
 thought_first_sight_04,Tengo que encontrar el bar donde esta mi amigo.,
 
-thought_sight_peladacorner_01,Que raro, me parecio ver alguien parado a lo lejos.,
+thought_sight_peladacorner,"Que raro, me parecio ver alguien parado a lo lejos.",
 
-thought_garage_01,Siento como si me estuvieran vigilando.,
+thought_garage,Siento como si me estuvieran vigilando.,
 
-thought_saveRoom_01,Por alguna extraña razon... aqui adentro, me siento a salvo.,
+thought_saveRoom,"Por alguna extraña razon... aqui adentro, me siento a salvo.",
 
 ...
 
 # Staff
 staff_milei_culiadazo_desc01,jajaja.. De una.,
 staff_contenedor_basura_desc01,Un contenedor de basura.,
-staff_telefono_oficina_desc01,Es solo un telefono, no me sirve de nada ahora.,
+staff_telefono_oficina_desc01,"Es solo un telefono, no me sirve de nada ahora.",
 
 ...
 

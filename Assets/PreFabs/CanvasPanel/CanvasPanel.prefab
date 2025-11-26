@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 6487596026264470210}
   - component: {fileID: 7004804371880208190}
   - component: {fileID: 937397753606517242}
+  - component: {fileID: 6564355010014638638}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -443,6 +444,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6564355010014638638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283077937661712980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: note_btn_exit
 --- !u!1 &291515207133904329
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,11 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409a626ae97a0574eafecca82487b59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipoBoton: 1
   buttonText: {fileID: 2410765187528005226}
-  flechaExit: {fileID: 0}
-  flechaBack: {fileID: 0}
-  flechaNext: {fileID: 0}
 --- !u!1 &573259882998760170
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +866,7 @@ GameObject:
   - component: {fileID: 5898319329796426394}
   - component: {fileID: 7055374952667637172}
   - component: {fileID: 8931372252504022144}
+  - component: {fileID: 4922620174372029334}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -979,6 +990,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4922620174372029334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823111262053095650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: pickup_btn_yes
 --- !u!1 &929245979560808361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,6 +2248,7 @@ GameObject:
   - component: {fileID: 5158445111300512743}
   - component: {fileID: 8696706727442903708}
   - component: {fileID: 8091339046135889395}
+  - component: {fileID: 6874800014212075329}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2347,6 +2372,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6874800014212075329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289948980032825881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: note_btn_next
 --- !u!1 &4795807937201549150
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,6 +2618,7 @@ GameObject:
   - component: {fileID: 3906744368920731942}
   - component: {fileID: 5642711109962462669}
   - component: {fileID: 2671187180762119427}
+  - component: {fileID: 203410703915354721}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2705,6 +2744,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &203410703915354721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530526778391388821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: pickup_btn_no
 --- !u!1 &5645544567035674652
 GameObject:
   m_ObjectHideFlags: 0
@@ -3034,11 +3086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409a626ae97a0574eafecca82487b59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipoBoton: 2
   buttonText: {fileID: 8091339046135889395}
-  flechaExit: {fileID: 0}
-  flechaBack: {fileID: 0}
-  flechaNext: {fileID: 0}
 --- !u!1 &5975240388234009774
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,6 +3098,7 @@ GameObject:
   - component: {fileID: 2043971811147923946}
   - component: {fileID: 6212068927368802690}
   - component: {fileID: 4111712718641616692}
+  - component: {fileID: 7793259457479515567}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3175,6 +3224,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7793259457479515567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975240388234009774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: note_btn_no
 --- !u!1 &6195103047456659875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3408,6 +3470,7 @@ GameObject:
   - component: {fileID: 6019306738028046899}
   - component: {fileID: 4689509063655951614}
   - component: {fileID: 2544817196075020522}
+  - component: {fileID: 2956062528108966326}
   m_Layer: 5
   m_Name: staminaText - (TMP)
   m_TagString: Untagged
@@ -3531,6 +3594,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2956062528108966326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6779806348628530245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: uiplayer_text_stamina
 --- !u!1 &6887693328771747080
 GameObject:
   m_ObjectHideFlags: 0
@@ -3676,6 +3752,7 @@ GameObject:
   - component: {fileID: 6448595673411774024}
   - component: {fileID: 9199813473507179135}
   - component: {fileID: 2410765187528005226}
+  - component: {fileID: 6749706051035342095}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3799,6 +3876,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6749706051035342095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956469360559262794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: note_btn_back
 --- !u!1 &7369173238910705517
 GameObject:
   m_ObjectHideFlags: 0
@@ -4498,11 +4588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409a626ae97a0574eafecca82487b59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipoBoton: 0
   buttonText: {fileID: 937397753606517242}
-  flechaExit: {fileID: 0}
-  flechaBack: {fileID: 0}
-  flechaNext: {fileID: 0}
 --- !u!1 &8678893600638139786
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,6 +4676,7 @@ GameObject:
   - component: {fileID: 6513036539349192800}
   - component: {fileID: 1221721747286153791}
   - component: {fileID: 311518109723157419}
+  - component: {fileID: 638978621963390993}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -4713,6 +4800,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &638978621963390993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047326940764429441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d418e48a45ba2504f9cf18f97995a481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: note_btn_yes
 --- !u!1 &9111691319298060142
 GameObject:
   m_ObjectHideFlags: 0

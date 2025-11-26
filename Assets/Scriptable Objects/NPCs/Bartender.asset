@@ -12,15 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dfa98dde68c1114d87a922a3ad97954, type: 3}
   m_Name: Bartender
   m_EditorClassIdentifier: 
-  Name: Jonas
-  greeting: Hola amigo, en que puedo ayudarte? Quieres tomar algo?
-  covertation:
-  - text: Conque estas buscando a tu amigo eh?
-  - text: Nose?.. imaginate que pasa un monton de gente por aca por noche
-  - text: 'no puedo recordarlas todas '
-  farewell: 'De todos modos, si necesitas algo o quieres un trago
-
-    voy a esta
-    aca.
-
-    Nos vemos!'
+  Name: {fileID: 11400000, guid: 8a832e74fdd00c14d9d9e49176f841ff, type: 2}
+  greeting: {fileID: 11400000, guid: 84c0273563dfc2d40b81e28cc5950e42, type: 2}
+  conversation:
+  - text: {fileID: 11400000, guid: c9511d2e741e5c04dbdb9f73d937edb5, type: 2}
+  - text: {fileID: 11400000, guid: 64b0c77bb453b8f4abd238caa86e85f3, type: 2}
+  - text: {fileID: 11400000, guid: 8820939f33be8904e91182c313bace53, type: 2}
+  farewell: {fileID: 11400000, guid: b87252a61cfb204448e525194e12c104, type: 2}

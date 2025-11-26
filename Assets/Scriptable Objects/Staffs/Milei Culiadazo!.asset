@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: milei culiadazo
   requiredKeyID: 
-  lockedText: 
-  unlockedText: 
-  descriptonInterac:
-  - text: jajaja.. De una.
+  lockedText: {fileID: 0}
+  unlockedText: {fileID: 0}
+  descriptionInterac:
+  - {fileID: 11400000, guid: 2790307388ae33a49853931d1ee82c26, type: 2}

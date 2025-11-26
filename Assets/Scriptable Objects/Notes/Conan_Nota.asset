@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced7ba38b84b6864e9898f5bfa9ff3c1, type: 3}
   m_Name: Conan_Nota
   m_EditorClassIdentifier: 
-  noteTitle: 
+  noteTitle: {fileID: 11400000, guid: 15e3e3bfb6d2c3447826cc678e96d4e2, type: 2}
   foregroundImage: {fileID: 21300000, guid: 1433a5cc4ecceab4390736b4e9932968, type: 3}
-  interacText01: Es solo un papel en la basura pero parece que tiene algo escrito
-  interacText02: Quieres leerlo?
+  activaIA: 0
+  playAudioOnRead: 0
+  interacText01: {fileID: 11400000, guid: 8fbf37e6094cdcd43a53577a44006632, type: 2}
+  interacText02: {fileID: 11400000, guid: ce2c1ea5e2a2e3f4bb001ca43945e6b7, type: 2}
   pages:
-  - CONAN ESTA MUERTO!!!!!
+  - {fileID: 11400000, guid: d36487b1bda8fdf40b0d0f7591ce36fb, type: 2}

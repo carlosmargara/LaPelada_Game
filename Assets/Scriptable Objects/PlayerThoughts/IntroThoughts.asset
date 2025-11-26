@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: IntroThoughts
   m_EditorClassIdentifier: 
   thoughts:
-  - text: Bueno... ya estoy aca, despues de mi largo viaje de nuevo en Cordoba
-  - text: "La Ca\xF1ada,  que locura la recordaba mas feliz y con mas ruido de gente
-      y cosas. "
-  - text: 'Donde esta todo el mundo? esta creepy esto. '
-  - text: 'Bueno, no importa. '
-  - text: Mi amigo me dijo que me esperaba en el bar que esta en Achaval Rodriguez
-      357
-  - text: "Pasando la casa Verde, casi esquina con Ca\xF1ada(Marcelo T. Alvear)"
+  - text: {fileID: 11400000, guid: 76cf7ef536dce6642be2e9734c4b6da5, type: 2}
+  - text: {fileID: 11400000, guid: c3a7fb6be8bd57749bff344e0aab60b9, type: 2}
+  - text: {fileID: 11400000, guid: 1d744e8c5b6b4ab4f9f1669ff8dbf5f5, type: 2}
+  - text: {fileID: 11400000, guid: 1f16e7a335f931b4cb762188dca0fdc5, type: 2}
+  - text: {fileID: 11400000, guid: 340deb3080ce6da429a32892c1092dd6, type: 2}
+  - text: {fileID: 11400000, guid: 4c275f90c97c81c47be83b164752df37, type: 2}
